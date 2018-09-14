@@ -27,7 +27,7 @@
 			%>
 		</script>
 	</c:if>	
-
+ㅂㅂㅂㅂㅂㅂㅂㅂ
 <div class="wrap">
 <div class="side"><jsp:include page="common/submenu.jsp" flush="true"/></div>
 
