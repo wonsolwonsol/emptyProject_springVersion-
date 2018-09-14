@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<mvc:annotation-driven></mvc:annotation-driven>
+<mvc:default-servlet-handler/>
+<!-- 		<mvc:interceptor>
+		<mvc:mapping path="/mypage"/>myHandlerInterceptor 가져온 것 path=mapping값 
+		<ref bean="MyHandlerInterceptor" />
+	</mvc:interceptor> 이렇게 개별적으로 할 필요없고, 요청을 단일화시켜서 하면 된다. ==> top.jsp 에서 loginCheck/ 앞에 공통매핑값 주면 됨 
+ -->
+
+<mvc:view-controller view-name="home" path="/"/>
+
+
+
+<mvc:resources mapping="/images/**" location="/WEB-INF/views/images/"/>
+<mvc:resources mapping="/js/**" location="/WEB-INF/views/js/"/>
+<!-- JSP 전담 ViewResolver -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<property name="prefix" value="/WEB-INF/views/"/>
+<property name="suffix" value=".jsp"/>
+
+</bean>
+
+<context:component-scan base-package="com.*"/>
+
+</beans>
