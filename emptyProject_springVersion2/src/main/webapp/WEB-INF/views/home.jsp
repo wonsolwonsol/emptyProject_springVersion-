@@ -28,6 +28,7 @@
 		</script>
 	</c:if>	
 <h1>hellpo</h1>
+
 <div class="wrap">
 <div class="side"><jsp:include page="common/submenu.jsp" flush="true"/></div>
 
