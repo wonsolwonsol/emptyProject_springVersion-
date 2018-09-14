@@ -1,0 +1,459 @@
+--0824 QnA 게시판 구조 및 소스 
+-- 테이블 설명 : QNA 게시판 불러왔을 때 '질문상세보기' 기능 이용 시, 해당글 넘버(Question_num)를 참조하는 코멘트 데이터를 가져오는 방식입니다.
+-- 즉, 테이블 두 개가 '글 상세보기'를 눌렀을 때 함께 생성됩니다. 코멘트 테이블에는 질문 글 넘버를 참조하는 fk_question_num 컬럼이 함께 있습니다.
+--충돌할까봐 댓글쓴이(author)의 칼럼명과 질문글쓴이(userid) 컬럼명을 다르게 지정했으나, 테이블이 애초에 두개이므로 충돌하진 않습니다. 같은 구조 페이지 구현 시 같게 하셔도 됩니다. 
+
+
+
+create table questionboard_comments 
+(   author varchar2(20) 
+,comment_contents varchar2(1000) 
+,comment_num number(5)
+, fk_question_num number(5)
+); 
+
+--외래키 나중에 추가하는 방법 사용 
+alter table questionboard_comments 
+ADD CONSTRAINT 
+commet_limit -- 외래키 자체의 이름 지정 
+foreign key(fk_question_num)
+references questionboard(question_num) ;
+
+insert into questionboard_comments 
+values( 'wonsol', '리뷰에 감사드립니다. 고객님 예쁘게 사용해주세요.', 1, 1 ) ; 
+
+
+
+
+--0823 QnA 게시판 테이블 업데이트, 원솔
+create table questionboard (
+    question_num number(5) primary key
+    ,title varchar2(20) not null
+    ,userid varchar2(20)
+    ,question_contents varchar2(1000) 
+    ,wirteday date default sysdate
+    ,image_name varchar2(20)   );
+--확인 
+
+    
+    
+    insert into questionboard values(
+    1, '배송질문', 'wonsol', '배송은 언제쯤 시작해요?', sysdate, null ) ;
+        insert into questionboard values(
+    2, '배송질문2', 'wonsol', '배송은 언제쯤 시작해요?2', sysdate, null ) ;
+        insert into questionboard values(
+    3, '배송질문3', 'wonsol', '배송은 언제쯤 시작해요?3', sysdate, null ) ;
+    
+    
+select * from questionboard;
+
+--commit 잊지말고 꼭 하기~
+
+
+
+
+--계정이름 및 비밀번호는 저의경우 test2/test2로 했지만 팀원분들은 그때그때 드라이버 이름 수정해주시면 될 것 같아요 ^_^
+--0821_update:wonsol:공지사항 게시판 create table update 합니다. 
+create table notice
+( seq number(3)
+    ,title varchar2(100)
+    ,content clob
+    ,reg_dts date default sysdate ) ;
+    
+    insert into notice values ( 1, 'empty쇼핑몰에 오신 걸 환영합니다.', '안녕하세요, empty 관리자입니다. 배송은 2일 내로 진행됩니다. 감사합니다.'
+                                    ,sysdate);
+select count(*) from notice; --1
+select * from notice;
+
+commit;
+
+    insert into notice values ( 2, '추석시즌 배송안내', '풍성한 한가위 되세요.'
+                                    ,sysdate);
+                                        insert into notice values ( 3, '추석연휴 주문안내', '감사합니다, 고객님'
+                                    ,sysdate);
+                                        insert into notice values ( 4, '가을 이벤트 안내', '안녕하세요, empty 관리자입니다. 배송은 2일 내로 진행됩니다. 감사합니다.'
+                                    ,sysdate);
+                                        insert into notice values ( 5, '겨울 이벤트 안내.', '겨울맞이 아우터 세일 최대 30%'
+                                    ,sysdate);
+
+
+
+
+-- 
+ create table member
+ ( userid VARCHAR2(10) PRIMARY KEY,
+   passwd VARCHAR2(10) NOT NULL,
+   username VARCHAR2(10) NOT NULL,
+   post VARCHAR2(6) NOT NULL,
+   addr1 VARCHAR2(500) NOT NULL,
+   addr2 VARCHAR2(500) NOT NULL,
+   phone1 VARCHAR2(3) NOT NULL,
+   phone2 VARCHAR2(4) NOT NULL,
+   phone3 VARCHAR2(4) NOT NULL,
+   email1 VARCHAR2(20) NOT NULL,
+   email2 VARCHAR2(20) NOT NULL );   
+
+
+create table goods
+   ( goods_Code varchar2(20) PRIMARY KEY,
+    goods_Color VARCHAR2(10) not null,
+     goods_Name varchar2(80) not null,
+     goods_Content varchar2(1000),
+goods_Price NUMBER(8),
+goods_Brand varchar2(30) not null,
+goods_Image1 varchar2(20) not null ,
+goods_Image2 varchar2(22) not null,
+ goods_Category varchar2(20) not null,
+goods_Date DATE  DEFAULT SYSDATE); 
+
+
+
+commit;
+ 
+ -- code, color, gname, gcontents, gprice, designer, gimage1, gimage2, category 
+
+
+insert into goods 
+values (
+'s_1',	
+'brown', 	
+'Faye medium glossed-leather shoulder bag',	
+null,	
+50000,	
+'CHLOE',	
+'s_image_1',	
+'shoulder_image_1',	
+'Shoulder_Bags',sysdate); 
+
+
+select *
+from goods; 
+
+insert into goods 
+values 
+(
+'s_2',	'brown', 	'Musubi mini knotted suede shoulder bag',	'무스비 미니 노트 스웨이드 숄더백',	48000,	'ACNE STUDIOS',	's_image_2',	'shoulder_image_2',	'Shoulder_Bags', sysdate);
+insert into goods 
+values (
+'s_3',	'black',	'Intarsia shearling shoulder bag',	'인타시아 쉬어링 숄더백',	437000,	'BALENCIAGA',	's_image_3',	'shoulder_image_3',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_4',	'blue',	'Disc leather and suede shoulder bag', '디스크 레더 스웨이드 숄더백',	240000,	'JW ANDERSON',	's_image_4',	'shoulder_image_4',	'Shoulder_Bags', sysdate);
+
+
+insert into goods 
+values (
+'s_5'	'brown', 	'Disc leather and suede shoulder bag',	'디스크 레더 스웨이드 숄더백',	120000,	'JW ANDERSON',	's_image_5',	'shoulder_image_5',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_6',	'green',	'Besa textured-leather shoulder bag'	'베사 텍스쳐 레더 숄더백',	420000,	'ROKSNANDA',	's_image_6',	'shoulder_image_6',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_7',	'pink',	'Besa textured-leather shoulder bag',	'베사 텍스쳐 레더 숄더백',	98000,	'ROKSNANDA',	's_image_7',	'shoulder_image_7',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_8',	'red',	'Two-tone woven raffia shoulder bag',	'투톤 우븐 라피아 숄더백',	228000,	'NANNACAY',	's_image_8',	'shoulder_image_8',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_9',	'blue',	'Two-tone woven raffia shoulder bag',	'투톤 우븐 라피아 숄더백',	90000,	'NANNACAY',	's_image_9',	'shoulder_image_9',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_10',	'green','Delila color-block textured-leather and suede shoulder bag',	'델리라 컬러 블록 텍스쳐 레더 스웨이드 숄더백',	92000,	'YUZEFI',	's_image_10',	'shoulder_image_10',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_11',	'black',	'Medium Pandora bag in washed-leather',	'미디엄 판도라 백 인 워시드 레더' ,	740000,	'GIVENCHY',	's_image_11',	'shoulder_image_11',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_12',	'white',	'Frame printed textured-leather shoulder bag',	'프레임 프린트 텍스쳐 레더 숄더백',	1280000,	'PRADA',	's_image_12',	'shoulder_image_12',	'Shoulder_Bags', sysdate)
+
+insert into goods 
+values (
+'s_13',	'blue',
+'Paulas Ibiza Hammock color-block textured-leather shoulder bag',	'폴라스 이비자 해먹 컬러 블럭 레더 숄더백'
+,	365000,	'LOWEW',	's_image_13',	
+'shoulder_image_13',	'Shoulder_Bags', sysdate );
+
+insert into goods 
+values 
+'s_14',	'green',	'Tara textured-leather shoulder bag',	'테라 텍스쳐 레더 숄더백',	82000,	'TOM FORD',	's_image_14',	'shoulder_image_14',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_15',	'black',	'Tara textured-leather shoulder bag', '테라 텍스쳐 레더 숄더백',	560000,	'TOM FORD',	's_image_15',	'shoulder_image_15',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_16',	'pink', 'Hortensia medium color-block leather shoulder bag',	'호텐시아 미디엄 컬러 블록 레더 숄더백',	350000,	'WANDLER',	's_image_16',	'shoulder_image_16',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_17',	'blue',	'Hortensia medium color-block leather shoulder bag',	'호텐시아 미디엄 컬러 블록 레더 숄더백',	345000,	'WANDLER',	's_image_17',	'shoulder_image_17',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_18',	'wine',	'Roy mini leather bucket bag',	'로이 미니 레더 버켓백',	224500,	'CHLOE',	's_image_18',	'shoulder_image_18',	'Shoulder_Bags', sysdate);
+
+insert into goods 
+values (
+'s_19',	'purple',	'GG Marmont mini quilted velvet' ,	'지지 마몽트 미니 퀼트 벨벳',	134800,	'GUCCI', 	's_image_19',	'shoulder_image_19',	'Shoulder_Bags',sysdate);
+
+insert into goods 
+values (
+'s_20',	'white',	'Roy small leather bucket bag',	'로이 스몰 레더 버켓백',	367000,	'CHLOÉ', 	's_image_20',	'shoulder_image_20',	'Shoulder_Bags',sysdate);
+
+insert into goods 
+values (
+'s_21',	'white',	'Miu Lady crystal-embellished matelassé leather shoulder bag',	'미우 레이디 크리스탈 엠블리시드 마텔라쎄 레더 숄더백',	326000,	'MIU MIU', 	's_image_21',	'shoulder_image_21',	'Shoulder_Bags',sysdate);
+
+insert into goods 
+values (
+'s_22',	'green',	'Luna acrylic shoulder bag',	'루나 아크릴 숄더백',	72500,	'CULT GAIA',	's_image_22',	'shoulder_image_22',	'Shoulder_Bags',  sysdate);
+
+insert into goods 
+values (
+'s_23',	'yellow',	'Nile Bracelet mini textured-leather shoulder bag',	'나일 브레이슬렛 미니 텍스쳐 레더 숄더백',	420000,	'CHLOÉ',	's_image_23',	'shoulder_image_23',	'Shoulder_Bags' ,sysdate);
+
+insert into goods 
+values (
+'s_24',	'blue',	'Faye small leather and suede shoulder bag',	'파예 스몰 레더 스웨이드 숄더백',	98000	,'CHLOÉ',	's_image_24',	'shoulder_image_24',	'Shoulder_Bags',sysdate);
+
+commit;
+
+select *
+from goods; 
+
+--------------------------버킷백 ,  -- code, color, gname, gcontents, gprice, designer, gimage1, gimage2, category 
+
+
+select *
+from goods;
+
+
+insert into goods values(
+'b_1',	'brown', 'Cleo woven leather bucket bag',	'클레오 우븐 레더 버켓백',	128000,	'LOEFFLER RANDALL',	'b_image_1',	'bucket_image_1',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_2',	'white',	'Pannier small leather bucket bag', '파니에 스몰 레더 버켓백'	,	60000,	'MARNI', 			'b_image_2',	'bucket_image_2',	'Bucket_Bags', sysdate
+);
+
+insert into goods values(
+'b_3',	'brown', 	
+'Lorna mini leather tote',		
+'로나 미니 레더 토트백',	570000,	
+'DANSE LENTE', 	
+'b_image_3',	'bucket_image_3',	
+'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_4',	'brown', 	'Johnny mini smooth and textured-leather bucket bag',	'조니 미니 스무스 텍스쳐 레더 버켓백',	80000,		'DANSE LENTE',	'b_image_4',	'bucket_image_4.jpg',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_5',	'white',	'Woven cotton bucket bag',		'우븐 코튼 버켓백',	90000,	'CATZORANGE',	'b_image_5',	'bucket_image_5',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_6',	
+'brown',	
+'Pannier small leather bucket bag',	  
+'스몰 레더 버켓백',	128000,	'MARNI', 
+'b_image_6',	'bucket_image_6',	
+'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_7',	'white',	'Woven cotton bucket bag',	'우븐 코튼 버켓백',	356000,	'ALIENINA',	'b_image_7',	'bucket_image_7',	'Bucket_Bags', sysdate
+);
+select * from goods;
+insert into goods values(
+'b_8',	'khaki',	'Nelia mini suede and leather bucket bag',	'넬리아 미니 스웨이드 레더 버켓백',	780000,	'NICO GIANI',	'b_image_8',	'bucket_image_8',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_9',	'white',	'Lorna mini paneled leather bucket bag',	'로나 미니 패널 레더 버켓백',	82000,	'DANSE LENTE',	'b_image_9',	'bucket_image_9',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_10',	'pink',	'Amphora mini leather tote', '앰포라 미니 레더 토트백',	759000,	'CAROLINA SANTO DOMINGO',	'b_image_10',	'bucket_image_10',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_11',	'white',	'Johnny mini leather bucket bag',	'조니 미니 레더 버켓백',	340000,	'DANSE LENTE', 	'b_image_11',	'bucket_image_11',	'Bucket_Bags', sysdate
+);
+commit;
+select * from goods;
+insert into goods values(
+'b_12',
+'black',
+'Roy mini snake-effect leather bucket bag',
+'로이 미니 스네이크 레더 버켓백',	
+72000,	
+'LOEFFLER RANDALL',	
+'b_image_12',	
+'bucket_image_12',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_13',	'yellow',	'Woven cotton bucket bag',		'우븐 코튼 버켓백',	68000,	'ALIENINA',	'b_image_13',	'bucket_image_13',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_14',	'white',	'Laser-cut leather bucket bag',	'레이저 컷 레더 버켓백',	98000,	'ALAÏA',	'b_image_14',	'bucket_image_14',	'Bucket_Bags', sysdate
+);
+commit;
+insert into goods values(
+'b_15',	'yellow',	'Colada leather-trimmed wicker tote',	'콜라다 레더 트림 위커 토트백',	320000,	'KAYU',	'b_image_15',	'bucket_image_15',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_16',	'black',	'Cleo woven leather bucket bag',	'클로에 우븐 레더 버켓백',	42000,	'LOEFFLER RANDALL',	'b_image_16',	'bucket_image_16'	,	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_17',	'brown', 'Bucket tasseled woven raffia tote',	'버켓 태슬 우븐 라피아 토트백',	85000,	'NANNACAY',	'b_image_17',	'bucket_image_17',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_18',	'black',	'Bissett patent-leather bucket bag',	'비제트 패텐 가죽 버켓백' ,	320000,	'STAUD',	'b_image_18',	'bucket_image_18',		'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_19',	'pink',	'Jesmyn velvet bucket bag',	'자스민 벨벳 버켓백',	456000,	'LOEFFLER RANDALL',	'b_image_19',	'bucket_image_19',	'Bucket_Bags', sysdate
+);
+insert into goods values(
+'b_20',	'pink',	'Lila pompom-embellished woven bucket bag',	'릴라 폼폼 엠블리시드 우븐 버켓백',	60000,	'SOPHIE ANDERSON',	'b_image_20',	'bucket_image_20',	'Bucket_Bags', sysdate
+); 
+
+--------------
+
+commit;
+
+ insert into goods values( 
+'c_1',	'black',	'Ellipse crystal-embellished suede clutch',	'일립스 크리스탈 엠블리시드 스웨이드 클러치',	380000,	'JIMMY CHOO',	'c_image_1',	'clutch_image_1',	'Clutch_Bags', sysdate
+); insert into goods values( 
+'c_2',	'pink',	'Angelou small tasseled crochet and resin clutch', 	'안젤루 스몰 태슬 크로쉐 레진 클러치',	72000,	'CULT GAIA',	'c_image_2',	'clutch_image_2',	'Clutch_Bags', sysdate
+); insert into goods values( 
+'c_3',	'black',	'Lauren metallic intrecciato leather clutch',	'로렌 메탈릭 인트레시아토 레더 클러치' ,	78000,	'BOTTEGA VENETA',	 'c_image_3',	'clutch_image_3',	'Clutch_Bags', sysdate
+); insert into goods values( 
+'c_4',	'pink',	'Lantern fringed leather clutch',	'랜턴 프린지 레더 클러치',	98000,	'HILLIER BARTLEY',	'c_image_4',	'clutch_image_4',	'Clutch_Bags', sysdate
+);
+---
+insert into goods values( 
+'c_5',	'black',	'Vivienne glittered velvet clutch ',	'비비안느 글리터 벨벳 클러치',	90000,	'JIMMY CHOO',	'c_image_5',	'clutch_image_5',	'Clutch_Bags', sysdate
+); 
+---
+insert into goods values( 
+'c_6',	'pink',	'Ark small acrylic clutch',		'아크 스몰 아크릴 클러치',	80000,	'CULT GAIA',	'c_image_6',	'clutch_image_6',	'Clutch_Bags', sysdate
+);
+insert into goods values( 
+'c_7',	'black',	 'The Rockstud quilted cracked-leather pouch', 	'더 락스터드 퀼트 크랙 레더 파우치',	820000,	'VALENTINO',	'c_image_7',	'clutch_image_7',	'Clutch_Bags', sysdate
+);
+insert into goods values( 
+'c_8',	'black',	'Monogramme croc-effect leather pouch',	'모노그램 크록 이펙트 레더 파우치',	360000,	'SAINT LAURENT',	'c_image_8',	'clutch_image_8',	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_9',	'pink',	'Feather-trimmed straw pouch', 	'페더 트림 스트로 파우치',	50000,	'LOEFFLER RANDALL',	'c_image_9',	'clutch_image_9',	 	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_10',	'black',	'Le Sept chain-embellished leather clutch',	'르 셉 체인 엠블리시드 레더 클러치',	70000,	'SAINT LAURENT',	'c_image_10',	'clutch_image_10',	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_11',	'pink',	'intrecciato satin clutch', 	'인터레시아토 새틴 클러치',	620000,	 'BOTTEGA VENETA',	'c_image_11',	'clutch_image_11',	'Clutch_Bags', sysdate
+);
+commit;
+-----
+insert into goods values( 
+'c_12',	'black',	'Crystal-embellished crushed-velvet clutch',	'크리스탈 엠블리시드 크러시드 벨벳 클러치',	350000,	'ROGER VIVIER',	'c_image_12',	'clutch_image_12',		'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_13',	'black',	'Wristlet leather clutch',		'리슬렛 레더 클러치',	60000,	'THE ROW',	'c_image_13',	'clutch_image_13',	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_14',	'pink',	'Valentino Garavani The Rockstud leather clutch', 	'발렌티노 가라바니 더 락스터드 레더 클러치',	70000,	'VALENTINO',	'c_image_14',	'clutch_image_14',	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_15',	'black',	'Monogramme leather clutch',	'모노그램 레더 클러치',	37000,	'SAINT LAURENT',	'c_image_15',	'clutch_image_15',	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_16',	'red',	'Studded leather pouch',		'스터디드 레더 파우치',	1286000,	'PRADA',	'c_image_16',	'clutch_image_16',	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_17',	'red',	'Printed textured-leather pouch',	'프린트 텍스쳐 레더 파우치',	890000,	' GUCCI',	'c_image_17',	'clutch_image_17',	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_18',	'black',	'Embossed leather clutch',		'엠보스드 레더 클러치',	450000,	'CALVIN KLEIN',		'c_image_18',	'clutch_image_18',	'Clutch_Bags', sysdate
+); 
+insert into goods values(
+'c_19',	'red',	'The Rockstud textured-leather pouch',	'더 락스터드 텍스쳐 레더 파우치',	700000,	'VALENTINO',	'c_image_19',	'clutch_image_19',	'Clutch_Bags', sysdate
+); 
+insert into goods values( 
+'c_20',	'black',	'Knuckle embellished croc-effect leather clutch',	'너클 엠블리시드 크록 이펙트 레더 클러치',	420000,	'ALEXANDER MCQUEEN',	'c_image_20',	'clutch_image_20',	'Clutch_Bags', sysdate
+);
+
+-------
+
+
+select * from goods;
+
+insert into goods values(
+'m_1',	'red',	'Micro laser-cut leather tote',	'마이크로 레이저 컷 레더 토트백',	72000,	'ALAÏA',	'm_image_1',	'mini_image_1',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_2',	'brown',	'Adenia mini leather bucket bag',	'아데니아 미니 레더 버켓백',	100000,	'NICO GIANI ',	'm_image_2',	'mini_image_2',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_3',	'brown',  'Tunilla mini leather shoulder bag',	'튜닐리아 미니 레더 숄더백',	280000,	'NICO GIANI ',	'm_image_3',	'mini_image_3',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_4',	'purple',	'Adenia mini leather bucket bag',	'아데니아 미니 레더 버켓백',	346000,	'NICO GIAN',	'm_image_4',	'mini_image_4',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_5',	'black',	'mini quilted leather shoulder bag', '미니 퀼트 레더 숄더백',	783400,	'GUCCI',	'm_image_5',	'mini_image_5',	'Mini_Bags', sysdate
+);
+----
+
+insert into goods values(
+'m_6',	'black',	 'Mini Mini leather bucket bag',	'미니 미니 레더 버켓백',	648000,	 'MANSUR GAVRIEL', 	'm_image_6',	'mini_image_6',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_7',	'black',	'Drew mini textured-leather shoulder bag',	'드류 미니 텍스쳐 레더 숄더백',	425700,	'CHLOÉ',	'm_image_7',	'mini_image_7',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_8',	'black',	'Micro laser-cut leather tote'	,	'마이크로 레이저 컷 레더 토트백',	67800,	'ALAÏA',	'm_image_8',	'mini_image_8',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_9',	'black',	'The Marcie mini textured-leather shoulder bag',	'더 마시 미니 텍스쳐 레더 숄더백',	128000,	'CHLOÉ',	'm_image_9',	'mini_image_9',		'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_10',	'white',	'Mini Mini leather bucket bag' ,	'미니 미니 레더 버켓백',	270000,	'MANSUR GAVRIEL',	'm_image_10',	'mini_image_10',	'Mini_Bags', sysdate
+);
+insert into goods values(
+'m_11',	'pink',	'Sun mini mini leather tote', 		'선 미니 미니 레더 토트백',	98000,	'MANSUR GAVRIEL',	'm_image_11',	'mini_image_11',	'Mini_Bags', sysdate
+); 
+----
+commit; 
+insert into goods values(
+'m_12',	'black',	'Valentino Garavani Lock small leather shoulder bag',	'발렌티노 가라바니 락 스몰 레더 숄더백',	673000,	'VALENTINO', 	'm_image_12',	'mini_image_12',		'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_13',	'red',	'Hortensia mini lizard-effect leather shoulder bag',	'호텐시아 미니 리자드 이펙트 레더 숄더백',	430000, 'WANDLER',	'm_image_13',	'mini_image_13',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_14',	'purple',	'Nelia mini leather and suede',	'넬리아 미니 레더 스웨이드',	78000,	'NICO GIANI',	'm_image_14',	'mini_image_14',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_15',	'black',	'Sun mini mini leather tote', '선 미니 미니 레더 토트백',	60000,	'MANSUR GAVRIEL',	'm_image_15',	'mini_image_15',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_16',	'brown', 	'Bucket tasseled woven raffia tote', '버켓 태슬 우븐 라피아 토트백',	92000,	' NANNACAY',	'm_image_16',	'mini_image_16',	'Mini_Bags', sysdate
+);
+insert into goods values(
+'m_17',	'black',	'Croc-effect leather camera bag',	'크록 이펙트 레더 카메라 백',	276000,	'ALEXANDER MCQUEEN',	'm_image_17',	'mini_image_17',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_18',	'black',	'Double Circle small satin tote',	'더블 서클 스몰 새틴 토트백',	75000,	'THE ROW',	'm_image_18',	'mini_image_18',	'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_19',	'white',	'Amphora leather tote' , '앰포라 레더 토트백' ,	452000,	'CAROLINA SANTO DOMINGO',	'm_image_19',	'mini_image_19',		'Mini_Bags', sysdate
+); 
+insert into goods values(
+'m_20',	'white',	'Sun mini mini leather tote',	'선 미니 미니 레더 토트백',	80000,	'MANSUR GAVRIEL',	'm_image_20',	'mini_image_20',	'Mini_Bags', sysdate ); 
+
+
+

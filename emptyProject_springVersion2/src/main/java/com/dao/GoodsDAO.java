@@ -9,11 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.dto.Goods;
 @Repository
-public class GoodsDAO {
-	
-	
+public class GoodsDAO {	
 	@Autowired
 	SqlSessionTemplate template ;
+	
 	//모두보기 
 	public List<Goods> GoodsList(){
 		List<Goods> list = 

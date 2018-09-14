@@ -12,7 +12,7 @@ import com.dto.Goods;
 public class GoodsService {
 
 	@Autowired
-GoodsDAO dao ; 
+	GoodsDAO dao ; 
 
 	 //모두보기
 	public List<Goods> GoodsList(){

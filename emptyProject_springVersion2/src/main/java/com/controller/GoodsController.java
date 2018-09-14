@@ -9,14 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.dto.Goods;
 import com.service.GoodsService;
 
-public class GoodsController {
-
-	
+public class GoodsController {	
 	@Autowired
 	GoodsService service ;
-	
-	
-	
+		
 	@RequestMapping("/GoodsList")
 	public String GoodsList() {
 		List<Goods> list = service.GoodsList(); 

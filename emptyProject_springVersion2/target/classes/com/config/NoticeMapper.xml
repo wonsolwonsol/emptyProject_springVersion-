@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board"> 
+<!-- create table notice 
+( seq number(3)
+    ,title varchar2(100)
+    ,content clob 
+    ,reg_dts date default sysdate ) ;
+    
+    insert into notice values ( 1, 'empty쇼핑몰에 오신 걸 환영합니다.', '안녕하세요, empty 관리자입니다. 배송은 2일 내로 진행됩니다. 감사합니다.'
+                                    ,sysdate); 
+select count(*) from notice; //1 
+ -->
+<select id="notice" resultType="NoticeDTO" parameterType="hashmap">
+select seq
+	,title
+	,content
+	,reg_dts
+	from notice 
+</select>
+
+<select id="NoticeCount" resultType="int">
+select count(*)
+from notice 
+</select>
+</mapper>

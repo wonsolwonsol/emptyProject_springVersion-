@@ -5,7 +5,7 @@
 	<h1><a href="home.jsp">logo</a></h1>
 	<br>
 	<ul id="side_category">
-		<li><a href="GoodsList">ALL</a></li>
+		<li><a href="GoodsAllServlet">ALL</a></li>
 		<li><a href="GoodsListServlet?goods_Category=Bucket_Bags">BUCKET BAG</a><li>
 		<li><a href="GoodsListServlet?goods_Category=Shoulder_Bags">SHOULDER BAG</a></li>
 		<li><a href="GoodsListServlet?goods_Category=Clutch_Bags">CLUTCH BAGS</a></li>
