@@ -7,16 +7,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<context:property-placeholder
-		location="classpath:com/config/jdbc.properties" />
-
-<!-- 	<bean id="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="${driver}" />
-		<property name="url" value="${url}" />
-		<property name="username" value="${username}" />
-		<property name="password" value="${xxx}" />
-	</bean> -->
+	<context:property-placeholder location="classpath:com/config/jdbc.properties" />
 	
 <bean class="org.apache.commons.dbcp2.BasicDataSource" id="dataSource">
 	<property value="${jdbc.driver}" name="driverClassName"/>
@@ -39,13 +30,13 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/config/GoodsMapper.xml</value>
-			
+				<value>classpath:com/config/MemberMapper.xml</value>			
 			</list>
 		</property>
 		<property name="typeAliases">
 			<list>
 				<value>com.dto.Member</value>
-
+				<value>com.dto.Goods</value>
 			</list>
 			
 				
@@ -54,10 +45,9 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean id="sessionTemplate"
-		class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg name="sqlSessionFactory"
-			ref="factoryBean" />
+	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="factoryBean" />
 	</bean>
+	
 
 </beans>

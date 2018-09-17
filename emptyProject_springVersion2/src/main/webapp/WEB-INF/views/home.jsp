@@ -7,27 +7,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/common.css" />
- <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="js/jquery-3.1.0.js"></script>
 </head>
 <body>
 	<c:if test="${!empty success}">
 		<script type="text/javascript">
 			alert("${success}");
-			<%
-			session.removeAttribute("success");
-			%>
+
 		</script>
 	</c:if>
 	
 	<c:if test="${!empty mesg}">
 		<script type="text/javascript">
 			alert("${mesg}");
-			<%
-			session.removeAttribute("mesg");
-			%>
 		</script>
 	</c:if>	
-<h1>hellpo</h1>
+
 
 <div class="wrap">
 <div class="side"><jsp:include page="common/submenu.jsp" flush="true"/></div>

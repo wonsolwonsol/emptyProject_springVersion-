@@ -1,6 +1,9 @@
 package com.dto;
 
-public class MemberDTO {
+import org.apache.ibatis.type.Alias;
+
+@Alias("Member")
+public class Member {
 	private String userid;
 	private String passwd;
 	private String username;
@@ -13,11 +16,11 @@ public class MemberDTO {
 	private String email1;
 	private String email2;
 	
-	public MemberDTO() {
+	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberDTO(String userid, String passwd, String username, String post, String addr1, String addr2,
+	public Member(String userid, String passwd, String username, String post, String addr1, String addr2,
 			String phone1, String phone2, String phone3, String email1, String email2) {
 		super();
 		this.userid = userid;

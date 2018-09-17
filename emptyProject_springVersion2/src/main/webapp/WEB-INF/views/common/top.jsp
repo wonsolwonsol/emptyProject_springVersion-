@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>        
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".toggle").click(function(){
+ 	$(".toggle").click(function(){
         $("#search").stop().animate({
         	width: 'toggle'        
         });
@@ -16,7 +16,7 @@ $(document).ready(function(){
 			$("form").attr("action","GoodsAllServlet");
 			$(this).submit();
 		}
-	})//
+	})// 
 })
 
 </script>
@@ -24,19 +24,20 @@ $(document).ready(function(){
 	<ul>
 		<li>
 	<form>
-		<input type="text" name="search" id="search" placeholder="search..."><img src="./images/icon/search.png" class="toggle">
+		<input type="text" name="search" id="search" placeholder="search..."  style="margin-bottom: 14px">
+		<img src="./images/icon/search.png" class="toggle">
 	</form>
 		</li>
 		<li><a href="GoodsCartListServlet"><img src="images/icon/cart.png"></a></li>
 <c:if test="${empty login}">
-		<li><a href="LoginUIServlet"><img src="images/icon/user.png"></a></li>
+		<li><a href="loginForm"><img src="images/icon/user.png"></a></li>
 </c:if>
 <c:if test="${!empty login}">
 	<c:if test="${login.userid eq 'admin'}">
 		<li><a href="AdminPageServlet"><img src="images/icon/user.png"></a></li>
 	</c:if>
-		<li><a href="MypageServlet"><img src="images/icon/user.png"></a></li>
-		<li><a href="LogoutUIServlet"><img src="images/icon/logout.png"></a></li>
+		<li><a href="Mypage"><img src="images/icon/user.png"></a></li>
+		<li><a href="logout"><img src="images/icon/logout.png"></a></li>
 </c:if> 
 	</ul>
 </div>

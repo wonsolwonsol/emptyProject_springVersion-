@@ -3,14 +3,14 @@ package com.dto;
 import java.util.List;
 
 public class PageDTO {
-	List<GoodsDTO> list;
+	List<Goods> list;
 	int currentPage;
 	int perPage = 10;
 	int totalCount;
-	public List<GoodsDTO> getList() {
+	public List<Goods> getList() {
 		return list;
 	}
-	public void setList(List<GoodsDTO> list) {
+	public void setList(List<Goods> list) {
 		this.list = list;
 	}
 	public int getCurrentPage() {
@@ -36,7 +36,7 @@ public class PageDTO {
 		return "PageDTO [list=" + list + ", currentPage=" + currentPage + ", perPage=" + perPage + ", totalCount="
 				+ totalCount + "]";
 	}
-	public PageDTO(List<GoodsDTO> list, int currentPage, int perPage, int totalCount) {
+	public PageDTO(List<Goods> list, int currentPage, int perPage, int totalCount) {
 		super();
 		this.list = list;
 		this.currentPage = currentPage;
@@ -47,6 +47,7 @@ public class PageDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 	
