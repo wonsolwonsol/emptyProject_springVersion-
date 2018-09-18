@@ -14,11 +14,68 @@ select goods_Code
    		,goods_Content
    		,goods_Category
    		from goods 
-   		where goods_Code=#{goods_Code} 
+   		where goods_Category=#{goods_Category} 
 </select>
 
+<select id="colorChart" resultType="string" parameterType="string">
+	select DISTINCT goods_Color
+	from goods
+	where goods_Category=#{goods_Category} 
+</select>
 
+<select id="brandChart" resultType="string" parameterType="string">
+	select DISTINCT goods_Brand
+	from goods
+	where goods_Category=#{goods_Category} 
+</select>
 
+<select id="goodsSortBrandColor" resultType="Goods" parameterType="hashmap">
+  select goods_Code
+   		,goods_Color
+   		,goods_Name
+   		,goods_Price
+   		,goods_Brand
+   		,goods_Image1
+   		,goods_Category
+  from goods 
+  where goods_Category = #{category}
+  and goods_Brand in
+  <foreach close=")" separator="," open="(" collection="brand" index="index" item="item"> #{item} </foreach>
+  and goods_Color in
+  <foreach close=")" separator="," open="(" collection="color" index="index" item="item"> #{item} </foreach>
+ </select>
+ 
+ <select id="goodsSortBrand" resultType="Goods" parameterType="hashmap">
+	 select goods_Code
+	   		,goods_Color
+	   		,goods_Name
+	   		,goods_Price
+	   		,goods_Brand
+	   		,goods_Image1
+	   		,goods_Category
+	  from goods 
+	  where goods_Category = #{category}
+	  and goods_Brand in
+	  <foreach collection="brand" item="item" close=")" separator="," open="(" index="index">
+	  #{item}
+	  </foreach>
+ </select>
+ 
+  <select id="goodsSortColor" resultType="Goods" parameterType="hashmap">
+	 select goods_Code
+	   		,goods_Color
+	   		,goods_Name
+	   		,goods_Price
+	   		,goods_Brand
+	   		,goods_Image1
+	   		,goods_Category
+	  from goods 
+	  where goods_Category = #{category}
+	  and goods_Color in
+	  <foreach collection="color" item="item" close=")" separator="," open="(" index="index">
+	  #{item}
+	  </foreach>
+ </select>
 
 
  

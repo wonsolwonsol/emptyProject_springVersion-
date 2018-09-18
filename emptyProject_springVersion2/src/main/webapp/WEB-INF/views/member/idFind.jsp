@@ -10,9 +10,13 @@
 
 </script>
 <div>
-<form action="idFindServlet" method="post">
+<form action="idfind" method="post">
 <h1>FIND ID</h1>
 	<table class="tbl">
+				<colgroup>
+				<col width="30%" />
+				<col width="*" />
+			</colgroup>
 		<tr>
 		<th>이름</th><td><input type="text" name="username"></td></tr>
 		<tr>

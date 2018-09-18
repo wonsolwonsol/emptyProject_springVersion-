@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,10 +15,35 @@ public class GoodsDAO {
 	SqlSessionTemplate template ;
 	
 	//모두보기 
-	public List<Goods> GoodsList(){
-		List<Goods> list = 
-					template.selectList("GoodsMapper.goodsList"); 
+	public List<Goods> goodsList(String goods_Category){
+		List<Goods> list = template.selectList("GoodsMapper.goodsList", goods_Category); 
 		return list ; 
 	}
+
+	public List<String> colorChart(String goods_Category) {
+		List<String> colorChart = template.selectList("GoodsMapper.colorChart", goods_Category);
+		return colorChart;
+	}
+
+	public List<String> brandChart(String goods_Category) {
+		List<String> brandChart = template.selectList("GoodsMapper.brandChart", goods_Category);
+		return brandChart;
+	}
+
+	public List<String> goodsSortColor(HashMap<String, Object> map) {
+		List<String> list = template.selectList("GoodsMapper.goodsSortColor", map);
+		return list;
+	}
+
+	public List<String> goodsSortBrand(HashMap<String, Object> map) {
+		List<String> list = template.selectList("GoodsMapper.goodsSortBrand", map);
+		return list;
+	}
+
+	public List<String> goodsSortBrandColor(HashMap<String, Object> map) {
+		List<String> list = template.selectList("GoodsMapper.goodsSortBrandColor", map);
+		return list;
+	}
+
 	
 }

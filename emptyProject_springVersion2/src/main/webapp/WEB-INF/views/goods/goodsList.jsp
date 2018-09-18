@@ -32,7 +32,7 @@
 	</select>
 </form>	
 </div>
-<form action="GoodsSortColorBrand" method="post">
+<form action="goodsSortColorBrand" method="post">
 <input type="hidden" value="${category}" name="category">
 <div class="sortBox">
 	<button type="button">sort</button>
@@ -75,7 +75,7 @@
 				</tr>
 				<tr>
 				
-    <c:forEach var="dto" items="${goodsList}" varStatus="status">
+    <c:forEach var="dto" items="${goodslist}" varStatus="status">
 						<td>
 							<table style='padding:15px'>
 								<tr>

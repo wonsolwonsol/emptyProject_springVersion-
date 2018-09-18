@@ -8,7 +8,7 @@
 		$("#userid").on("keyup", function(){
 			$.ajax({
 				type:"GET",
-				url:"MemberIdCheckServlet",
+				url:"idCheck",
 				dataType:"text", 
 				data:{ 
 					userid : $("#userid").val()

@@ -22,4 +22,19 @@ public class MemberDAO {
 		return n;
 	}
 
+	public int memberUpdate(Member member) {
+		int n = template.update("MemberMapper.memberUpdate", member);
+		return n;
+	}
+
+	public int idCheck(String userid) {
+		int n = template.selectOne("MemberMapper.idCheck",userid);
+		return n;
+	}
+
+	public String idfind(Member member) {
+		String userid = template.selectOne("MemberMapper.idFind", member);
+		return userid;
+	}
+
 }

@@ -34,7 +34,7 @@
 	})
 </script>
 <h1>MY PAGE</h1>
-<form action="MemberUpdateServlet" method="post">
+<form action="loginCheck/memberUpdate" method="post">
 <input type="hidden" name="userid" value=" ${login.userid}">
 <table class="tbl">
 <colgroup>

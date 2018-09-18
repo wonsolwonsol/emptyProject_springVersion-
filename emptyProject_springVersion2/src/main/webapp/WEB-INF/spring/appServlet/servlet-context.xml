@@ -7,38 +7,45 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-<mvc:annotation-driven validator="val"/>
+<!-- validator -->
+	<mvc:annotation-driven validator="val"/>
 	<bean class="com.validator.TestValidator" id="val"></bean>
-<mvc:default-servlet-handler/>
-<!-- 		<mvc:interceptor>
-		<mvc:mapping path="/mypage"/>myHandlerInterceptor 가져온 것 path=mapping값 
-		<ref bean="MyHandlerInterceptor" />
-	</mvc:interceptor> 이렇게 개별적으로 할 필요없고, 요청을 단일화시켜서 하면 된다. ==> top.jsp 에서 loginCheck/ 앞에 공통매핑값 주면 됨 
- -->
+	<mvc:default-servlet-handler/>
 
+<!-- view -->
 	<mvc:view-controller view-name="home" path="/"/>
 	<mvc:view-controller view-name="loginForm" path="/loginForm"/>
 	<mvc:view-controller view-name="memberForm" path="/memberForm"/>
 	<mvc:view-controller view-name="idFind" path="/idFind"/>
+	<mvc:view-controller view-name="myPage" path="/myPage"/>
 	
-<!-- 	properties -->
+<!-- properties -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename">
 			<value>message</value>
 		</property>
 	</bean>
 	
+<!-- interceptor -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/loginCheck/**"/>
+			<ref bean="CustomInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<bean id="CustomInterceptor" class="com.Interceptor.CustomInterceptor"/>
 
+<!-- resource -->
+	<mvc:resources mapping="/images/**" location="/WEB-INF/views/images/"/>
+	<mvc:resources mapping="/js/**" location="/WEB-INF/views/js/"/>
+	<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/"/>
 
-<mvc:resources mapping="/images/**" location="/WEB-INF/views/images/"/>
-<mvc:resources mapping="/js/**" location="/WEB-INF/views/js/"/>
-<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/"/>
 <!-- JSP 전담 ViewResolver -->
-<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-<property name="prefix" value="/WEB-INF/views/"/>
-<property name="suffix" value=".jsp"/>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/views/"/>
+	<property name="suffix" value=".jsp"/>
+	</bean>
 
-</bean>
 
 <context:component-scan base-package="com.*"/>
 
