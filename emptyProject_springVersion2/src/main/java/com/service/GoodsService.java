@@ -15,6 +15,14 @@ public class GoodsService {
 	@Autowired
 	GoodsDAO dao ; 
 
+	
+	 //new 모두보기
+	public List<Goods> goodsAll(){
+		return dao.goodsAll(); 
+	}
+	
+	
+	
 	 //모두보기
 	public List<Goods> goodsList(String goods_Category) {
 		List<Goods> list = dao.goodsList(goods_Category);

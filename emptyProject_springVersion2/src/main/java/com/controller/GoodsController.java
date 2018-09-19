@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.Goods;
@@ -20,6 +21,18 @@ import com.service.GoodsService;
 public class GoodsController {	
 	@Autowired
 	GoodsService service ;
+	
+	
+	//goodsAll
+	@RequestMapping("/goodsAll") 
+	public List<Goods> goodsAll() {
+		System.out.println("goodsAll-controller=====");
+		
+		List<Goods> list = service.goodsAll(); 
+				
+	return list; 
+}
+	
 		
 	@RequestMapping("/goodsList")
 	public ModelAndView goodsList(@RequestParam String goods_Category, ModelAndView mav) {

@@ -14,6 +14,12 @@ public class GoodsDAO {
 	@Autowired
 	SqlSessionTemplate template ;
 	
+	//new 모두보기
+	public List<Goods> goodsAll(){
+		return template.selectList("GoodsMapper.goodsAll"); 
+	}
+	
+	
 	//모두보기 
 	public List<Goods> goodsList(String goods_Category){
 		List<Goods> list = template.selectList("GoodsMapper.goodsList", goods_Category); 
