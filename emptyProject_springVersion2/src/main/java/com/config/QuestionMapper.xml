@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QuestionMapper">
+	
+<!-- 코멘트 -->
+<select id="questionboard_comments" resultType="QuestionBoard_CommentsDTO" parameterType="string"> 
+<!-- select questionboard_comments.author as author
+,questionboard_comments.comment_contents as comment_contents
+,questionboard_comments.comment_num as comment_num
+,questionboard_comments.fk_question_num as fk_question_num
+from questionboard_comments , questionboard
+where questionboard_comments.fk_question_num = #{question_num}  -->
+select questionboard_comments.author as author
+,questionboard_comments.comment_contents as comment_contents
+,questionboard_comments.comment_num as comment_num
+,questionboard_comments.fk_question_num as fk_question_num
+from questionboard_comments , questionboard
+where questionboard.question_num = #{question_num}
+</select>
+
+
+<update id="QuestionBoardUpdate" parameterType="QuestionBoardDTO">
+update questionboard 
+set title = #{title}
+	,question_contents = #{question_contents}
+	,image_name = #{image_name} 
+	where question_num = #{question_num} 
+</update>
+	
+	
+	
+	
+<!-- 	
+    <insert id="write" parameterType="MyBoardDTO">
+      insert into myboard ( num , title, author,content)
+      values ( myboard_seq.nextval, #{title},#{author},#{content})
+    </insert>
+	
+ -->
+	
+	
+<insert id="QuestionBoardInsert" parameterType="QuestionBoardDTO">
+<!-- 질문하기 기능 -->
+insert into questionboard 
+( question_num
+,title
+,userid
+,question_contents
+,wirteday
+,image_name 
+) 
+values(
+seq_question_num.NEXTVAL
+,#{title}
+,#{userid}
+,#{question_contents}
+,sysdate
+,#{image_name}
+)
+</insert> 
+	
+
+	<select id="selectDetail" resultType="QuestionBoardDTO"
+	        parameterType="string"><!-- 게시판 상세보기, 넘버값으로 -->
+	   	select 
+			  question_num 
+    ,title
+    ,userid 
+	,question_contents  
+    ,wirteday 
+    ,image_name  
+    from questionboard     
+	       where question_num=#{quesion_num} 
+	      
+	      
+	        </select>
+
+	<select id="selectAll" resultType="QuestionBoardDTO"
+	        parameterType="hashmap"><!-- 게시판 목록보기 -->
+		select 
+			  question_num 
+    ,title
+    ,userid 
+	,question_contents  
+    ,wirteday 
+    ,image_name  
+    from questionboard
+     order by question_num desc
+	<!-- 	
+		<where>
+		   <if test="searchName=='author'">
+		       author LIKE  '%'||#{searchValue}||'%'
+		   </if>
+		   <if test="searchName=='title'">
+		       title LIKE  '%'||#{searchValue}||'%'
+		   </if>
+		</where>
+		 -->
+	</select>
+	
+	<delete id="QuestionBoardDelete" parameterType="int">
+	delete from questionboard 
+	where question_num = #{question_num} 
+	</delete>	
+	
+</mapper>

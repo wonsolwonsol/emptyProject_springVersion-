@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.Goods;
@@ -22,9 +23,30 @@ import com.service.GoodsService;
 public class GoodsController {	
 	@Autowired
 	GoodsService service ;
+	
+	
+	//goodsRetrieve
+	@RequestMapping("/goodsList")
+	public ModelAndView goodsRetrieve(@RequestParam String goods_Code, ModelAndView mav) {
+			//test
+		return mav;
+	}
+	
+	
+	//goodsAll
+	@RequestMapping("/goodsAll") 
+	public List<Goods> goodsAll() {
+		System.out.println("goodsAll-controller=====");
+		
+		List<Goods> list = service.goodsAll(); 
+				
+	return list; 
+}
+	
 		
 	@RequestMapping("/goodslist")
 	public ModelAndView goodsList(@RequestParam String goods_Category, ModelAndView mav, HttpSession session) {
+		System.out.println(goods_Category); 
 		//이전의 저장되어 있던 카테고리를 지워줌 
 		session.removeAttribute("category");
 		//지금 필요한 카테고리 값은 쿼리스트링으로 받아옴
@@ -40,7 +62,8 @@ public class GoodsController {
 		session.setAttribute("category", goods_Category);
 		
 		mav.addObject("goodslist", list);
-		mav.setViewName("goodsList");						
+		mav.setViewName("goodsList");		
+		System.out.println(list);
 		return mav;
 	}
 	
