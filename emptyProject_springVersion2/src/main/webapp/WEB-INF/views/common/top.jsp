@@ -17,6 +17,7 @@ $(document).ready(function(){
 			$(this).submit();
 		}
 	})// 
+		
 })
 
 </script>
@@ -29,10 +30,10 @@ $(document).ready(function(){
 	</form>
 		</li>
 		<li><a href="GoodsCartListServlet"><img src="images/icon/cart.png"></a></li>
-<c:if test="${empty login}">
+<c:if test="${empty member}">
 		<li><a href="loginForm"><img src="images/icon/user.png"></a></li>
 </c:if>
-<c:if test="${!empty login}">
+<c:if test="${!empty member}">
 	<c:if test="${login.userid eq 'admin'}">
 		<li><a href="AdminPageServlet"><img src="images/icon/user.png"></a></li>
 	</c:if>

@@ -90,6 +90,32 @@ select goods_Code
 	  #{item}
 	  </foreach>
  </select>
+ 
+ <select id="goodsSortLow" resultType="Goods" parameterType="string">
+ 	select goods_Code
+	   		,goods_Color
+	   		,goods_Name
+	   		,goods_Price
+	   		,goods_Brand
+	   		,goods_Image1
+	   		,goods_Category
+	  from goods 
+	  where goods_Category = #{category}
+  	  order by goods_price asc 
+ </select>
+ 
+  <select id="goodsSortHigh" resultType="Goods" parameterType="string">
+ 	select goods_Code
+	   		,goods_Color
+	   		,goods_Name
+	   		,goods_Price
+	   		,goods_Brand
+	   		,goods_Image1
+	   		,goods_Category
+	  from goods 
+	  where goods_Category = #{category}
+  	  order by goods_price desc 
+ </select>
 
 
  
