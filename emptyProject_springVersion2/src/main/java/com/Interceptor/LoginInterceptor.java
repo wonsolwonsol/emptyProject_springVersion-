@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 
-public class CustomInterceptor extends HandlerInterceptorAdapter{
+public class LoginInterceptor extends HandlerInterceptorAdapter{
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)

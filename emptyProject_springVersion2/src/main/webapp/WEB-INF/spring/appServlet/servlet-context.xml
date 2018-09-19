@@ -18,6 +18,7 @@
 	<mvc:view-controller view-name="memberForm" path="/memberForm"/>
 	<mvc:view-controller view-name="idFind" path="/idFind"/>
 	<mvc:view-controller view-name="myPage" path="/myPage"/>
+	<mvc:view-controller view-name="adminPage" path="/adminPage"/>
 	
 <!-- properties -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -30,10 +31,15 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/loginCheck/**"/>
-			<ref bean="CustomInterceptor"/>
+			<ref bean="LoginInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/adminCheck/**"/>
+			<ref bean="AdminInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
-	<bean id="CustomInterceptor" class="com.Interceptor.CustomInterceptor"/>
+	<bean id="LoginInterceptor" class="com.Interceptor.LoginInterceptor"/>
+	<bean id="AdminInterceptor" class="com.Interceptor.AdminInterceptor"/>
 
 <!-- resource -->
 	<mvc:resources mapping="/images/**" location="/WEB-INF/views/images/"/>

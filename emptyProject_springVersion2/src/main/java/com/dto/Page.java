@@ -2,7 +2,7 @@ package com.dto;
 
 import java.util.List;
 
-public class PageDTO {
+public class Page {
 	List<Goods> list;
 	int currentPage;
 	int perPage = 10;
@@ -36,14 +36,14 @@ public class PageDTO {
 		return "PageDTO [list=" + list + ", currentPage=" + currentPage + ", perPage=" + perPage + ", totalCount="
 				+ totalCount + "]";
 	}
-	public PageDTO(List<Goods> list, int currentPage, int perPage, int totalCount) {
+	public Page(List<Goods> list, int currentPage, int perPage, int totalCount) {
 		super();
 		this.list = list;
 		this.currentPage = currentPage;
 		this.perPage = perPage;
 		this.totalCount = totalCount;
 	}
-	public PageDTO() {
+	public Page() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

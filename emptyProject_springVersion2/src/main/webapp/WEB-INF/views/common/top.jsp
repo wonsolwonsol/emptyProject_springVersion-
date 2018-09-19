@@ -35,7 +35,7 @@ $(document).ready(function(){
 </c:if>
 <c:if test="${!empty member}">
 	<c:if test="${login.userid eq 'admin'}">
-		<li><a href="AdminPageServlet"><img src="images/icon/user.png"></a></li>
+		<li><a href="adminCheck/adminGoods"><img src="images/icon/user.png"></a></li>
 	</c:if>
 		<li><a href="loginCheck/mypage"><img src="images/icon/user.png"></a></li>
 		<li><a href="loginCheck/logout"><img src="images/icon/logout.png"></a></li>
