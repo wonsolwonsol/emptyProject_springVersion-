@@ -1,6 +1,6 @@
 package com.dto;
 
-public class CartDTO {
+public class Cart {
 	private int num;
 	private String userid;
 	private String goods_code;
@@ -11,11 +11,11 @@ public class CartDTO {
 	private String goods_image;
 	private String goods_brand;
 	
-	public CartDTO() {
+	public Cart() {
 		super();
 	}
 
-	public CartDTO(int num, String userid, String goods_code, String goods_name, int goods_price, String goods_color,
+	public Cart(int num, String userid, String goods_code, String goods_name, int goods_price, String goods_color,
 			int goods_amount, String goods_image, String goods_brand) {
 		super();
 		this.num = num;

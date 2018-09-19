@@ -34,6 +34,7 @@ public class GoodsDAO {
 	//각 카테고리별 리스트보기 
 	public List<Goods> goodsList(String goods_Category){
 		List<Goods> list = template.selectList("GoodsMapper.goodsList", goods_Category); 
+		System.out.println("====dao확인");
 		return list ; 
 	}
 
