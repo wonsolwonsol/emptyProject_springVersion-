@@ -10,7 +10,7 @@
 	$(document).ready(function(){
 		
 		$("#sortSelect").on("change",function(event){
-			$("#sortSelectForm").attr("action","GoodsSortPriceServlet");
+			$("#sortSelectForm").attr("action","goodsSortPrice");
 			$("#sortSelectForm").submit();			   
 			//event.preventDefault();
 		})	
@@ -32,7 +32,7 @@
 	</select>
 </form>	
 </div>
-<form action="goodsSortColorBrand" method="post">
+<form action="goodsSortColorBrand" method="get">
 <input type="hidden" value="${category}" name="category">
 <div class="sortBox">
 	<button type="button">sort</button>

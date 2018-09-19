@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,20 +23,23 @@ public class GoodsController {
 	@Autowired
 	GoodsService service ;
 		
-	@RequestMapping("/goodsList")
-	public ModelAndView goodsList(@RequestParam String goods_Category, ModelAndView mav) {
+	@RequestMapping("/goodslist")
+	public ModelAndView goodsList(@RequestParam String goods_Category, ModelAndView mav, HttpSession session) {
+		//이전의 저장되어 있던 카테고리를 지워줌 
+		session.removeAttribute("category");
+		//지금 필요한 카테고리 값은 쿼리스트링으로 받아옴
 		List<Goods> list = service.goodsList(goods_Category); 
-		
 		List<String> color = new ArrayList<String>();
 		List<String> brand = new ArrayList<String>();
 		
 		color = service.colorChart(goods_Category);
 		brand = service.brandChart(goods_Category);
 				
+		session.setAttribute("colorChart", color);
+		session.setAttribute("brandChart", brand);
+		session.setAttribute("category", goods_Category);
+		
 		mav.addObject("goodslist", list);
-		mav.addObject("colorChart", color);
-		mav.addObject("brandChart", brand);
-		mav.addObject("category", goods_Category);
 		mav.setViewName("goodsList");						
 		return mav;
 	}
@@ -57,13 +62,13 @@ public class GoodsController {
 			map.put("color", clist);
 			list = service.goodsSortColor(map);
 			
-			mav.addObject("goodsList",list);
+			mav.addObject("goodslist",list);
 		}else if(color == null && brand !=null) {
 			blist = Arrays.asList(brand);
 			map.put("brand", blist);
 			list = service.goodsSortBrand(map);
 			
-			mav.addObject("goodsList",list);
+			mav.addObject("goodslist",list);
 		}else if(color != null && brand !=null) {
 			clist = Arrays.asList(color);
 			blist = Arrays.asList(brand);
@@ -72,10 +77,27 @@ public class GoodsController {
 			map.put("brand", blist);
 			list = service.goodsSortBrandColor(map);
 			
-			mav.addObject("goodsList",list);
+			mav.addObject("goodslist",list);
 		}
-		mav.setViewName("goodsList"); //이거 왜 jsp view로 안가지
-		System.out.println(mav.toString());
+		mav.setViewName("goodsList");
+		return mav;
+	}
+	
+	@RequestMapping("/goodsSortPrice")
+	public ModelAndView goodsSortPrice(@RequestParam String category, @RequestParam String sortSelect, ModelAndView mav) {
+		
+		List<Goods> list = null;
+		
+		if(sortSelect.equals("가격역순")) {
+			System.out.println("가격역순");
+			list = service.goodsSortHigh(category);	
+			mav.addObject("goodslist",list);
+		}else if(sortSelect.equals("가격순")) {
+			System.out.println("가격순");
+			list = service.goodsSortLow(category);
+			mav.addObject("goodslist",list);
+		}		
+		mav.setViewName("goodsList");
 		return mav;
 	}
 }

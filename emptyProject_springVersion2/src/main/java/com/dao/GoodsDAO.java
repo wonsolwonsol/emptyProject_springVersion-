@@ -45,5 +45,15 @@ public class GoodsDAO {
 		return list;
 	}
 
+	public List<Goods> goodsSortHigh(String category) {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortHigh", category);
+		return list;
+	}
+
+	public List<Goods> goodsSortLow(String category) {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortLow", category);
+		return list;
+	}
+
 	
 }

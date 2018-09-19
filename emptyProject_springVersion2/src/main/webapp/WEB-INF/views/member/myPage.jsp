@@ -35,7 +35,7 @@
 </script>
 <h1>MY PAGE</h1>
 <form action="loginCheck/memberUpdate" method="post">
-<input type="hidden" name="userid" value=" ${login.userid}">
+<input type="hidden" name="userid" value=" ${member.userid}">
 <table class="tbl">
 <colgroup>
 				<col width="20%" />
@@ -43,35 +43,35 @@
 			</colgroup>
 	<tr>
 		<th>아이디</th>
-		<td> ${login.userid}</td></tr>
+		<td> ${member.userid}</td></tr>
 	<tr><th>비밀번호</th>
-		<td><input type="password" name="passwd" id="passwd1" value="${login.passwd}"></td></tr>
+		<td><input type="password" name="passwd" id="passwd1" value="${member.passwd}"></td></tr>
 	<tr><th>비밀번호 확인</th>
 		<td><input type="password" name="passwd2" id="passwd2"> <span id="presult"></span></td></tr>
-	<tr><th>이름</th><td> ${login.username}</td></tr>
+	<tr><th>이름</th><td> ${member.username}</td></tr>
 	<tr><th>주소</th>
-		<td><input type="text" value="${login.post}" name="post" id="sample4_postcode" placeholder="우편번호">
+		<td><input type="text" value="${member.post}" name="post" id="sample4_postcode" placeholder="우편번호">
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
-		<span class="address">	<input type="text" value="${login.addr1}" name="addr1" id="sample4_roadAddress" placeholder="도로명주소">
-		<input type="text" value="${login.addr2}" name="addr2" id="sample4_jibunAddress" placeholder="지번주소"></span>
+		<span class="address">	<input type="text" value="${member.addr1}" name="addr1" id="sample4_roadAddress" placeholder="도로명주소">
+		<input type="text" value="${member.addr2}" name="addr2" id="sample4_jibunAddress" placeholder="지번주소"></span>
 		<span id="guide" style="color:#999"></span></td></tr>
 	
 	
 	<tr><th>휴대폰</th><td><select name="phone1">
 		<option value="011" 
-			<c:if test="${login.phone1 == '011'}">selected</c:if>>011</option> 
+			<c:if test="${member.phone1 == '011'}">selected</c:if>>011</option> 
 		<option value="010"
-			<c:if test="${login.phone1 == '010'}">selected</c:if>>010</option> 
+			<c:if test="${member.phone1 == '010'}">selected</c:if>>010</option> 
 		</select>
-		<input type="text" name="phone2" value="${login.phone2}">
-		<input type="text" name="phone3" value="${login.phone3}"></td></tr>
-	<tr><th>이메일</th><td><input type="text" name="email1" value="${login.email1}">@
-		<input type="text" value="${login.email2}" name="email2" id="emailaddress" placeholder="직접입력">
+		<input type="text" name="phone2" value="${member.phone2}">
+		<input type="text" name="phone3" value="${member.phone3}"></td></tr>
+	<tr><th>이메일</th><td><input type="text" name="email1" value="${member.email1}">@
+		<input type="text" value="${member.email2}" name="email2" id="emailaddress" placeholder="직접입력">
 		<select name="email3" id="emailAdd" >
 			<option value="daum.net"
-				<c:if test="${login.email2 == 'daum.net'}">selected</c:if>>daum.net</option> 
+				<c:if test="${member.email2 == 'daum.net'}">selected</c:if>>daum.net</option> 
 			<option value="naver.com"
-				<c:if test="${login.email2 == 'naver.com'}">selected</c:if>>naver.com</option> 
+				<c:if test="${member.email2 == 'naver.com'}">selected</c:if>>naver.com</option> 
 		</select></td></tr>
 </table>
 <div class="btnGroup">

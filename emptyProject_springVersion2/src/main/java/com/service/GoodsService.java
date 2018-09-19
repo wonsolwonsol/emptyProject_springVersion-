@@ -46,5 +46,15 @@ public class GoodsService {
 		return list;
 	}
 
+	public List<Goods> goodsSortHigh(String category) {
+		List<Goods> list = dao.goodsSortHigh(category);
+		return list;
+	}
+
+	public List<Goods> goodsSortLow(String category) {
+		List<Goods> list = dao.goodsSortLow(category);
+		return list;
+	}
+
 	
 }

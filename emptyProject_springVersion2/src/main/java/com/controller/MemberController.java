@@ -31,8 +31,9 @@ public class MemberController {
 			model.addAttribute("mesg","아이디 또는 비밀번호를 재학인 해주세요.");
 			return "loginForm";
 		}else {
-			session.setAttribute("login", mem);
-		}		
+			session.setAttribute("member", mem);
+			System.out.println("세션에 login 저장 "+mem);
+		}
 		return "home";
 	}
 	@RequestMapping(value="/memberAdd", method=RequestMethod.POST)
