@@ -14,13 +14,24 @@ public class GoodsDAO {
 	@Autowired
 	SqlSessionTemplate template ;
 	
+	
+	
+	public Goods goodsRetrieve(SqlSession session, 
+			String goods_Code) {
+		Goods dao 
+		= session.selectOne("GoodsMapper.", goods_Code);
+	return dao; 
+	}
+	
+	
+	
 	//new 모두보기
 	public List<Goods> goodsAll(){
 		return template.selectList("GoodsMapper.goodsAll"); 
 	}
 	
 	
-	//모두보기 
+	//각 카테고리별 리스트보기 
 	public List<Goods> goodsList(String goods_Category){
 		List<Goods> list = template.selectList("GoodsMapper.goodsList", goods_Category); 
 		return list ; 

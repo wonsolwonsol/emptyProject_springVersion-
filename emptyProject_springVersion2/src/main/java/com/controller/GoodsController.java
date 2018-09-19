@@ -23,6 +23,14 @@ public class GoodsController {
 	GoodsService service ;
 	
 	
+	//goodsRetrieve
+	@RequestMapping("/goodsList")
+	public ModelAndView goodsRetrieve(@RequestParam String goods_Code, ModelAndView mav) {
+			
+		return mav;
+	}
+	
+	
 	//goodsAll
 	@RequestMapping("/goodsAll") 
 	public List<Goods> goodsAll() {
