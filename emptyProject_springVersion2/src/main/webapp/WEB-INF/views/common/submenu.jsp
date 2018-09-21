@@ -15,7 +15,7 @@
 	</ul>
 	<br>
 	<ul id="side_board">
-		<li><a href="Notice">NOTICE</a></li>
+		<li><a href="notice">NOTICE</a></li>
 		<li><a href="QuestionBoardServlet">Q N A</a></li>
 		<li><a href="">REVIEW</a></li>
 	</ul>
