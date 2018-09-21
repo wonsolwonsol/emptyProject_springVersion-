@@ -7,12 +7,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
    <properties resource="com/config/jdbc.properties" />
    
    <typeAliases>
-    <typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
-    <typeAlias type="com.dto.GoodsDTO" alias="GoodsDTO"/>
-    <typeAlias type="com.dto.NoticeDTO" alias="NoticeDTO"/>
- 	<typeAlias type="com.dto.CartDTO" alias="CartDTO"/>
- 	<typeAlias type="com.dto.QuestionBoardDTO" alias="QuestionBoardDTO"/>
- 	<typeAlias type="com.dto.QuestionBoard_CommentsDTO" alias="QuestionBoard_CommentsDTO" /> 
+    <typeAlias type="com.dto.Member" alias="Member"/>
+    <typeAlias type="com.dto.Goods" alias="Goods"/>
+    <typeAlias type="com.dto.Notice" alias="Notice"/>
+ 	<typeAlias type="com.dto.Cart" alias="Cart"/>
+ 	<typeAlias type="com.dto.Question" alias="Question"/>
+ 	<typeAlias type="com.dto.Question_Comments" alias="QuestionBoard_Comments" /> 
+ 	<typeAlias type="com.dto.PageDTO" alias="PageDTO" /> 
+ 	<typeAlias type="com.dto.Review" alias="Review" /> 
+ 	<typeAlias type="com.dto.Login" alias="Login" /> 
    </typeAliases>
    
 	<environments default="development">
@@ -32,5 +35,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/config/NoticeMapper.xml" />
 		<mapper resource="com/config/CartMapper.xml" />
 		<mapper resource="com/config/QuestionBoardMapper.xml" />
+		<mapper resource="com/config/ReviewMapper.xml" />
 	</mappers>
 </configuration>

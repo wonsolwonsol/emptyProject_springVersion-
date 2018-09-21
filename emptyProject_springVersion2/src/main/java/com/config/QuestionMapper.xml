@@ -5,23 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="QuestionMapper">
 	
 <!-- 코멘트 -->
-<select id="questionboard_comments" resultType="QuestionBoard_CommentsDTO" parameterType="string"> 
+<!-- d -->
+<!-- <select id="questionboard_comments" resultType="QuestionBoard_Comments" parameterType="string"> --> 
 <!-- select questionboard_comments.author as author
 ,questionboard_comments.comment_contents as comment_contents
 ,questionboard_comments.comment_num as comment_num
 ,questionboard_comments.fk_question_num as fk_question_num
 from questionboard_comments , questionboard
 where questionboard_comments.fk_question_num = #{question_num}  -->
-select questionboard_comments.author as author
+
+<!-- REAL -->
+<!-- select questionboard_comments.author as author
 ,questionboard_comments.comment_contents as comment_contents
 ,questionboard_comments.comment_num as comment_num
 ,questionboard_comments.fk_question_num as fk_question_num
 from questionboard_comments , questionboard
 where questionboard.question_num = #{question_num}
-</select>
+</select> -->
 
 
-<update id="QuestionBoardUpdate" parameterType="QuestionBoardDTO">
+<update id="QuestionBoardUpdate" parameterType="Question">
 update questionboard 
 set title = #{title}
 	,question_contents = #{question_contents}
@@ -41,7 +44,7 @@ set title = #{title}
  -->
 	
 	
-<insert id="QuestionBoardInsert" parameterType="QuestionBoardDTO">
+<insert id="QuestionBoardInsert" parameterType="Question">
 <!-- 질문하기 기능 -->
 insert into questionboard 
 ( question_num
@@ -62,7 +65,7 @@ seq_question_num.NEXTVAL
 </insert> 
 	
 
-	<select id="selectDetail" resultType="QuestionBoardDTO"
+	<select id="selectDetail" resultType="Question"
 	        parameterType="string"><!-- 게시판 상세보기, 넘버값으로 -->
 	   	select 
 			  question_num 
@@ -77,7 +80,7 @@ seq_question_num.NEXTVAL
 	      
 	        </select>
 
-	<select id="selectAll" resultType="QuestionBoardDTO"
+	<select id="selectAll" resultType="Question"
 	        parameterType="hashmap"><!-- 게시판 목록보기 -->
 		select 
 			  question_num 

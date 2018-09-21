@@ -1,6 +1,6 @@
 package com.dto;
 
-public class Question_Comment {
+public class Question_Comments {
 
 	private String author; 
 	private String comment_contents;
@@ -35,14 +35,14 @@ public class Question_Comment {
 		return "Question_Comment [author=" + author + ", comment_contents=" + comment_contents + ", comment_num="
 				+ comment_num + ", fk_question_num=" + fk_question_num + "]";
 	}
-	public Question_Comment(String author, String comment_contents, String comment_num, String fk_question_num) {
+	public Question_Comments(String author, String comment_contents, String comment_num, String fk_question_num) {
 		super();
 		this.author = author;
 		this.comment_contents = comment_contents;
 		this.comment_num = comment_num;
 		this.fk_question_num = fk_question_num;
 	}
-	public Question_Comment() {
+	public Question_Comments() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

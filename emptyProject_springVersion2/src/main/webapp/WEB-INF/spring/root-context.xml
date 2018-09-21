@@ -44,8 +44,10 @@
 				<value>com.dto.Notice</value>
 				<value>com.dto.Question</value>
 				<value>com.dto.Review</value>
-				<value>com.dto.Question_Comment</value>
+				<value>com.dto.Question_Comments</value>
 				<value>com.dto.Cart</value>
+				<value>com.dto.PageDTO</value>
+				
 			</list>
 			
 				
