@@ -3,12 +3,12 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CartMapper">
-	<insert id="cartAdd" parameterType="CartDTO">
+	<insert id="cartAdd" parameterType="Cart">
 		insert into cart(num, userid, goods_code, goods_name, goods_price, goods_color, goods_amount, goods_image, goods_brand)
 		values(cart_seq.nextval, #{userid}, #{goods_code}, #{goods_name}, #{goods_price}, #{goods_color}, #{goods_amount}, #{goods_image}, #{goods_brand})
 	</insert>
 	
-	<select id="cartList" parameterType="String" resultType="CartDTO">
+	<select id="cartList" parameterType="String" resultType="Cart">
 		select num, userid, goods_code, goods_name, goods_price, goods_color, goods_amount, goods_image, goods_brand
 		from cart
 		where userid=#{userid}
@@ -33,13 +33,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{item}
 		</foreach>
 	</delete>
-	<select id="cartToOrder" parameterType="int" resultType="CartDTO">
+	<select id="cartToOrder" parameterType="int" resultType="Cart">
 		select num, userid, goods_code, goods_name, goods_price, goods_color, goods_amount, goods_image, goods_brand
 		from cart
 		where num = #{num}
 	</select>
 	
-		<select id="cartToOrderAll" parameterType="arraylist" resultType="CartDTO">
+		<select id="cartToOrderAll" parameterType="arraylist" resultType="Cart">
 		select num, userid, goods_code, goods_name, goods_price, goods_color, goods_amount, goods_image, goods_brand
 		from cart
 		where num in
