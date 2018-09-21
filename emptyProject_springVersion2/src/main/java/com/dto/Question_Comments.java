@@ -1,5 +1,8 @@
 package com.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Question_Comments")
 public class Question_Comments {
 
 	private String author; 

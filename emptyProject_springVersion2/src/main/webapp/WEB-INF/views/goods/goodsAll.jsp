@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){		
 		$("#sortSelect").on("change",function(event){
-			$("#sortSelectForm").attr("action","GoodsSortPriceServletAll");
+			$("#sortSelectForm").attr("action","goodsSortPriceAll");
 			$("#sortSelectForm").submit();			   
 			//event.preventDefault();
 		})	
@@ -30,7 +30,7 @@
 	</select>
 </form>	
 </div>
-<form action="GoodsSortColorBrandAll" method="post">
+<form action="goodsSortColorBrandAll" method="get">
 <div class="sortBox">
 	<button type="button">sort</button>
 	<div class="box">
@@ -67,7 +67,7 @@
 					<td height="10"></td>
 				</tr>
 				<tr>
-    <c:forEach var="dto" items="${goodsList}" varStatus="status">	
+    <c:forEach var="dto" items="${goodslist}" varStatus="status">	
 						<td>
 							<table style='padding:15px'>
 								<tr>

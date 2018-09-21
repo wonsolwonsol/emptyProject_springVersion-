@@ -73,5 +73,40 @@ public class GoodsDAO {
 		return list;
 	}
 
+	public List<Goods> goodsSortColorAll(HashMap<String, Object> map) {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortColorAll", map);
+		return list;
+	}
+
+	public List<Goods> goodsSortBrandAll(HashMap<String, Object> map) {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortBrandAll", map);
+		return list;
+	}
+
+	public List<Goods> goodsSortBrandColorAll(HashMap<String, Object> map) {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortBrandColorAll", map);
+		return list;
+	}
+
+	public List<Goods> goodsSortHighAll() {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortHighAll");
+		return list;
+	}
+
+	public List<Goods> goodsSortLowAll() {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortLowAll");
+		return list;
+	}
+
+	public List<String> colorChartAll() {
+		List<String> list = template.selectList("GoodsMapper.colorChartAll");
+		return list;
+	}
+	
+	public List<String> brandChartAll() {
+		List<String> list = template.selectList("GoodsMapper.brandChartAll");
+		return list;
+	}
+
 	
 }

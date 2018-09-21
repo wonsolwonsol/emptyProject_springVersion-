@@ -64,5 +64,40 @@ public class GoodsService {
 		return list;
 	}
 
+	public List<Goods> goodsSortColorAll(HashMap<String, Object> map) {
+		List<Goods> list = dao.goodsSortColorAll(map);
+		return list;
+	}
+
+	public List<Goods> goodsSortBrandAll(HashMap<String, Object> map) {
+		List<Goods> list = dao.goodsSortBrandAll(map);
+		return list;
+	}
+
+	public List<Goods> goodsSortBrandColorAll(HashMap<String, Object> map) {
+		List<Goods> list = dao.goodsSortBrandColorAll(map);
+		return list;
+	}
+
+	public List<Goods> goodsSortHighAll() {
+		List<Goods> list = dao.goodsSortHighAll();
+		return list;
+	}
+
+	public List<Goods> goodsSortLowAll() {
+		List<Goods> list = dao.goodsSortLowAll();
+		return list;
+	}
+
+	public List<String> colorChartAll() {
+		List<String> colorChart = dao.colorChartAll();
+		return colorChart;
+	}
+
+	public List<String> brandChartAll() {
+		List<String> brandChart = dao.brandChartAll();
+		return brandChart;
+	}
+
 	
 }

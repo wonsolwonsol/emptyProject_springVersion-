@@ -1,5 +1,8 @@
 package com.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Cart")
 public class Cart {
 	private int num;
 	private String userid;

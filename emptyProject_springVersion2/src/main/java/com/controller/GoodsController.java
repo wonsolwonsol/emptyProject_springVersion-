@@ -22,22 +22,28 @@ import com.service.GoodsService;
 @Controller
 public class GoodsController {	
 	@Autowired
-	GoodsService service ;
+	GoodsService service ;	
 	
-	
-	//goodsRetrieve
+/*	//goodsRetrieve
 	@RequestMapping("/goodsList")
 	public ModelAndView goodsRetrieve(@RequestParam String goods_Code, ModelAndView mav) {
 			//test
 		return mav;
-	}
+	}*/
 	
 	
 	//goodsAll
 	@RequestMapping("/goodsAll") 
-	public List<Goods> goodsAll() {
-		System.out.println("goodsAll-controller=====");
+	public List<Goods> goodsAll(HttpSession session) {		
+		//color chart, brand chart
+		List<String> color = new ArrayList<String>();
+		List<String> brand = new ArrayList<String>();
 		
+		color = service.colorChartAll();
+		brand = service.brandChartAll();
+				
+		session.setAttribute("colorChart", color);
+		session.setAttribute("brandChart", brand);		
 		List<Goods> list = service.goodsAll(); 
 				
 	return list; 
@@ -121,6 +127,62 @@ public class GoodsController {
 			mav.addObject("goodslist",list);
 		}		
 		mav.setViewName("goodsList");
+		return mav;
+	}
+	
+	@RequestMapping("/goodsSortColorBrandAll")
+	public ModelAndView goodsSortColorBrandAll(
+			@RequestParam(required=false) String [] color, 
+			@RequestParam(required=false) String [] brand, ModelAndView mav) {
+				
+		HashMap<String, Object> map = new HashMap<>();
+		List<Goods> list = null;
+		List<String> clist = null;
+		List<String> blist = null;		
+		
+		if(color != null && brand ==null) {
+			clist = Arrays.asList(color);
+			map.put("color", clist);
+			System.out.println("color!!!!!!!!!!!!!!!!!!"+clist);
+			list = service.goodsSortColorAll(map);
+			System.out.println("color!!!!!!!!!!!!!!!!!!"+list);
+			
+			mav.addObject("goodslist",list);
+		}else if(color == null && brand !=null) {
+			blist = Arrays.asList(brand);
+			map.put("brand", blist);
+			list = service.goodsSortBrandAll(map);
+			
+			mav.addObject("goodslist",list);
+		}else if(color != null && brand !=null) {
+			clist = Arrays.asList(color);
+			blist = Arrays.asList(brand);
+			
+			map.put("color", clist);
+			map.put("brand", blist);
+			list = service.goodsSortBrandColorAll(map);
+			
+			mav.addObject("goodslist",list);
+		}
+		mav.setViewName("goodsAll");
+		return mav;
+	}
+	
+	@RequestMapping("/goodsSortPriceAll")
+	public ModelAndView goodsSortPriceAll(@RequestParam String sortSelect, ModelAndView mav) {
+		
+		List<Goods> list = null;
+		
+		if(sortSelect.equals("가격역순")) {
+			System.out.println("가격역순");
+			list = service.goodsSortHighAll();	
+			mav.addObject("goodslist",list);
+		}else if(sortSelect.equals("가격순")) {
+			System.out.println("가격순");
+			list = service.goodsSortLowAll();
+			mav.addObject("goodslist",list);
+		}		
+		mav.setViewName("goodsAll");
 		return mav;
 	}
 }

@@ -17,9 +17,9 @@ public class AdminController {
 	
 	@RequestMapping("/adminCheck/adminGoods")
 	public String adminGoods(Model mod) {
-		List<Goods> list = service.goodsAll();
 		
-		mod.addAttribute("goodslist",list);
+		
+		
 		return "adminPage";
 	}
 }
