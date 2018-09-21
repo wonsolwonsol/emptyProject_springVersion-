@@ -18,8 +18,12 @@
 	<mvc:view-controller view-name="memberForm" path="/memberForm"/>
 	<mvc:view-controller view-name="idFind" path="/idFind"/>
 	<mvc:view-controller view-name="myPage" path="/myPage"/>
+<<<<<<< HEAD
 	<mvc:view-controller view-name="adminPage" path="/adminPage"/>
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/wonsolwonsol/emptyProject_springVersion-.git
 <!-- properties -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename">
