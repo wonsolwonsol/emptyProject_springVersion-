@@ -2,6 +2,8 @@ package com.dto;
 
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+@Alias("PageDTO")
 public class PageDTO {
 	List<Goods> list;
 	int currentPage;

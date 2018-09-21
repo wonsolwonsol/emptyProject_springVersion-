@@ -1,5 +1,8 @@
 package com.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Login")
 public class Login {
 	private String userid;
 	private String passwd;
