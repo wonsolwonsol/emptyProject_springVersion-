@@ -34,7 +34,7 @@ public class GoodsController {
 	
 	//goodsAll
 	@RequestMapping("/goodsAll") 
-	public List<Goods> goodsAll(HttpSession session) {		
+	public String goodsAll(HttpSession session, Model mod) {		
 		//color chart, brand chart
 		List<String> color = new ArrayList<String>();
 		List<String> brand = new ArrayList<String>();
@@ -44,9 +44,10 @@ public class GoodsController {
 				
 		session.setAttribute("colorChart", color);
 		session.setAttribute("brandChart", brand);		
+		
 		List<Goods> list = service.goodsAll(); 
-				
-	return list; 
+		mod.addAttribute("goodslist",list);	
+	return "goodsAll"; 
 }
 	
 		
