@@ -104,6 +104,9 @@ select {height:27px;padding:0 5px;}
 .contents a{
 	
 }
+/* goodslist */
+.goodslist {list-style-type:none;}
+.goodslist li {display: inline; color:blue;}
 /* 회원가입 테이블 */
 .tbl {border-top:2px solid #bbb;}
 .tbl th, .tbl td {padding:12px 10px;vertical-align:middle;border-bottom:1px solid #bbb;}

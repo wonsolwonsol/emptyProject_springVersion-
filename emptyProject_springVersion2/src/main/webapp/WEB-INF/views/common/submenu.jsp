@@ -9,8 +9,8 @@
 		<li><a href="goodsAll">ALL</a></li>
 		<li><a href="goodslist?goods_Category=Bucket_Bags">BUCKET BAG</a><li>
 		<li><a href="goodslist?goods_Category=Shoulder_Bags">SHOULDER BAG</a></li>
-		<li><a href="goodsList?goods_Category=Clutch_Bags">CLUTCH BAGS</a></li>
-		<li><a href="goodsList?goods_Category=Mini_Bags">MINI BAG</a></li>
+		<li><a href="goodslist?goods_Category=Clutch_Bags">CLUTCH BAGS</a></li>
+		<li><a href="goodslist?goods_Category=Mini_Bags">MINI BAG</a></li>
 
 	</ul>
 	<br>

@@ -19,8 +19,7 @@
 		})
 })
 </script>
-
-<div class="adsense" style="text-align: center; padding:0px 0px 10px 10px"> 
+<!-- <div class="adsense" style="text-align: center; padding:0px 0px 10px 10px"> --> 
 <div class="select" >
 <form method="get" id="sortSelectForm">
 	<select name="sortSelect" id="sortSelect">
@@ -51,6 +50,56 @@
 	</div>
 </div>
 </form>
+
+<%-- <ul class="goodslist">
+<c:forEach var="dto" items="${goodslist}" varStatus="status">
+	<li>
+		<table style="width: 200px; text-align: center;">
+			<tr>
+				<td>
+					<a href="goodsRetrieve?goods_Code=${dto.goods_Code}">
+					<img src="images/items/thum/${dto.goods_Image1}.jpg" border="0" align="center" width="200">
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<a class= "a_black">
+				${dto.goods_Brand}<br>
+				</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a class= "a_black" href="GoodsRetrieveServlet?goods_Code=${dto.goods_Code}">
+					${dto.goods_Name}<br>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td class="td_gray" align ="center">
+					${dto.goods_Content}
+				</td>
+			</tr>
+				<tr>
+				<td>
+					<fmt:formatNumber value="${dto.goods_Price}" type="currency"> </fmt:formatNumber>				
+			
+				</td>
+			</tr>
+		</table>
+	</li>
+<c:if test="${(status.index+1)%4==0 }">
+	</ul>
+	<br>
+	<ul>
+	4번
+</c:if>
+</c:forEach>
+</ul>
+			
+						
+</table> --%>
 <table width="100%" cellspacing="0" cellpadding="0">
 	<tr>
 		<td>
@@ -119,7 +168,7 @@
 									<td class="td_red" align ="center"><font color="red"><strong>
 									
 					<fmt:formatNumber value="${dto.goods_Price}" type="currency"> </fmt:formatNumber>				
-					<%-- ${dto.goods_Price} --%>
+					${dto.goods_Price}
 										</strong></font></td>
 								</tr>
 							</table>
