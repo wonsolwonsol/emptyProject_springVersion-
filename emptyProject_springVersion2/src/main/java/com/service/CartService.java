@@ -23,4 +23,9 @@ public class CartService {
 		List<Cart> list = dao.goodsList(userid);
 		return list;
 	}
+
+	public int goodsCartDel(int num) {
+		int n = dao.goodsCartDel(num);
+		return n;
+	}
 }

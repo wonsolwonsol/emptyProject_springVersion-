@@ -20,7 +20,7 @@
 			var txt = confirm("삭제하시겠습니까?");
 			var num = $(this).attr("data-delBtn");
 			if(txt=true)
-			location.href="GoodsCartDelServlet?num="+num;
+			location.href="goodsCartDel?num="+num;
 		});
 		
 		//수정버튼
@@ -120,7 +120,7 @@
 				</td>
 				<td>
 					<p class="bold"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_Brand}</a></p>
-					<p class="alignL"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_name}</a></p>
+					<p class="alignL"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_Name}</a></p>
 				</td>
 				<td>
 					<fmt:formatNumber value="${cart.goods_Price}" type="currency" />
