@@ -24,17 +24,14 @@ public class GoodsController {
 	@Autowired
 	GoodsService service ;	
 	
-//goodsRetrieve
+	//goodsRetrieve
 	@RequestMapping("/goodsRetrieve")
 	public ModelAndView goodsRetrieve(@RequestParam String goods_Code, 
 										ModelAndView mav) {
-		System.out.println("=================컨트롤러"+goods_Code);
 		Goods good = service.goodsRetrieve(goods_Code);
 		//ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("goodsRetrieve");
 		mav.addObject("goodsRetrieve", good); 
-		System.out.println("==================================");
-		System.out.println(good);
 		return mav;
 	}
 	

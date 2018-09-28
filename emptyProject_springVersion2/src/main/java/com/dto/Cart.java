@@ -6,30 +6,16 @@ import org.apache.ibatis.type.Alias;
 public class Cart {
 	private int num;
 	private String userid;
-	private String goods_code;
-	private String goods_name;
-	private int goods_price;
-	private String goods_color;
-	private int goods_amount;
-	private String goods_image;
-	private String goods_brand;
+	private String goods_Code;
+	private String goods_Name;
+	private int goods_Price;
+	private String goods_Color;
+	private int goods_Amount;
+	private String goods_Image;
+	private String goods_Brand;
 	
 	public Cart() {
 		super();
-	}
-
-	public Cart(int num, String userid, String goods_code, String goods_name, int goods_price, String goods_color,
-			int goods_amount, String goods_image, String goods_brand) {
-		super();
-		this.num = num;
-		this.userid = userid;
-		this.goods_code = goods_code;
-		this.goods_name = goods_name;
-		this.goods_price = goods_price;
-		this.goods_color = goods_color;
-		this.goods_amount = goods_amount;
-		this.goods_image = goods_image;
-		this.goods_brand = goods_brand;
 	}
 
 	public int getNum() {
@@ -48,66 +34,83 @@ public class Cart {
 		this.userid = userid;
 	}
 
-	public String getGoods_code() {
-		return goods_code;
+	public String getGoods_Code() {
+		return goods_Code;
 	}
 
-	public void setGoods_code(String goods_code) {
-		this.goods_code = goods_code;
+	public void setGoods_Code(String goods_Code) {
+		this.goods_Code = goods_Code;
 	}
 
-	public String getGoods_name() {
-		return goods_name;
+	public String getGoods_Name() {
+		return goods_Name;
 	}
 
-	public void setGoods_name(String goods_name) {
-		this.goods_name = goods_name;
+	public void setGoods_Name(String goods_Name) {
+		this.goods_Name = goods_Name;
 	}
 
-	public int getGoods_price() {
-		return goods_price;
+	public int getGoods_Price() {
+		return goods_Price;
 	}
 
-	public void setGoods_price(int goods_price) {
-		this.goods_price = goods_price;
+	public void setGoods_Price(int goods_Price) {
+		this.goods_Price = goods_Price;
 	}
 
-	public String getGoods_color() {
-		return goods_color;
+	public String getGoods_Color() {
+		return goods_Color;
 	}
 
-	public void setGoods_color(String goods_color) {
-		this.goods_color = goods_color;
+	public void setGoods_Color(String goods_Color) {
+		this.goods_Color = goods_Color;
 	}
 
-	public int getGoods_amount() {
-		return goods_amount;
+	public int getGoods_Amount() {
+		return goods_Amount;
 	}
 
-	public void setGoods_amount(int goods_amount) {
-		this.goods_amount = goods_amount;
+	public void setGoods_Amount(int goods_Amount) {
+		this.goods_Amount = goods_Amount;
 	}
 
-	public String getGoods_image() {
-		return goods_image;
+	public String getGoods_Image() {
+		return goods_Image;
 	}
 
-	public void setGoods_image(String goods_image) {
-		this.goods_image = goods_image;
+	public void setGoods_Image(String goods_Image) {
+		this.goods_Image = goods_Image;
 	}
 
-	public String getGoods_brand() {
-		return goods_brand;
+	public String getGoods_Brand() {
+		return goods_Brand;
 	}
 
-	public void setGoods_brand(String goods_brand) {
-		this.goods_brand = goods_brand;
+	public void setGoods_Brand(String goods_Brand) {
+		this.goods_Brand = goods_Brand;
 	}
 
 	@Override
 	public String toString() {
-		return "CartDTO [num=" + num + ", userid=" + userid + ", goods_code=" + goods_code + ", goods_name="
-				+ goods_name + ", goods_price=" + goods_price + ", goods_color=" + goods_color + ", goods_amount="
-				+ goods_amount + ", goods_image=" + goods_image + ", goods_brand=" + goods_brand + "]";
-	}	
+		return "Cart [num=" + num + ", userid=" + userid + ", goods_Code=" + goods_Code + ", goods_Name=" + goods_Name
+				+ ", goods_Price=" + goods_Price + ", goods_Color=" + goods_Color + ", goods_Amount=" + goods_Amount
+				+ ", goods_Image=" + goods_Image + ", goods_Brand=" + goods_Brand + "]";
+	}
+
+	public Cart(int num, String userid, String goods_Code, String goods_Name, int goods_Price, String goods_Color,
+			int goods_Amount, String goods_Image, String goods_Brand) {
+		super();
+		this.num = num;
+		this.userid = userid;
+		this.goods_Code = goods_Code;
+		this.goods_Name = goods_Name;
+		this.goods_Price = goods_Price;
+		this.goods_Color = goods_Color;
+		this.goods_Amount = goods_Amount;
+		this.goods_Image = goods_Image;
+		this.goods_Brand = goods_Brand;
+	}
+
+	
+	
 }

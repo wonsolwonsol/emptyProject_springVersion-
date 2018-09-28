@@ -110,32 +110,32 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="cartDTO" items="${cartList}">
-		<input type="hidden" name="num" value="${cartDTO.num}">
+		<c:forEach var="cart" items="${cartList}">
+		<input type="hidden" name="num" value="${cart.num}">
 			<tr>
-				<td><input type="checkbox" name="check" class="check" value="${cartDTO.num}"></td>
-				<td>${cartDTO.num}</td>
+				<td><input type="checkbox" name="check" class="check" value="${cart.num}"></td>
+				<td>${cart.num}</td>
 				<td>					
-					<p class="img"><a href="GoodsRetrieveServlet?goods_Code=${cartDTO.goods_code}" class="aLink"><img src="images/items/thum/${cartDTO.goods_image}.jpg" /></a></p>
+					<p class="img"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink"><img src="images/items/thum/${cart.goods_Image}.jpg" /></a></p>
 				</td>
 				<td>
-					<p class="bold"><a href="GoodsRetrieveServlet?goods_Code=${cartDTO.goods_code}" class="aLink">${cartDTO.goods_brand}</a></p>
-					<p class="alignL"><a href="GoodsRetrieveServlet?goods_Code=${cartDTO.goods_code}" class="aLink">${cartDTO.goods_name}</a></p>
+					<p class="bold"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_Brand}</a></p>
+					<p class="alignL"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_name}</a></p>
 				</td>
 				<td>
-					<fmt:formatNumber value="${cartDTO.goods_price}" type="currency" />
+					<fmt:formatNumber value="${cart.goods_Price}" type="currency" />
 				</td>
 				<td>
-					<input class="alignR" type="text" name="cart_gAmount" value="${cartDTO.goods_amount}" id="cartAmount${cartDTO.num}" maxlength="3" style="width:50px;">
-					<input type="button" class="btn xsmall updateBtn" value="수정" data-num="${cartDTO.num}" data-price="${cartDTO.goods_price}" /> 
+					<input class="alignR" type="text" name="cart_gAmount" value="${cart.goods_Amount}" id="cartAmount${cart.num}" maxlength="3" style="width:50px;">
+					<input type="button" class="btn xsmall updateBtn" value="수정" data-num="${cart.num}" data-price="${cart.goods_Price}" /> 
 				</td>
 				<td>
-					<span id="sum${cartDTO.num}"><fmt:formatNumber value="${cartDTO.goods_amount * cartDTO.goods_price}" type="currency" /></span>
+					<span id="sum${cart.num}"><fmt:formatNumber value="${cart.goods_Amount * cart.goods_Price}" type="currency" /></span>
 				</td>
 				<td>
 					<span class="btns">
-						<input type="button" class="btn xsmall yellow orderBtn" id="order" data-orderBtn="${cartDTO.num}" value="주문" />
-						<input type="button" class="btn xsmall darkGray delBtn" data-delBtn="${cartDTO.num}" value="삭제" />
+						<input type="button" class="btn xsmall yellow orderBtn" id="order" data-orderBtn="${cart.num}" value="주문" />
+						<input type="button" class="btn xsmall darkGray delBtn" data-delBtn="${cart.num}" value="삭제" />
 					</span>
 				</td>
 			</tr>

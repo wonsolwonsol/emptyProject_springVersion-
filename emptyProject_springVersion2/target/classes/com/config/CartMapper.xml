@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="CartMapper">
 	<insert id="cartAdd" parameterType="Cart">
 		insert into cart(num, userid, goods_code, goods_name, goods_price, goods_color, goods_amount, goods_image, goods_brand)
-		values(cart_seq.nextval, #{userid}, #{goods_code}, #{goods_name}, #{goods_price}, #{goods_color}, #{goods_amount}, #{goods_image}, #{goods_brand})
+		values(cart_seq.nextval, #{userid}, #{goods_Code}, #{goods_Name}, #{goods_Price}, #{goods_Color}, #{goods_Amount}, #{goods_Image}, #{goods_Brand})
 	</insert>
 	
 	<select id="cartList" parameterType="String" resultType="Cart">

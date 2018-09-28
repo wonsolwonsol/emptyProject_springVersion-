@@ -7,9 +7,6 @@
  <c:if test="${! empty mesg}">
   <script type="text/javascript">
     alert('${mesg}');
-    <%
-    session.removeAttribute("mesg");
-   %>
   </script>
 </c:if>	
  <script type="text/javascript">
@@ -17,7 +14,7 @@
     	//git 저장용 
     	$("#cart").on("click",function(){
     	//	$("form")[0].action="GoodsCartServlet";
-    		$("form").attr("action","GoodsCartServlet");
+    		$("form").attr("action","loginCheck/goodsCart");
     	});
     	
     	var count = parseInt($("#goodsAmount").val());
@@ -46,8 +43,7 @@
     });
 </script>
 <form name="goodRetrieveForm" method="GET" action="#">
-	    <input type="hidden" name="goods_Image1" value="${goodsRetrieve.goods_Image1}">
-
+	    <input type="hidden" name="goods_Image" value="${goodsRetrieve.goods_Image1}">
 	    <input type="hidden" name="goods_Code" value="${goodsRetrieve.goods_Code}">
 	    <input type="hidden" name="goods_Name" value="${goodsRetrieve.goods_Name}"> 
 	    <input type="hidden" name="goods_Price" value="${goodsRetrieve.goods_Price}">

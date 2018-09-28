@@ -29,7 +29,7 @@ $(document).ready(function(){
 		<img src="./images/icon/search.png" class="toggle">
 	</form>
 		</li>
-		<li><a href="GoodsCartListServlet"><img src="images/icon/cart.png"></a></li>
+		<li><a href=loginCheck/cartlist><img src="images/icon/cart.png"></a></li>
 <c:if test="${empty member}">
 		<li><a href="loginForm"><img src="images/icon/user.png"></a></li>
 </c:if>

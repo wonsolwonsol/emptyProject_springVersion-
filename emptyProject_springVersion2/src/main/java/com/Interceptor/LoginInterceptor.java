@@ -30,7 +30,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		if(session.getAttribute("member") == null) {
 			System.out.println("세션에 로그인 없음");
-			response.sendRedirect("loginForm");
+			response.sendRedirect("../loginForm");
 			return false;			
 		}		
 		return true;
