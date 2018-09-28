@@ -16,19 +16,18 @@ public class GoodsDAO {
 	
 	
 	
-/*	public Goods goodsRetrieve(SqlSession session, 
-			String goods_Code) {
+	public Goods goodsRetrieve(String goods_Code) {
 		Goods dao 
-		= session.selectOne("GoodsMapper.", goods_Code);
+		= template.selectOne("GoodsMapper.goodsRetrieve", goods_Code);
 	return dao; 
 	}
-	*/
+	
 	
 	
 	//new 모두보기
 	public List<Goods> goodsAll(){
 		List<Goods> list = template.selectList("GoodsMapper.goodsAll");
-		System.out.println("ALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+list);
+		
 		return list;
 		
 	}
