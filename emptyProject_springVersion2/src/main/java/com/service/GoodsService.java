@@ -3,17 +3,26 @@ package com.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.GoodsDAO;
 import com.dto.Goods;
 
+import oracle.net.aso.s;
+
 @Service
 public class GoodsService {
 
 	@Autowired
 	GoodsDAO dao ; 
+
+	
+	//단일제품보기
+	public Goods goodsRetrieve(String goods_Code) {
+		return dao.goodsRetrieve(goods_Code); 
+	}
 
 	
 	 //new 모두보기

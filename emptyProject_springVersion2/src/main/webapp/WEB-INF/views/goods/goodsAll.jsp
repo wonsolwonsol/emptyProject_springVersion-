@@ -90,7 +90,7 @@
 								</tr>
 								<tr>
 									<td class= "td_default" align ="center">
-										<a class= "a_black" href="GoodsRetrieveServlet?goods_Code=${dto.goods_Code}">
+										<a class= "a_black" href="GoodsRetrieve?goods_Code=${dto.goods_Code}">
 										${dto.goods_Name}<br>
 										</a>
 										<font color="gray">
