@@ -94,7 +94,7 @@ $(document).ready(function() {
 		<input type="hidden" class="price" value="${cartDTO.goods_price * cartDTO.goods_amount}">
 		</c:forEach>	
 		<tr class="highlight gray"><th colspan="2">합계</th>
-			<td colspan="4" id="sum"></td></tr>
+			<td colspan="4" id="sum" style="font-weight: bold;"></td></tr>
 </table>
 
 <h3>고객정보</h3>

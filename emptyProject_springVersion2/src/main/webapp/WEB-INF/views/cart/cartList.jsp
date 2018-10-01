@@ -19,32 +19,46 @@
 		$(".delBtn").on("click", function(){
 			var txt = confirm("삭제하시겠습니까?");
 			var num = $(this).attr("data-delBtn");
-			if(txt=true)
-			location.href="goodsCartDel?num="+num;
-		});
+			var it = $(this);
+			if(txt=true){
+
+			$.ajax({ 
+				type:"get",
+				url:"loginCheck/goodsCartDel?num="+num,
+				dataType:"text", 
+				success:function(data,status,xhr){
+					 if(data=='success'){
+						console.log(data); 
+						it.parents().filter("tr").remove();
+					 }
+				}, 
+				error:function(xhr,status,error){
+					console.log(error); 
+				}
+			})
+			}			
+		})//del;
 		
 		//수정버튼
 		$(".updateBtn").on("click", function(){
 			var num = $(this).attr("data-num");
-			var gAmount = $("#cartAmount"+num).val();
+			var goods_Amount = $("#cartAmount"+num).val();
 			var gPrice = $(this).attr("data-price");
 			var total;
 			$.ajax({ 
 				type:"get",
-				url:"GoodsCartUpdateServlet",
+				url:"loginCheck/goodsCartUpdate",
 				dataType:"text", 
 				data:{ 
 					num:num,
-					gAmount:gAmount
+					goods_Amount:goods_Amount
 				},
 				success:function(data,status,xhr){
 					if(data=='success'){
-						total = Number.parseInt(gAmount) * Number.parseInt(gPrice);
+						console.log(data);
+						total = Number.parseInt(goods_Amount) * Number.parseInt(gPrice);
 						var txt = "￦"+numeral( total ).format('0,0');
 						$("#sum"+num).text(txt);
-					}else{
-						alert("로그인 하세요.");
-						location.href="LoginUIServlet";
 					}
 				}, 
 				error:function(xhr,status,error){
@@ -55,9 +69,9 @@
 		
 		//전체 삭제
 		$("#delAllCart").on("click", function(e){
-			var txt = confirm("삭제하시겠습니까?");
+			var txt = confirm("삭제하시겠습니까?");			
 			if(txt==true){
-			$("form").attr("action", "GoodsCartAllDelServlet");
+			$("form").attr("action", "loginCheck/goodsCartDelAll");
 			$("form").submit();
 			}else{
 			e.preventDefault();				
@@ -73,7 +87,7 @@
 		//order
 		$(".orderBtn").on("click",function(){
 			var num = $(this).attr("data-orderBtn");
-			location.href="GoodsCartToOrder?num="+num;
+			location.href="loginCheck/cartToOrder?num="+num;
 		})
 	})
 </script>
@@ -113,7 +127,7 @@
 		<c:forEach var="cart" items="${cartList}">
 		<input type="hidden" name="num" value="${cart.num}">
 			<tr>
-				<td><input type="checkbox" name="check" class="check" value="${cart.num}"></td>
+				<td><input type="checkbox" name="check" class="check" value="${cart.num}" id="check"></td>
 				<td>${cart.num}</td>
 				<td>					
 					<p class="img"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink"><img src="images/items/thum/${cart.goods_Image}.jpg" /></a></p>

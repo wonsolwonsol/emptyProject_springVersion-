@@ -21,18 +21,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="cartUpdate" parameterType="hashmap">
 		update cart
-		set goods_amount = #{gAmount}
+		set goods_amount = #{goods_Amount}
 		where num = #{num}
 	</update>
 	
 	<delete id="cartDelAll" parameterType="arraylist">
 		delete from cart
 		where num
-		in
+		IN
 		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
 			#{item}
 		</foreach>
 	</delete>
+	
 	<select id="cartToOrder" parameterType="int" resultType="Cart">
 		select num, userid, goods_code, goods_name, goods_price, goods_color, goods_amount, goods_image, goods_brand
 		from cart

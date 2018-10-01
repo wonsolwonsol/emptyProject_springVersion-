@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -27,6 +29,21 @@ public class CartDAO {
 	public int goodsCartDel(int num) {
 		int n = template.delete("CartMapper.cartDel",num);
 		return n;
+	}
+
+	public int goodsCartUpdate(HashMap<String, Integer> map) {
+		int n = template.update("CartMapper.cartUpdate", map);
+		return n;
+	}
+
+	public int goodsCartDelAll(ArrayList<String> list) {
+		int n = template.delete("CartMapper.cartDelAll",list);
+		return n;
+	}
+
+	public Cart cartToOrder(int num) {
+		Cart cart = template.selectOne("CartMapper.cartToOrder", num);
+		return cart;
 	}
 
 }

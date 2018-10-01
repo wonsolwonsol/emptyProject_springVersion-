@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +29,20 @@ public class CartService {
 	public int goodsCartDel(int num) {
 		int n = dao.goodsCartDel(num);
 		return n;
+	}
+
+	public int goodsCartUpdate(HashMap<String, Integer> map) {
+		int n = dao.goodsCartUpdate(map);
+		return n;
+	}
+
+	public int goodsCartDelAll(ArrayList<String> list) {
+		int n = dao.goodsCartDelAll(list);
+		return n;
+	}
+
+	public Cart cartToOrder(int num) {
+		Cart cart = dao.cartToOrder(num);
+		return cart;
 	}
 }
