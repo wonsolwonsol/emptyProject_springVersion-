@@ -46,4 +46,9 @@ public class CartDAO {
 		return cart;
 	}
 
+	public List<Cart> cartToOrderAll(ArrayList<String> check) {
+		List<Cart> list = template.selectList("CartMapper.cartToOrderAll", check);
+		return list;
+	}
+
 }

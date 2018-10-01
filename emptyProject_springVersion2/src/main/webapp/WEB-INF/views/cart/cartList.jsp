@@ -80,7 +80,7 @@
 		
 		//orderAll
 		$("#orderAll").on("click", function(e){
-			$("form").attr("action", "GoodsCartToOrderAll");
+			$("form").attr("action", "loginCheck/cartToOrderAll");
 			$("form").submit();			
 		})
 		

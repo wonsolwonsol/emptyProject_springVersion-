@@ -67,10 +67,20 @@ public class CartController {
 	public String cartToOrder(@RequestParam int num, HttpSession session, RedirectAttributes red) {
 		Member mem = (Member) session.getAttribute("login");
 		Cart cart = service.cartToOrder(num);
-		red.addAttribute("cart", cart);
-		red.addAttribute("member", mem);
+		red.addFlashAttribute("cart", cart);
+		red.addFlashAttribute("member", mem);
 		
-		return "redirect:./cartToOrder";		
+		return "redirect:../cartToOrder";
+	}
+	
+	@RequestMapping("/loginCheck/cartToOrderAll")
+	public String cartToOrderAll(@RequestParam("check") ArrayList<String> check, HttpSession session, RedirectAttributes red) {
+		Member mem = (Member) session.getAttribute("login");
+		List<Cart> list = service.cartToOrderAll(check);
+		red.addFlashAttribute("list", list);
+		red.addFlashAttribute("member", mem);
+		System.out.println(list);
+		return "redirect:../cartToOrderAll";
 	}
 	
 }

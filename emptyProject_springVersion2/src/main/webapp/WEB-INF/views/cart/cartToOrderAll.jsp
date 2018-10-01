@@ -57,14 +57,14 @@ $(document).ready(function() {
 <body>
 <h1>ORDER</h1>
 <%-- <form>
- 	<input type="hidden" name="num" value="${cartDTO.num}"> 
- 	<input type="hidden" name="goods_code" value="${cartDTO.goods_code}">
- 	<input type="hidden" name="goods_name" value="${cartDTO.goods_name}">
- 	<input type="hidden" name="goods_price" value="${cartDTO.goods_price}">
- 	<input type="hidden" name="goods_brand" value="${cartDTO.goods_brand}">
- 	<input type="hidden" name="goods_color" value="${cartDTO.goods_color}">
- 	<input type="hidden" name="goods_amount" value="${cartDTO.goods_amount}">
- 	<input type="hidden" name="goods_image" value="${cartDTO.goods_image}">
+ 	<input type="hidden" name="num" value="${cart.num}"> 
+ 	<input type="hidden" name="goods_Code" value="${cart.goods_Code}">
+ 	<input type="hidden" name="goods_Name" value="${cart.goods_Name}">
+ 	<input type="hidden" name="goods_Price" value="${cart.goods_Price}">
+ 	<input type="hidden" name="goods_Brand" value="${cart.goods_Brand}">
+ 	<input type="hidden" name="goods_Color" value="${cart.goods_Color}">
+ 	<input type="hidden" name="goods_Amount" value="${cart.goods_Amount}">
+ 	<input type="hidden" name="goods_Image" value="${cart.goods_Image}">
 </form> --%>
 <h3>주문정보</h3>
 <table class="tblList">
@@ -80,18 +80,18 @@ $(document).ready(function() {
 		<th>수량</th>
 		<th>합계</th>
 	</tr>
-	<c:forEach items="${list}" var="cartDTO">
+	<c:forEach items="${list}" var="cart">
 	<tr>
-		<td>${cartDTO.num}</td>
-		<td class="img"><img src="images/items/thum/${cartDTO.goods_image}.jpg"/></td>
+		<td>${cart.num}</td>
+		<td class="img"><img src="images/items/thum/${cart.goods_Image}.jpg"/></td>
 		<td><p class="bold">
-			${cartDTO.goods_brand}</p>
-			<p>${cartDTO.goods_name}</p>		
+			${cart.goods_Brand}</p>
+			<p>${cart.goods_Name}</p>		
 		</td>
-		<td>${cartDTO.goods_color}</td>
-		<td>${cartDTO.goods_amount}</td>
-		<td><fmt:formatNumber value="${cartDTO.goods_price * cartDTO.goods_amount}" type="currency" /></td>	
-		<input type="hidden" class="price" value="${cartDTO.goods_price * cartDTO.goods_amount}">
+		<td>${cart.goods_Color}</td>
+		<td>${cart.goods_Amount}</td>
+		<td><fmt:formatNumber value="${cart.goods_Price * cart.goods_Amount}" type="currency" /></td>	
+		<input type="hidden" class="price" value="${cart.goods_Price * cart.goods_Amount}">
 		</c:forEach>	
 		<tr class="highlight gray"><th colspan="2">합계</th>
 			<td colspan="4" id="sum" style="font-weight: bold;"></td></tr>
@@ -100,32 +100,32 @@ $(document).ready(function() {
 <h3>고객정보</h3>
 
 <table class="tbl">			
-	<tr><th>이름</th><td><input type="text" value=" ${memberDTO.username}" id="name"></td></tr>
+	<tr><th>이름</th><td><input type="text" value=" ${member.username}" id="name"></td></tr>
 	<tr><th>주소</th>
-		<td><input type="text" value="${memberDTO.post}" name="post" id="post" placeholder="우편번호">
+		<td><input type="text" value="${member.post}" name="post" id="post" placeholder="우편번호">
 		<!-- <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> -->
 		<span class="address">	
-		<input type="text" value="${memberDTO.addr1}" name="addr1" id="addr1" placeholder="도로명주소">
-		<input type="text" value="${memberDTO.addr2}" name="addr2" id="addr2" placeholder="지번주소"></span>
+		<input type="text" value="${member.addr1}" name="addr1" id="addr1" placeholder="도로명주소">
+		<input type="text" value="${member.addr2}" name="addr2" id="addr2" placeholder="지번주소"></span>
 		<span id="guide" style="color:#999"></span></td>
 	</tr>	
 	<tr><th>휴대폰</th><td><select name="phone1" id="phone1">
 		<option value="011" 
-			<c:if test="${memberDTO.phone1 == '011'}">selected</c:if>>011</option> 
+			<c:if test="${member.phone1 == '011'}">selected</c:if>>011</option> 
 		<option value="010"
-			<c:if test="${memberDTO.phone1 == '010'}">selected</c:if>>010</option> 
+			<c:if test="${member.phone1 == '010'}">selected</c:if>>010</option> 
 		</select>
-		<input type="text" name="phone2" id="phone2" value="${memberDTO.phone2}">
-		<input type="text" name="phone3" id="phone3" value="${memberDTO.phone3}"></td>
+		<input type="text" name="phone2" id="phone2" value="${member.phone2}">
+		<input type="text" name="phone3" id="phone3" value="${member.phone3}"></td>
 	</tr>
 	<tr><th>이메일</th><td>
-		<input type="text" name="email1" value="${memberDTO.email1}" id="email1" >@
-		<input type="text" value="${memberDTO.email2}" name="email2" id="email2" placeholder="직접입력">
+		<input type="text" name="email1" value="${member.email1}" id="email1" >@
+		<input type="text" value="${member.email2}" name="email2" id="email2" placeholder="직접입력">
 		<select name="email3" id="emailAdd" >
 			<option value="daum.net"
-				<c:if test="${memberDTO.email2 == 'daum.net'}">selected</c:if>>daum.net</option> 
+				<c:if test="${member.email2 == 'daum.net'}">selected</c:if>>daum.net</option> 
 			<option value="naver.com"
-				<c:if test="${memberDTO.email2 == 'naver.com'}">selected</c:if>>naver.com</option> 
+				<c:if test="${member.email2 == 'naver.com'}">selected</c:if>>naver.com</option> 
 		</select></td>
 	</tr>
 		
@@ -147,9 +147,9 @@ $(document).ready(function() {
 	</tr>	
 	<tr><th>휴대폰</th><td><select id="phone1_same">
 		<option value="011" 
-			<c:if test="${memberDTO.phone1 == '011'}">selected</c:if>>011</option> 
+			<c:if test="${member.phone1 == '011'}">selected</c:if>>011</option> 
 		<option value="010"
-			<c:if test="${memberDTO.phone1 == '010'}">selected</c:if>>010</option> 
+			<c:if test="${member.phone1 == '010'}">selected</c:if>>010</option> 
 		</select>
 		<input type="text" id="phone2_same">
 		<input type="text" id="phone3_same"></td></tr>

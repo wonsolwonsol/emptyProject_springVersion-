@@ -19,7 +19,10 @@
 	<mvc:view-controller view-name="idFind" path="/idFind"/>
 	<mvc:view-controller view-name="myPage" path="/myPage"/>
 	<mvc:view-controller view-name="adminPage" path="/adminPage"/>
-	<!-- <mvc:view-controller view-name="cartList" path="/cartList"/> -->
+	<mvc:view-controller view-name="cartList" path="/cartList"/>
+	<mvc:view-controller view-name="cartToOrder" path="/cartToOrder"/>
+	<mvc:view-controller view-name="cartToOrderAll" path="/cartToOrderAll"/>
+	
 
 <!-- properties -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">

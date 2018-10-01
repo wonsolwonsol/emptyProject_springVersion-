@@ -45,4 +45,9 @@ public class CartService {
 		Cart cart = dao.cartToOrder(num);
 		return cart;
 	}
+
+	public List<Cart> cartToOrderAll(ArrayList<String> check) {
+		List<Cart> list = dao.cartToOrderAll(check);
+		return list;
+	}
 }
