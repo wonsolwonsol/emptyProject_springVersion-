@@ -3,12 +3,14 @@ package com.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.Goods;
+import com.dto.Page;
 @Repository
 public class GoodsDAO {	
 	@Autowired
@@ -107,6 +109,28 @@ public class GoodsDAO {
 	public List<String> brandChartAll() {
 		List<String> list = template.selectList("GoodsMapper.brandChartAll");
 		return list;
+	}
+
+	public int totalRecord() {
+		//데이터의 총 갯수
+		int n = template.selectOne("GoodsMapper.totalCount");
+		System.out.println("totalRecord    "+n);
+		return n;
+	}
+	
+	public Page goodsAllPage(int curpage) {
+		Page page = new Page();
+		//offset 데이터 인덱스 값
+		int offset = (curpage - 1) * page.getPerPage();
+		page.setPerPage(8);
+		//page에 담을 list (인덱스부터 perpage 갯수 만큼)
+		List<Goods> list = template.selectList("GoodsMapper.goodsAll", null, new RowBounds(offset,page.getPerPage()));
+		
+		page.setList(list);
+		page.setCurrentPage(curpage);
+		int totalCount = totalRecord();
+		page.setTotalCount(totalCount);
+		return page;
 	}
 
 	

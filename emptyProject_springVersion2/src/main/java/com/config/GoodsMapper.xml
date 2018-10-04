@@ -211,5 +211,61 @@ select goods_Code
 	from goods
 </select>
   
+  <!-- admin -->	
+	<delete id="adminGoodsDel" parameterType="string">
+	delete from goods
+	where goods_code = #{goods_code}
+	</delete>
+	<update id="adminGoodsUpdate" parameterType="Goods">
+	update goods
+	set    	goods_Color = #{goods_Color}
+	   		,goods_Name = #{goods_Name}
+	   		,goods_Price = #{goods_Price}
+	   		,goods_Brand = #{goods_Brand}
+	   		,goods_Image1 = #{goods_Image1}
+	   		,goods_Image2 = #{goods_Image2}
+	   		,goods_Content = #{goods_Content}
+	   		,goods_Category = #{goods_Category}
+	where goods_code = #{goods_Code}
+	</update>
 	
+	<delete id="adminGoodsDelAll" parameterType="list">
+	delete from goods
+	where goods_code in
+	<foreach close=")" separator="," open="(" collection="list" index="index" item="item"> #{item} </foreach>
+	</delete>
+	
+	<insert id="adminGoodsInsert" parameterType="Goods">
+	insert into goods (
+			 goods_Code
+	   		,goods_Color
+	   		,goods_Name
+	   		,goods_Price
+	   		,goods_Brand
+	   		,goods_Image1
+	   		,goods_Image2
+	   		,goods_Content
+	   		,goods_Category
+	   		,goods_date)   		
+	values (
+	   		#{goods_Code},
+	   		#{goods_Color},
+	   		#{goods_Name},
+	   		#{goods_Price},
+	   		#{goods_Brand}, 
+	   		#{goods_Image1},
+	   		#{goods_Image2}, 
+	   		#{goods_Content},
+	   		#{goods_Category}, 
+	   		 sysdate   		
+	   		)   		
+	</insert>
+<!-- paging -->
+	<select id="totalCount" resultType="int">
+	 <!-- 전체 갯수를 세어주고 -->
+	 select count(*) 
+ 	from goods
+ </select>
+ 
+		
 </mapper>

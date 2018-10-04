@@ -21,7 +21,6 @@ public class AdminDAO {
 		return n;
 	}
 	
-	@RequestMapping
 	public Page selectPage(int curPage) {		
 		Page page = new Page();
 		int offset = (curPage - 1) * page.getPerPage();
@@ -32,5 +31,18 @@ public class AdminDAO {
 		page.setTotalCount(totalCount());
 		
 		return page;
+	}
+
+	public void adminGoodsAdd(Goods goods) {
+		template.insert("GoodsMapper.adminGoodsInsert",goods);		
+	}
+
+	public void adminGoodsUpdate(Goods goods) {
+		template.update("GoodsMapper.adminGoodsUpdate", goods);		
+	}
+
+	public void adminGoodsDelete(String goods_Code) {
+		template.delete("GoodsMapper.adminGoodsDelete", goods_Code);
+		
 	}
 }

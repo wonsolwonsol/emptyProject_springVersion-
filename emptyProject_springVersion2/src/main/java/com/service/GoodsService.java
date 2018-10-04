@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.GoodsDAO;
 import com.dto.Goods;
+import com.dto.Page;
 
 import oracle.net.aso.s;
 
@@ -106,6 +107,12 @@ public class GoodsService {
 	public List<String> brandChartAll() {
 		List<String> brandChart = dao.brandChartAll();
 		return brandChart;
+	}
+
+
+	public Page goodsAllPage(int curpage) {
+		Page page = dao.goodsAllPage(curpage);
+		return page;
 	}
 
 	

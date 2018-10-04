@@ -2,6 +2,7 @@ package com.Interceptor;
 
 import java.lang.ProcessBuilder.Redirect;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,7 +35,9 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 		Member member = (Member) session.getAttribute("member");
 		if(member == null || member.getUserid().equals("admin") == false ) {
 			System.out.println("접근 불가");
-			response.sendRedirect("../loginForm");
+/*			RequestDispatcher dis = request.getRequestDispatcher("/app/WEB-INF/views/loginForm");
+			dis.forward(request, response);*/
+			response.sendRedirect("/app/WEB-INF/views/loginForm");
 			return false;			
 		}else if(member.getUserid().equals("admin")) {
 			System.out.println("관리자 접속 "+member.getUserid());

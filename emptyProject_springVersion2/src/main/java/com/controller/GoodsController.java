@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.Goods;
+import com.dto.Page;
 import com.service.GoodsService;
 
 @Controller
@@ -38,7 +39,7 @@ public class GoodsController {
 	
 	//goodsAll
 	@RequestMapping("/goodsAll") 
-	public String goodsAll(HttpSession session, Model mod) {		
+	public String goodsAllPaging(HttpSession session, Model mod, @RequestParam int currentPage) {		
 		//color chart, brand chart
 		List<String> color = new ArrayList<String>();
 		List<String> brand = new ArrayList<String>();
@@ -48,12 +49,35 @@ public class GoodsController {
 				
 		session.setAttribute("colorChart", color);
 		session.setAttribute("brandChart", brand);		
-		
-		List<Goods> list = service.goodsAll(); 
-		mod.addAttribute("goodslist",list);	
+				
+		if(currentPage == 0){
+			currentPage = 1;
+		}
+		Page page = service.goodsAllPage(currentPage);
+		System.out.println("pagelist:     "+page);
+		mod.addAttribute("page", page);	
 	return "goodsAll"; 
 }
 	
+	
+	
+//	//goodsAll
+//		@RequestMapping("/goodsAll") 
+//		public String goodsAll(HttpSession session, Model mod) {		
+//			//color chart, brand chart
+//			List<String> color = new ArrayList<String>();
+//			List<String> brand = new ArrayList<String>();
+//			
+//			color = service.colorChartAll();
+//			brand = service.brandChartAll();
+//					
+//			session.setAttribute("colorChart", color);
+//			session.setAttribute("brandChart", brand);		
+//			
+//			List<Goods> list = service.goodsAll(); 
+//			mod.addAttribute("goodslist",list);	
+//		return "goodsAll"; 
+//	}
 		
 	@RequestMapping("/goodslist")
 	public ModelAndView goodsList(@RequestParam String goods_Category, ModelAndView mav, HttpSession session) {
