@@ -6,19 +6,55 @@
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
+<script type="text/javascript">
+$(document).ready(function(){	
+//충격과 공포의 페이징
+var record = $("#totalCount").val()
+var total = record/8;
+if(record%8 !=0) total=Math.ceil(total);
+var curpage = $("#curpage").val();
+var paging = "";
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+for(var i = 1; i <= total; i++){
+	console.log(i);
+	if(i==curpage){
+		paging = paging+i+"&nbsp;&nbsp;";
+		
+	}else{
+		paging = paging+"<a href='/app/notice2?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
+	}			
+}
 
-<div class="adsense" style="text-align: center; padding:0px 0px 10px 10px"> 
-<div class="notice"><h1>공지</h1>
+console.log(paging);
+$("p").html(paging);
+
+})
+</script>
+<!-- <div class="adsense" style="text-align: center; padding:0px 0px 10px 10px">  -->
+<!-- <div class="notice"> -->
+<h1>공지</h1>
 <table class="tbl" border="1">
+<thead>
+	<tr>
+	<th>글번호</th>
+	<th>제목</th>
+	</tr></thead>
+<tbody>
+<c:forEach var="dto" items="${page.list2 }" varStatus="status">	
+<tr>
+	<td>${dto.seq}</td>
+	<td>${dto.title}</td>
+	</tr>
+
+</c:forEach>
+</tbody>
+</table>
+<hr>
+<input type="hidden" value="${page.totalCount}" id="totalCount">
+<input type="hidden" value="${page.currentPage}" id="curpage">
+<pre></pre>
+<p align="center">page</p>
+<%-- <table class="tbl" border="1">
 <thead>
 	<tr>
 	<th>글번호</th>
@@ -32,10 +68,11 @@
 </tr>
 </c:forEach>
 </tbody>
-</table>
+</table> --%>
 <br> 
- <button class="btn gray small"><a href="noticeWrite">공지등록</a></button>
- </div></div>
+<pre></pre>
+ <button class="btn gray small" align="center"><a href="noticeWrite">공지등록</a></button>
+
 </body>
 </html>
 

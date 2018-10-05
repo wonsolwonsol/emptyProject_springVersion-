@@ -5,17 +5,16 @@ import org.apache.ibatis.type.Alias;
 @Alias("Question")
 public class Question {
 
-	private String question_num;
-	private String title; 
-	private String question_contents; 
-	private String userid;
-	private String writeday;
-	private String image_name;
-	public String getQuestion_num() {
-		return question_num;
+	private int question_number;
+	private String title;
+	private String author;
+	private String content;
+	private String regdate;
+	public int getQuestion_number() {
+		return question_number;
 	}
-	public void setQuestion_num(String question_num) {
-		this.question_num = question_num;
+	public void setQuestion_number(int question_number) {
+		this.question_number = question_number;
 	}
 	public String getTitle() {
 		return title;
@@ -23,49 +22,42 @@ public class Question {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getQuestion_contents() {
-		return question_contents;
+	public String getAuthor() {
+		return author;
 	}
-	public void setQuestion_contents(String question_contents) {
-		this.question_contents = question_contents;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
-	public String getUserid() {
-		return userid;
+	public String getContent() {
+		return content;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public String getWriteday() {
-		return writeday;
+	public String getRegdate() {
+		return regdate;
 	}
-	public void setWriteday(String writeday) {
-		this.writeday = writeday;
-	}
-	public String getImage_name() {
-		return image_name;
-	}
-	public void setImage_name(String image_name) {
-		this.image_name = image_name;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 	@Override
 	public String toString() {
-		return "Question [question_num=" + question_num + ", title=" + title + ", question_contents="
-				+ question_contents + ", userid=" + userid + ", writeday=" + writeday + ", image_name=" + image_name
-				+ "]";
+		return "Question [question_number=" + question_number + ", title=" + title + ", author=" + author + ", content="
+				+ content + ", regdate=" + regdate + "]";
 	}
-	public Question(String question_num, String title, String question_contents, String userid, String writeday,
-			String image_name) {
+	public Question(int question_number, String title, String author, String content, String regdate) {
 		super();
-		this.question_num = question_num;
+		this.question_number = question_number;
 		this.title = title;
-		this.question_contents = question_contents;
-		this.userid = userid;
-		this.writeday = writeday;
-		this.image_name = image_name;
+		this.author = author;
+		this.content = content;
+		this.regdate = regdate;
 	}
 	public Question() {
 		super();
 		// TODO Auto-generated constructor stub
-	} 
+	}
+	
+	
 	
 }

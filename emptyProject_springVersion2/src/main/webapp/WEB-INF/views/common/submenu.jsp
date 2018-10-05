@@ -15,7 +15,7 @@
 	</ul>
 	<br>
 	<ul id="side_board">
-		<li><a href="notice">NOTICE</a></li>
+		<li><a href="notice2?currentPage=1">NOTICE</a></li>
 		<li><a href="question">Q N A</a></li>
 		<li><a href="review">REVIEW</a></li>
 	</ul>
