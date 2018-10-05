@@ -16,8 +16,8 @@
 	<br>
 	<ul id="side_board">
 		<li><a href="notice">NOTICE</a></li>
-		<li><a href="QuestionBoardServlet">Q N A</a></li>
-		<li><a href="">REVIEW</a></li>
+		<li><a href="question">Q N A</a></li>
+		<li><a href="review">REVIEW</a></li>
 	</ul>
 	<br>
 	<ul id="side_sns">
