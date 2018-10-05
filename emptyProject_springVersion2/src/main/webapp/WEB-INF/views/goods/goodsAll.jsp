@@ -22,18 +22,21 @@
 		//충격과 공포의 페이징
 		var record = $("#totalCount").val()
 		var total = record/8;
-		if(record%8 !=0) total=Math.floor(total);
+		if(record%8 !=0) total=Math.ceil(total);
 		var curpage = $("#curpage").val();
-		console.log(total);
 		var paging = "";
+		
 		for(var i = 1; i <= total; i++){
+			console.log(i);
 			if(i==curpage){
-				paging=+ i+"&nbsp;";
+				paging = paging+i+"&nbsp;&nbsp;";
+				
 			}else{
-				paging=+ "<a href='/goodsAll?curPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
+				paging = paging+"<a href='/app/goodsAll?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
 			}			
-		}console.log(paging);
-		$(".paging").prepend(paging);
+		}
+		console.log(paging);
+		$("p").html(paging);
 	})//
 		
 </script>
@@ -186,7 +189,7 @@
 									<td class="td_red" align ="center"><font color="red"><strong>
 									
 					<fmt:formatNumber value="${dto.goods_Price}" type="currency"> </fmt:formatNumber>				
-					${dto.goods_Price}
+					
 										</strong></font></td>
 								</tr>
 							</table>
@@ -206,10 +209,9 @@
 	</tr>
 </table>
 <hr>
-<input type="text" value="${page.totalCount}" id="totalCount">
-<input type="text" value="${page.currentPage}" id="curpage">
-<div data-paging="page">
-</div>
+<input type="hidden" value="${page.totalCount}" id="totalCount">
+<input type="hidden" value="${page.currentPage}" id="curpage">
+<p>page</p>
 
 
 

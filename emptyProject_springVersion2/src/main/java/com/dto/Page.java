@@ -8,7 +8,7 @@ import org.apache.ibatis.type.Alias;
 public class Page {
 	List<Goods> list;
 	int currentPage;
-	int perPage = 10;
+	int perPage = 8;
 	int totalCount;
 	public List<Goods> getList() {
 		return list;

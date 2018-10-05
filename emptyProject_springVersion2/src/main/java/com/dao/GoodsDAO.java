@@ -122,7 +122,6 @@ public class GoodsDAO {
 		Page page = new Page();
 		//offset 데이터 인덱스 값
 		int offset = (curpage - 1) * page.getPerPage();
-		page.setPerPage(8);
 		//page에 담을 list (인덱스부터 perpage 갯수 만큼)
 		List<Goods> list = template.selectList("GoodsMapper.goodsAll", null, new RowBounds(offset,page.getPerPage()));
 		
