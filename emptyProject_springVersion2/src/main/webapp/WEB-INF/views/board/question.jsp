@@ -16,6 +16,31 @@
 </head>
 <body>
 <h1>Question Board</h1>
+<table class="tbl" border="1" align="center">
+<thead>
+	<tr>
+		<th style="width:5%">글번호</th>
+		<th style="width:30%">글제목</th>
+		<th style="width:10%">글쓴이</th>
+		<th style="width:10%">작성일</th>
+	</tr>
+	</thead>
+<tbody>
+	<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tbody>
+</table>
+<pre></pre>
+<br> 
+<button class="btn yellow" style="width:10%" ><a href="questionWrite">질문하기</a></button>
+<c:if test="${!empty member }">
+ 	<c:if test="${member.userid eq 'admin' }">
+ 	<button class="btn gray"><a href=""></a>질문관리 </button>
+ 	</c:if>
+ 	</c:if>
 </body>
 </html>
 

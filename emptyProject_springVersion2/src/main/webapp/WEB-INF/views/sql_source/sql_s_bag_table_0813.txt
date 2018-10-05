@@ -1,3 +1,90 @@
+--1005 게시판 업데이트
+기존 게시판 관련 테이블 모두 드랍 부탁드립니다. (questionboard, notice, questionboard_comments)
+Spring Pagination 
+
+질문게시판 - 파일 안만들 것 
+
+	* 
+https://handcoding.tistory.com/15
+
+
+
+
+--기존 게시판 테이블 모두 드랍해주세용.
+drop table questionboard; 
+(코멘트테이블까지) 
+--
+---새로운 테이블만들기-- 
+--<SQL>
+--게시글 
+CREATE TABLE Question( 
+question_number number(5) primary key 
+title varchar2(1000) not null 
+,author varchar2(1000)
+,content clob 
+,regdate date default sysdate ) 
+
+--시퀀스추가
+create sequence question_number
+start with 1
+increment by 1 ;
+
+
+코멘트 테이블
+
+CREATE TABLE question_board_comment (
+author varchar2(20)
+,comment_contents varchar2(1000)
+,comment_number number(5)
+, question_number number(5)
+);
+--외래키 추가 
+alter table question_board_comment
+add constraint question_number
+foreign key(question_number) references question (question_number) ;
+
+
+--외래키 추가(코멘트넘버)
+create sequence comment_number
+start with 1
+increment by 1 ;
+
+--TESTING 
+insert into question_board_comment
+values(
+'wonsol'
+,'질문답변입니다.'
+,comment_number.NEXTVAL
+,2);
+--마지막열은 참조하는 퀘스쳔넘버인데, 1번글은 없으므로 1만 안쓰면 됩니다. 
+--TESTING INSERT 
+INSERT INTO QUESTION
+VALUES (
+question_number.NEXTVAL
+,'첫번째 질문입니다'
+,'wonsol'
+,'추석이후 배송은 어떻게 진행되나요?'
+,sysdate ) ;
+
+
+------------------------이상 1005 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --0824 QnA 게시판 구조 및 소스 
 -- 테이블 설명 : QNA 게시판 불러왔을 때 '질문상세보기' 기능 이용 시, 해당글 넘버(Question_num)를 참조하는 코멘트 데이터를 가져오는 방식입니다.
 -- 즉, 테이블 두 개가 '글 상세보기'를 눌렀을 때 함께 생성됩니다. 코멘트 테이블에는 질문 글 넘버를 참조하는 fk_question_num 컬럼이 함께 있습니다.
