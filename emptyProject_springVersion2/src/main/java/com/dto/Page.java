@@ -8,6 +8,7 @@ import org.apache.ibatis.type.Alias;
 public class Page {
 	List<Goods> list;
 	List<Notice> list2; 
+	List<Question> Qlist; 
 	int currentPage;
 	int perPage = 8;
 	int totalCount;
@@ -16,6 +17,13 @@ public class Page {
 	}
 	public void setList(List<Goods> list) {
 		this.list = list;
+	}
+	
+	public List<Question> getQlist() {
+		return Qlist;
+	}
+	public void setQlist(List<Question> Qlist) {
+		this.Qlist = Qlist;
 	}
 	public void setList2(List<Notice> list2) {
 		this.list2=list2; 
@@ -43,13 +51,14 @@ public class Page {
 	}
 	@Override
 	public String toString() {
-		return "PageDTO [list=" + list + ", list2" + list2 + ", currentPage=" + currentPage + ", perPage=" + perPage + ", totalCount="
+		return "PageDTO [list=" + list + ", list2" + list2 + ", Qlist" + Qlist + ", currentPage=" + currentPage + ", perPage=" + perPage + ", totalCount="
 				+ totalCount + "]";
 	}
 	public Page(List<Goods> list, List<Notice> list2, int currentPage, int perPage, int totalCount) {
 		super();
 		this.list = list;
 		this.list2 = list2;
+		this.Qlist = Qlist;
 		this.currentPage = currentPage;
 		this.perPage = perPage;
 		this.totalCount = totalCount;
