@@ -77,7 +77,8 @@
 	<div class="alignC">
 		<p><img src="images/items/${goodsRetrieve.goods_Image2}.jpg"></p>
 		<p><img src="images/wash_info.jpg"></p>
-		<p><img src="images/divider_1.jpg"></p>
+		<!-- <p><img src="images/divider_1.jpg"></p> -->
+		<hr>
 	</div>
 	<div>
 	<a href="QuestionBoardServlet"><img src="images/icon/question_icorn.png"></a>

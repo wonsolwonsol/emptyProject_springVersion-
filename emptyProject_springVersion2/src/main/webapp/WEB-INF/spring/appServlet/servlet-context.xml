@@ -22,6 +22,10 @@
 	<mvc:view-controller view-name="cartList" path="/cartList"/>
 	<mvc:view-controller view-name="cartToOrder" path="/cartToOrder"/>
 	<mvc:view-controller view-name="cartToOrderAll" path="/cartToOrderAll"/>
+	<mvc:view-controller view-name="adminAddGoodsPage" path="/adminAddGoodsPage"/>
+	
+	
+	
 	
 
 <!-- properties -->
@@ -52,10 +56,18 @@
 
 <!-- JSP 전담 ViewResolver -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	<property name="prefix" value="/WEB-INF/views/"/>
-	<property name="suffix" value=".jsp"/>
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+<!-- file upload resolver / id 변경X -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" /> <!-- 10mb 제한 -->
 	</bean>
 
+<!-- 업로드된 파일의 저장 위치 지정 -->
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg value="c:\\upload"></constructor-arg>
+	</bean>
 
 <context:component-scan base-package="com.*"/>
 

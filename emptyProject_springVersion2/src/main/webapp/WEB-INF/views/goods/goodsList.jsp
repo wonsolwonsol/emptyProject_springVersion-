@@ -18,13 +18,31 @@
 		$(".sortBox > button").on("click", function(){
 			$(".box").stop().slideToggle("300");
 		})
+		//충격과 공포의 페이징
+		var record = $("#totalCount").val()
+		var total = record/8;
+		if(record%8 !=0) total=Math.ceil(total);
+		var curpage = $("#curpage").val();
+		var paging = "";
+		
+		for(var i = 1; i <= total; i++){
+			console.log(i);
+			if(i==curpage){
+				paging = paging+i+"&nbsp;&nbsp;";
+				
+			}else{
+				paging = paging+"<a href='/app/goodslist?goods_Category="+$("#cate").val()+"&currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
+			}			
+		}
+		console.log(paging);
+		$("p").html(paging);
 })
 </script>
 <div class="adsense" style="text-align: center; padding:0px 0px 10px 10px"> 
 
 <div class="select" >
 <form method="get" id="sortSelectForm">
-<input type="hidden" value="${category}" name="category">
+<input type="hidden" value="${category}" name="category" id="cate">
 	<select name="sortSelect" id="sortSelect">
 		<option selected="selected">선택없음</option>
 		<option value="가격순">가격순</option>
@@ -75,13 +93,13 @@
 				</tr>
 				<tr>
 				
-    <c:forEach var="dto" items="${goodslist}" varStatus="status">
+    <c:forEach var="dto" items="${page.list}" varStatus="status">
 						<td>
 							<table style='padding:15px'>
 								<tr>
 									<td>
 
-										<a href="GoodsRetrieve?goods_Code=${dto.goods_Code}"> 
+										<a href="goodsRetrieve?goods_Code=${dto.goods_Code}"> 
 
 											<img src="images/items/thum/${dto.goods_Image1}.jpg" border="0" align="center" width="200">
 										</a>
@@ -100,7 +118,7 @@
 								</tr>
 								<tr>
 									<td class= "td_default" align ="center">
-										<a class= "a_black" href="GoodsRetrieveServlet?goods_Code=${dto.goods_Code}"> 
+										<a class= "a_black" href="goodsRetrieve?goods_Code=${dto.goods_Code}"> 
 										${dto.goods_Name}<br>
 										</a>
 										<font color="gray">
@@ -148,3 +166,8 @@
 		<td height="10">
 	</tr>
 </table>
+<hr>
+<input type="hidden" value="${page.totalCount}" id="totalCount">
+<input type="hidden" value="${page.currentPage}" id="curpage">
+<p class="page"></p>
+

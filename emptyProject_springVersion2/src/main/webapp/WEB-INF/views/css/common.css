@@ -165,6 +165,17 @@ a.gray{color:#333;}
 .aLink {color:#333;text-decoration:none;}
 .aLink:hover {text-decoration:underline;}
 
+/* page */
+.page {
+	color:#c0c0c0;text-decoration:none;text-align: center; margin-top: 20px;
+}
+.page a{
+	color:#333; text-decoration:none;text-align: center; margin-top: 20px;
+}
+.page a:hover{
+	color:#000; text-decoration: underline;
+}
+
 /*adminUpdate*/
 .imgs_wrap p{
 	margin: 5px;

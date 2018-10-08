@@ -34,8 +34,8 @@ public class GoodsService {
 	
 	
 	 //모두보기
-	public List<Goods> goodsList(String goods_Category) {
-		List<Goods> list = dao.goodsList(goods_Category);
+	public Page goodsList(String goods_Category, int currentPage) {
+		Page list = dao.goodsList(goods_Category, currentPage);
 		return list;
 	}
 
@@ -49,53 +49,53 @@ public class GoodsService {
 		return brandChart;
 	}
 
-	public List<String> goodsSortColor(HashMap<String, Object> map) {
-		List<String> list = dao.goodsSortColor(map);
+	public Page goodsSortColor(HashMap<String, Object> map) {
+		Page list = dao.goodsSortColor(map);
 		return list;
 	}
 
-	public List<String> goodsSortBrand(HashMap<String, Object> map) {
-		List<String> list = dao.goodsSortBrand(map);
+	public Page goodsSortBrand(HashMap<String, Object> map) {
+		Page list = dao.goodsSortBrand(map);
 		return list;
 	}
 
-	public List<String> goodsSortBrandColor(HashMap<String, Object> map) {
-		List<String> list = dao.goodsSortBrandColor(map);
+	public Page goodsSortBrandColor(HashMap<String, Object> map) {
+		Page list = dao.goodsSortBrandColor(map);
 		return list;
 	}
 
-	public List<Goods> goodsSortHigh(String category) {
-		List<Goods> list = dao.goodsSortHigh(category);
+	public Page goodsSortHigh(String category) {
+		Page list = dao.goodsSortHigh(category);
 		return list;
 	}
 
-	public List<Goods> goodsSortLow(String category) {
-		List<Goods> list = dao.goodsSortLow(category);
+	public Page goodsSortLow(String category) {
+		Page list = dao.goodsSortLow(category);
 		return list;
 	}
 
-	public List<Goods> goodsSortColorAll(HashMap<String, Object> map) {
-		List<Goods> list = dao.goodsSortColorAll(map);
+	public Page goodsSortColorAll(HashMap<String, Object> map) {
+		Page list = dao.goodsSortColorAll(map);
 		return list;
 	}
 
-	public List<Goods> goodsSortBrandAll(HashMap<String, Object> map) {
-		List<Goods> list = dao.goodsSortBrandAll(map);
+	public Page goodsSortBrandAll(HashMap<String, Object> map) {
+		Page list = dao.goodsSortBrandAll(map);
 		return list;
 	}
 
-	public List<Goods> goodsSortBrandColorAll(HashMap<String, Object> map) {
-		List<Goods> list = dao.goodsSortBrandColorAll(map);
+	public Page goodsSortBrandColorAll(HashMap<String, Object> map) {
+		Page list = dao.goodsSortBrandColorAll(map);
 		return list;
 	}
 
-	public List<Goods> goodsSortHighAll() {
-		List<Goods> list = dao.goodsSortHighAll();
+	public Page goodsSortHighAll() {
+		Page list = dao.goodsSortHighAll();
 		return list;
 	}
 
-	public List<Goods> goodsSortLowAll() {
-		List<Goods> list = dao.goodsSortLowAll();
+	public Page goodsSortLowAll() {
+		Page list = dao.goodsSortLowAll();
 		return list;
 	}
 
@@ -112,6 +112,12 @@ public class GoodsService {
 
 	public Page goodsAllPage(int curpage) {
 		Page page = dao.goodsAllPage(curpage);
+		return page;
+	}
+
+
+	public Page goodsSearch(String search) {
+		Page page = dao.goodsSearch(search);
 		return page;
 	}
 

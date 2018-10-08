@@ -13,7 +13,7 @@ $(document).ready(function(){
 		
 	$("#search").on("keypress",function(e){
 		if (e.which == 13) {
-			$("form").attr("action","GoodsAllServlet");
+			$("form").attr("action","goodsSearch");
 			$(this).submit();
 		}
 	})// 
@@ -35,7 +35,7 @@ $(document).ready(function(){
 </c:if>
 <c:if test="${!empty member}">
 	<c:if test="${member.userid eq 'admin'}">
-		<li><a href="adminGoods"><img src="images/icon/user.png"></a></li>
+		<li><a href="adminCheck/adminGoods?currentPage=1"><img src="images/icon/user.png"></a></li>
 	</c:if>
 		<li><a href="loginCheck/mypage"><img src="images/icon/user.png"></a></li>
 		<li><a href="loginCheck/logout"><img src="images/icon/logout.png"></a></li>

@@ -35,14 +35,14 @@ public class GoodsController {
 		mav.addObject("goodsRetrieve", good); 
 		return mav;
 	}
-	
-	
+		
 	//goodsAll
 	@RequestMapping("/goodsAll") 
-	public String goodsAllPaging(HttpSession session, Model mod, @RequestParam int currentPage) {		
+	public String goodsAllPaging(HttpSession session, Model mod, @RequestParam(required=false) int currentPage) {		
 		//color chart, brand chart
 		List<String> color = new ArrayList<String>();
 		List<String> brand = new ArrayList<String>();
+		Page page = null;
 		
 		color = service.colorChartAll();
 		brand = service.brandChartAll();
@@ -50,17 +50,30 @@ public class GoodsController {
 		session.setAttribute("colorChart", color);
 		session.setAttribute("brandChart", brand);		
 				
+		
 		if(currentPage == 0){
 			currentPage = 1;
 		}
-		Page page = service.goodsAllPage(currentPage);
+		page = service.goodsAllPage(currentPage);			
+		
 		System.out.println("pagelist:     "+page);
 		mod.addAttribute("page", page);	
 	return "goodsAll"; 
 }
 	
-	
-	
+	@RequestMapping("/goodsSearch")
+	public String goodsSearch(@RequestParam String search, Model mod, HttpSession session) {
+		List<String> color = service.colorChartAll();
+		List<String> brand = service.brandChartAll();
+				
+		session.setAttribute("colorChart", color);
+		session.setAttribute("brandChart", brand);		
+		
+		Page list = service.goodsSearch(search);
+		mod.addAttribute("page", list);
+		return "goodsAll"; 		
+	}
+		
 //	//goodsAll
 //		@RequestMapping("/goodsAll") 
 //		public String goodsAll(HttpSession session, Model mod) {		
@@ -80,12 +93,16 @@ public class GoodsController {
 //	}
 		
 	@RequestMapping("/goodslist")
-	public ModelAndView goodsList(@RequestParam String goods_Category, ModelAndView mav, HttpSession session) {
+	public ModelAndView goodsList(@RequestParam String goods_Category, ModelAndView mav, HttpSession session, @RequestParam int currentPage) {
 		System.out.println(goods_Category); 
 		//이전의 저장되어 있던 카테고리를 지워줌 
 		session.removeAttribute("category");
 		//지금 필요한 카테고리 값은 쿼리스트링으로 받아옴
-		List<Goods> list = service.goodsList(goods_Category); 
+		if(currentPage == 0){
+			currentPage = 1;
+		}
+		
+		Page list = service.goodsList(goods_Category, currentPage); 
 		List<String> color = new ArrayList<String>();
 		List<String> brand = new ArrayList<String>();
 		
@@ -95,8 +112,8 @@ public class GoodsController {
 		session.setAttribute("colorChart", color);
 		session.setAttribute("brandChart", brand);
 		session.setAttribute("category", goods_Category);
-		
-		mav.addObject("goodslist", list);
+				
+		mav.addObject("page", list);
 		mav.setViewName("goodsList");		
 		System.out.println(list);
 		return mav;
@@ -108,7 +125,7 @@ public class GoodsController {
 			@RequestParam(required=false) String [] brand, ModelAndView mav) {
 				
 		HashMap<String, Object> map = new HashMap<>();
-		List<String> list = null;
+		Page list = null;
 		List<String> clist = null;
 		List<String> blist = null;
 		
@@ -120,13 +137,13 @@ public class GoodsController {
 			map.put("color", clist);
 			list = service.goodsSortColor(map);
 			
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}else if(color == null && brand !=null) {
 			blist = Arrays.asList(brand);
 			map.put("brand", blist);
 			list = service.goodsSortBrand(map);
 			
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}else if(color != null && brand !=null) {
 			clist = Arrays.asList(color);
 			blist = Arrays.asList(brand);
@@ -135,25 +152,26 @@ public class GoodsController {
 			map.put("brand", blist);
 			list = service.goodsSortBrandColor(map);
 			
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}
+		System.out.println("sortList "+list.getList());
 		mav.setViewName("goodsList");
 		return mav;
 	}
 	
 	@RequestMapping("/goodsSortPrice")
 	public ModelAndView goodsSortPrice(@RequestParam String category, @RequestParam String sortSelect, ModelAndView mav) {
-		
-		List<Goods> list = null;
-		
+//		sort 결과를 page로 리턴하려면 다른 view가 필요하므로 생략
+//		if(currentPage == 0){
+//			currentPage = 1;
+//		}
+		Page list = null;
 		if(sortSelect.equals("가격역순")) {
-			System.out.println("가격역순");
 			list = service.goodsSortHigh(category);	
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}else if(sortSelect.equals("가격순")) {
-			System.out.println("가격순");
 			list = service.goodsSortLow(category);
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}		
 		mav.setViewName("goodsList");
 		return mav;
@@ -165,24 +183,22 @@ public class GoodsController {
 			@RequestParam(required=false) String [] brand, ModelAndView mav) {
 				
 		HashMap<String, Object> map = new HashMap<>();
-		List<Goods> list = null;
+		Page list = null;
 		List<String> clist = null;
 		List<String> blist = null;		
 		
 		if(color != null && brand ==null) {
 			clist = Arrays.asList(color);
 			map.put("color", clist);
-			System.out.println("color!!!!!!!!!!!!!!!!!!"+clist);
 			list = service.goodsSortColorAll(map);
-			System.out.println("color!!!!!!!!!!!!!!!!!!"+list);
 			
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}else if(color == null && brand !=null) {
 			blist = Arrays.asList(brand);
 			map.put("brand", blist);
 			list = service.goodsSortBrandAll(map);
 			
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}else if(color != null && brand !=null) {
 			clist = Arrays.asList(color);
 			blist = Arrays.asList(brand);
@@ -191,7 +207,7 @@ public class GoodsController {
 			map.put("brand", blist);
 			list = service.goodsSortBrandColorAll(map);
 			
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}
 		mav.setViewName("goodsAll");
 		return mav;
@@ -200,16 +216,16 @@ public class GoodsController {
 	@RequestMapping("/goodsSortPriceAll")
 	public ModelAndView goodsSortPriceAll(@RequestParam String sortSelect, ModelAndView mav) {
 		
-		List<Goods> list = null;
+		Page list = null;
 		
 		if(sortSelect.equals("가격역순")) {
 			System.out.println("가격역순");
 			list = service.goodsSortHighAll();	
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}else if(sortSelect.equals("가격순")) {
 			System.out.println("가격순");
 			list = service.goodsSortLowAll();
-			mav.addObject("goodslist",list);
+			mav.addObject("page",list);
 		}		
 		mav.setViewName("goodsAll");
 		return mav;

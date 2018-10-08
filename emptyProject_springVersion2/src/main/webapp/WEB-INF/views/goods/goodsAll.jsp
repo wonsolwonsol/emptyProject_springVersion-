@@ -160,7 +160,7 @@
 								</tr>
 								<tr>
 									<td class= "td_default" align ="center">
-										<a class= "a_black" href="GoodsRetrieve?goods_Code=${dto.goods_Code}">
+										<a class= "a_black" href="goodsRetrieve?goods_Code=${dto.goods_Code}">
 										${dto.goods_Name}<br>
 										</a>
 										<font color="gray">
@@ -211,7 +211,7 @@
 <hr>
 <input type="hidden" value="${page.totalCount}" id="totalCount">
 <input type="hidden" value="${page.currentPage}" id="curpage">
-<p>page</p>
+<p class="page"></p>
 
 
 

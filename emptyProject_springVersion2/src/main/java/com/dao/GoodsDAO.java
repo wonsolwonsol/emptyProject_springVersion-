@@ -16,29 +16,29 @@ public class GoodsDAO {
 	@Autowired
 	SqlSessionTemplate template ;
 	
-	
-	
 	public Goods goodsRetrieve(String goods_Code) {
-		Goods dao 
-		= template.selectOne("GoodsMapper.goodsRetrieve", goods_Code);
+		Goods dao = template.selectOne("GoodsMapper.goodsRetrieve", goods_Code);
 	return dao; 
 	}
-	
-	
 	
 	//new 모두보기
 	public List<Goods> goodsAll(){
 		List<Goods> list = template.selectList("GoodsMapper.goodsAll");
 		
-		return list;
-		
+		return list;		
 	}
 	
-	
 	//각 카테고리별 리스트보기 
-	public List<Goods> goodsList(String goods_Category){
-		List<Goods> list = template.selectList("GoodsMapper.goodsList", goods_Category); 
-		return list ; 
+	public Page goodsList(String goods_Category, int curpage){
+		Page page = new Page();
+		int offset = (curpage - 1) * page.getPerPage();
+		
+		List<Goods> list = template.selectList("GoodsMapper.goodsList", goods_Category, new RowBounds(offset,page.getPerPage())); 
+		page.setList(list);
+		page.setCurrentPage(curpage);
+		int totalCount = totalRecordCate(goods_Category);
+		page.setTotalCount(totalCount);
+		return page;
 	}
 
 	public List<String> colorChart(String goods_Category) {
@@ -51,54 +51,79 @@ public class GoodsDAO {
 		return brandChart;
 	}
 
-	public List<String> goodsSortColor(HashMap<String, Object> map) {
-		List<String> list = template.selectList("GoodsMapper.goodsSortColor", map);
-		return list;
+	public Page goodsSortColor(HashMap<String, Object> map) {
+		//생각해보니 데이터가 많지 않아 페이징이 무의미
+		//결과값이 많아 페이징 해야 한다면 totalrecord 메서드를 각각 구현해야함
+		Page page = new Page();
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortColor", map);
+		page.setList(list);
+		return page;
 	}
 
-	public List<String> goodsSortBrand(HashMap<String, Object> map) {
-		List<String> list = template.selectList("GoodsMapper.goodsSortBrand", map);
-		return list;
+	public Page goodsSortBrand(HashMap<String, Object> map) {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortBrand", map);
+		Page page = new Page();
+		page.setList(list);
+		return page;
 	}
 
-	public List<String> goodsSortBrandColor(HashMap<String, Object> map) {
-		List<String> list = template.selectList("GoodsMapper.goodsSortBrandColor", map);
-		return list;
+	public Page goodsSortBrandColor(HashMap<String, Object> map) {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSortBrandColor", map);
+		Page page = new Page();
+		page.setList(list);
+		return page;
 	}
 
-	public List<Goods> goodsSortHigh(String category) {
+	public Page goodsSortHigh(String category) {
+		Page page = new Page();
+		
 		List<Goods> list = template.selectList("GoodsMapper.goodsSortHigh", category);
-		return list;
+		page.setList(list);
+		return page;
 	}
 
-	public List<Goods> goodsSortLow(String category) {
+	public Page goodsSortLow(String category) {
+		Page page = new Page();
+		
 		List<Goods> list = template.selectList("GoodsMapper.goodsSortLow", category);
-		return list;
+		page.setList(list);
+		
+		return page;
 	}
 
-	public List<Goods> goodsSortColorAll(HashMap<String, Object> map) {
+	public Page goodsSortColorAll(HashMap<String, Object> map) {
 		List<Goods> list = template.selectList("GoodsMapper.goodsSortColorAll", map);
-		return list;
+		Page page = new Page();
+		page.setList(list);
+		return page;
 	}
 
-	public List<Goods> goodsSortBrandAll(HashMap<String, Object> map) {
+	public Page goodsSortBrandAll(HashMap<String, Object> map) {
 		List<Goods> list = template.selectList("GoodsMapper.goodsSortBrandAll", map);
-		return list;
+		Page page = new Page();
+		page.setList(list);
+		return page;
 	}
 
-	public List<Goods> goodsSortBrandColorAll(HashMap<String, Object> map) {
+	public Page goodsSortBrandColorAll(HashMap<String, Object> map) {
 		List<Goods> list = template.selectList("GoodsMapper.goodsSortBrandColorAll", map);
-		return list;
+		Page page = new Page();
+		page.setList(list);
+		return page;	
 	}
 
-	public List<Goods> goodsSortHighAll() {
+	public Page goodsSortHighAll() {
 		List<Goods> list = template.selectList("GoodsMapper.goodsSortHighAll");
-		return list;
+		Page page = new Page();
+		page.setList(list);
+		return page;
 	}
 
-	public List<Goods> goodsSortLowAll() {
+	public Page goodsSortLowAll() {
 		List<Goods> list = template.selectList("GoodsMapper.goodsSortLowAll");
-		return list;
+		Page page = new Page();
+		page.setList(list);
+		return page;
 	}
 
 	public List<String> colorChartAll() {
@@ -118,6 +143,13 @@ public class GoodsDAO {
 		return n;
 	}
 	
+	public int totalRecordCate(String category) {
+		//데이터의 총 갯수
+		int n = template.selectOne("GoodsMapper.totalCountCate", category);
+		System.out.println("totalRecord    "+n);
+		return n;
+	}
+	
 	public Page goodsAllPage(int curpage) {
 		Page page = new Page();
 		//offset 데이터 인덱스 값
@@ -129,6 +161,14 @@ public class GoodsDAO {
 		page.setCurrentPage(curpage);
 		int totalCount = totalRecord();
 		page.setTotalCount(totalCount);
+		return page;
+	}
+
+	public Page goodsSearch(String search) {
+		List<Goods> list = template.selectList("GoodsMapper.goodsSearch", search);
+		
+		Page page = new Page();
+		page.setList(list);		
 		return page;
 	}
 

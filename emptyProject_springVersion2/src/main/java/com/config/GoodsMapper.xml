@@ -265,7 +265,28 @@ select goods_Code
 	 <!-- 전체 갯수를 세어주고 -->
 	 select count(*) 
  	from goods
- </select>
+	 </select>
+	 	<select id="totalCountCate" resultType="int" parameterType="string">
+		 <!-- 전체 갯수를 세어주고 -->
+		 select count(*) 
+	 	 from goods
+	 	 where goods_Category = #{category}
+	 </select>
+ <!-- search -->
+	 <select id="goodsSearch" resultType="Goods" parameterType="string">
+	  select goods_Code
+	   		,goods_Color
+	   		,goods_Name
+	   		,goods_Price
+	   		,goods_Brand
+	   		,goods_Image1
+	   		,goods_Category
+	  from goods 
+	  where goods_content like '%'||#{search}||'%'
+		or UPPER(goods_brand) like UPPER('%'||#{search}||'%')
+		or UPPER(goods_name) like UPPER('%'||#{search}||'%')
+	 </select>
+ 
  
 		
 </mapper>

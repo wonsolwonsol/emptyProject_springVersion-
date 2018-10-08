@@ -19,14 +19,14 @@
 			var txt = confirm("삭제하시겠습니까?");
 			var num = $(this).attr("data-delBtn");
 			if(txt==true){
-				location.href="AdminGoodsDelServlet?goods_Code="+num;
+				location.href="adminCheck/adminGoodsDelete/{goods_Code}/"+num;
 			}
 		});
 		
 		//수정
 		$(".updateBtn").on("click", function(){
-			var num = $(this).attr("data-updateBtn");
-			location.href="AdminGoodsUpdateUIServlet?goods_Code="+num;
+			var num = $(this).attr("data-updateBtn");			
+			location.href="adminCheck/adminGoodsUpdate?goods_Code="+num;
 			
 		});
 		
@@ -41,12 +41,28 @@
 			}
 		})//
 		
+		//충격과 공포의 페이징
+		var record = $("#totalCount").val()
+		var total = record/8;
+		if(record%8 !=0) total=Math.ceil(total);
+		var curpage = $("#curpage").val();
+		var paging = "";
+		
+		for(var i = 1; i <= total; i++){
+			console.log(i);
+			if(i==curpage){
+				paging = paging+i+"&nbsp;&nbsp;";
+				
+			}else{
+				paging = paging+"<a href='/app/adminCheck/adminGoods?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
+			}			
+		}
+		console.log(paging);
+		$(".page").html(paging);
+		
 	})
 </script>
-<style type="text/css">
-	.aLink {color:#333;text-decoration:none;}
-	.aLink:hover {text-decoration:underline;}
-</style>
+
 <form name="myForm" method="post">   
 	<h1>ADMIN</h1>
 	<table class="tblList">
@@ -68,7 +84,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="dto" items="${pageDto.getList()}">
+		<c:forEach var="dto" items="${page.getList()}">
 			<tr>
 				<td><input type="checkbox" name="check" class="check" value="${dto.goods_Code}"></td>
 				<td>${dto.goods_Code}</td>
@@ -94,13 +110,16 @@
 			</tr>
 		</c:forEach>
 			<tr>
-			<input type="text" name="currentPage" value="${pageDto.getCurrentPage()}">
+			
 			</tr>
 		</tbody>
 	</table>	
-
+	<input type="hidden" value="${page.totalCount}" id="totalCount">
+	<input type="hidden" value="${page.currentPage}" id="curpage">
+	<p class="page"></p>
+<hr>
 <div class="btnGroup">
-	<a class="btn yellow" href="adminAddGoodsPage.jsp">제품등록</a>
+	<a class="btn yellow" href="adminAddGoodsPage">제품등록</a>
 	<button class="btn darkGray" id="delAll">선택 삭제하기</button>
 </div>
 </form>
