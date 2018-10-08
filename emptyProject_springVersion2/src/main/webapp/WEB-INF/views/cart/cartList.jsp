@@ -55,10 +55,22 @@
 				},
 				success:function(data,status,xhr){
 					if(data=='success'){
-						console.log(data);
 						total = Number.parseInt(goods_Amount) * Number.parseInt(gPrice);
 						var txt = "￦"+numeral( total ).format('0,0');
 						$("#sum"+num).text(txt);
+						
+
+		    		    var totalSum = 0;
+		    		    
+		    		    $(".price").each(function(idx,ele){
+		    		    	console.log(ele);
+		    		    	console.log(totalSum);
+		    		    	totalSum += Number.parseInt($(ele).text());
+		    		    })
+
+		    		     $("#totalSum").text(totalSum); 
+		    		    console.log(totalSum);
+						
 					}
 				}, 
 				error:function(xhr,status,error){
@@ -144,7 +156,8 @@
 					<input type="button" class="btn xsmall updateBtn" value="수정" data-num="${cart.num}" data-price="${cart.goods_Price}" /> 
 				</td>
 				<td>
-					<span id="sum${cart.num}"><fmt:formatNumber value="${cart.goods_Amount * cart.goods_Price}" type="currency" /></span>
+					<span id="sum${cart.num}" class="price"><fmt:formatNumber value="${cart.goods_Amount * cart.goods_Price}" type="currency"/></span>
+					
 				</td>
 				<td>
 					<span class="btns">
@@ -154,6 +167,11 @@
 				</td>
 			</tr>
 		</c:forEach>
+		<tr>
+						<td>
+				<input type="text" value="" id="totalSum">
+				</td>
+				</tr>
 		</tbody>
 	</table>	
 </form>

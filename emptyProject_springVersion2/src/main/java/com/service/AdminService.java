@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,16 @@ public class AdminService {
 
 	public void adminGoodsDelete(String goods_Code) {
 		dao.adminGoodsDelete(goods_Code);
+		
+	}
+
+	public Goods adminUpdateCode(String goods_Code) {
+		Goods goods = dao.adminGoodsCode(goods_Code);
+		return goods;		
+	}
+
+	public void adminDeleteAll(List<String> check) {
+		dao.adminGoodsDeleteAll(check);
 		
 	}
 }

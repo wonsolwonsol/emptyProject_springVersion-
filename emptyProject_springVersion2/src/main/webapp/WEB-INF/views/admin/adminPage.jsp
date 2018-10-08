@@ -14,19 +14,49 @@
 			})
 		})//
 		
-		//삭제
+/* 		//삭제
 		$(".delBtn").on("click", function(){
 			var txt = confirm("삭제하시겠습니까?");
 			var num = $(this).attr("data-delBtn");
 			if(txt==true){
-				location.href="adminCheck/adminGoodsDelete/{goods_Code}/"+num;
+				location.href="adminCheck/adminGoodsDelete/goods_Code/"+num;
 			}
+		});
+		 */
+		$(".delBtn").on("click", function() {
+			var txt = confirm("삭제하시겠습니까?");
+			var num = $(this).attr("data-delBtn");
+			var xxx = $(this);
+			console.log(xxx);
+			if(txt==true){
+				$.ajax({
+					url : 'adminCheck/adminGoodsDelete',
+					type : "get",
+					dataType : 'text',
+					data : {
+						goods_Code : num
+					},
+					success : function(data, status, xhr) {
+						if (data == 'success') {
+							console.log(data);
+							xxx.parents().filter("tr").remove();							
+						}
+	
+					},
+					error : function(xhr, status, error) {						
+						console.log(error);
+					}
+				});
+			}else{
+				e.preventDefault();			
+			}
+
 		});
 		
 		//수정
 		$(".updateBtn").on("click", function(){
 			var num = $(this).attr("data-updateBtn");			
-			location.href="adminCheck/adminGoodsUpdate?goods_Code="+num;
+			location.href="adminCheck/adminUpdateSelect?goods_Code="+num;
 			
 		});
 		
@@ -34,7 +64,7 @@
 		$("#delAll").on("click",function(e){
 			var txt = confirm("삭제하시겠습니까?");
 			if(txt==true){
-				$("form").attr("action","AdminGoodsDelAllServlet");
+				$("form").attr("action","adminCheck/adminGoodsDeleteAll");
 				$("form").submit();				
 			}else{
 			e.preventDefault();				
@@ -49,7 +79,6 @@
 		var paging = "";
 		
 		for(var i = 1; i <= total; i++){
-			console.log(i);
 			if(i==curpage){
 				paging = paging+i+"&nbsp;&nbsp;";
 				
@@ -57,13 +86,12 @@
 				paging = paging+"<a href='/app/adminCheck/adminGoods?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
 			}			
 		}
-		console.log(paging);
 		$(".page").html(paging);
 		
 	})
 </script>
 
-<form name="myForm" method="post">   
+<form name="myForm" method="get">   
 	<h1>ADMIN</h1>
 	<table class="tblList">
 		<colgroup>
@@ -101,11 +129,10 @@
 				<td>
 					<fmt:formatNumber value="${dto.goods_Price}" type="currency" />
 				</td>				
-				<td>
-					<span class="btns">
+				<td>					
 						<input type="button" class="btn xsmall yellow updateBtn" data-updateBtn="${dto.goods_Code}" value="수정" />
 						<input type="button" class="btn xsmall darkGray delBtn" data-delBtn="${dto.goods_Code}" value="삭제" />
-					</span>
+					
 				</td>
 			</tr>
 		</c:forEach>

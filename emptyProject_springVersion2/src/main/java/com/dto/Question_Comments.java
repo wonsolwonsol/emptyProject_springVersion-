@@ -5,10 +5,10 @@ import org.apache.ibatis.type.Alias;
 @Alias("Question_Comments")
 public class Question_Comments {
 
-	private String author; 
+	private String author;
 	private String comment_contents;
-	private String comment_num ; 
-	private String fk_question_num;
+	private int comment_number;
+	private int question_number;
 	public String getAuthor() {
 		return author;
 	}
@@ -21,33 +21,35 @@ public class Question_Comments {
 	public void setComment_contents(String comment_contents) {
 		this.comment_contents = comment_contents;
 	}
-	public String getComment_num() {
-		return comment_num;
+	public int getComment_number() {
+		return comment_number;
 	}
-	public void setComment_num(String comment_num) {
-		this.comment_num = comment_num;
+	public void setComment_number(int comment_number) {
+		this.comment_number = comment_number;
 	}
-	public String getFk_question_num() {
-		return fk_question_num;
+	public int getQuestion_number() {
+		return question_number;
 	}
-	public void setFk_question_num(String fk_question_num) {
-		this.fk_question_num = fk_question_num;
+	public void setQuestion_number(int question_number) {
+		this.question_number = question_number;
 	}
 	@Override
 	public String toString() {
-		return "Question_Comment [author=" + author + ", comment_contents=" + comment_contents + ", comment_num="
-				+ comment_num + ", fk_question_num=" + fk_question_num + "]";
+		return "Question_Comments [author=" + author + ", comment_contents=" + comment_contents + ", comment_number="
+				+ comment_number + ", question_number=" + question_number + "]";
 	}
-	public Question_Comments(String author, String comment_contents, String comment_num, String fk_question_num) {
+	public Question_Comments(String author, String comment_contents, int comment_number, int question_number) {
 		super();
 		this.author = author;
 		this.comment_contents = comment_contents;
-		this.comment_num = comment_num;
-		this.fk_question_num = fk_question_num;
+		this.comment_number = comment_number;
+		this.question_number = question_number;
 	}
 	public Question_Comments() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	 
+	
 	
 }

@@ -42,7 +42,17 @@ public class AdminDAO {
 	}
 
 	public void adminGoodsDelete(String goods_Code) {
-		template.delete("GoodsMapper.adminGoodsDelete", goods_Code);
+		template.delete("GoodsMapper.adminGoodsDel", goods_Code);
+		
+	}
+
+	public Goods adminGoodsCode(String goods_Code) {
+		Goods goods = template.selectOne("GoodsMapper.adminGoodsSelect", goods_Code);
+		return goods;
+	}
+
+	public void adminGoodsDeleteAll(List<String> check) {
+		template.delete("GoodsMapper.adminGoodsDelAll", check);
 		
 	}
 }

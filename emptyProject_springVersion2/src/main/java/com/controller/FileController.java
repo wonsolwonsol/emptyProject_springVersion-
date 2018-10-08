@@ -19,12 +19,7 @@ import com.dto.Upload;
 
 @Controller
 public class FileController {
-	
-	@RequestMapping("/")
-	public String home() {
-		return "uploadForm";
-	}
-	
+		
 	@RequestMapping("/upLoad")
 	public String home1(Upload file) {
 		

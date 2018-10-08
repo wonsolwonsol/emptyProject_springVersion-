@@ -212,9 +212,24 @@ select goods_Code
 </select>
   
   <!-- admin -->	
+  	
+	 <select id="adminGoodsSelect" parameterType="string" resultType="Goods">
+	select goods_Code
+	   		,goods_Color
+	   		,goods_Name
+	   		,goods_Price
+	   		,goods_Brand
+	   		,goods_Image1
+	   		,goods_Image2
+	   		,goods_Content
+	   		,goods_Category
+	 from goods
+	 where goods_code = #{goods_code}
+	</select>
+ 
 	<delete id="adminGoodsDel" parameterType="string">
 	delete from goods
-	where goods_code = #{goods_code}
+	where goods_code = #{goods_Code}
 	</delete>
 	<update id="adminGoodsUpdate" parameterType="Goods">
 	update goods
@@ -286,7 +301,5 @@ select goods_Code
 		or UPPER(goods_brand) like UPPER('%'||#{search}||'%')
 		or UPPER(goods_name) like UPPER('%'||#{search}||'%')
 	 </select>
- 
- 
 		
 </mapper>

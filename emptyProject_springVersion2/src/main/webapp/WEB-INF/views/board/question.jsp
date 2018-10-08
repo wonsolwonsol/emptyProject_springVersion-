@@ -30,49 +30,40 @@ $("p").html(paging);
 
 })
 </script>
-<!-- <div class="adsense" style="text-align: center; padding:0px 0px 10px 10px">  -->
-<!-- <div class="notice"> -->
-<h1>공지</h1>
-<table class="tbl" border="1">
+<h1>Question Board</h1>
+<table class="tbl" border="1" align="center">
 <thead>
 	<tr>
-	<th>글번호</th>
-	<th>제목</th>
-	</tr></thead>
-<tbody>
-<c:forEach var="dto" items="${page.list2 }" varStatus="status">	
-<tr>
-	<td>${dto.seq}</td>
-	<td>${dto.title}</td>
+		<th style="width:5%">글번호</th>
+		<th style="width:30%">글제목</th>
+		<th style="width:10%">글쓴이</th>
+		<th style="width:10%">작성일</th>
 	</tr>
-
-</c:forEach>
-</tbody>
+	</thead>
+<tbody>
+ <c:forEach var="dto" items="${page.Qlist }" varStatus="status">	
+	<tr>
+	<td>${dto.question_number }</td>
+	<td>${dto.title }</td>
+	<td>${dto.author }</td>
+	<td>${dto.regdate }</td>
+	</tr>
+	</c:forEach> 
+</tbody> 
 </table>
 <hr>
 <input type="hidden" value="${page.totalCount}" id="totalCount">
 <input type="hidden" value="${page.currentPage}" id="curpage">
 <pre></pre>
 <p align="center">page</p>
-<%-- <table class="tbl" border="1">
-<thead>
-	<tr>
-	<th>글번호</th>
-	<th>제목</th>	
-</thead> 
-<tbody>
-<c:forEach items="${Notice }" var="Notice"> 
-<tr>
-	<td>${Notice.seq}</td>
-	<td>${Notice.title}</td>
-</tr>
-</c:forEach>
-</tbody>
-</table> --%>
-<br> 
 <pre></pre>
- <button class="btn gray small" align="center"><a href="noticeWrite">공지등록</a></button>
-
+<br> 
+<button class="btn yellow" style="width:10%" ><a href="questionWrite">질문하기</a></button>
+<c:if test="${!empty member }">
+ 	<c:if test="${member.userid eq 'admin' }">
+ 	<button class="btn gray"><a href=""></a>질문관리 </button>
+ 	</c:if>
+ 	</c:if>
 </body>
 </html>
 

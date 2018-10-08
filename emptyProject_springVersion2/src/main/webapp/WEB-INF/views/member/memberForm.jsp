@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
 	$(function(){	
@@ -24,79 +24,92 @@
 				} 
 			}); 
 		})
-		
-		//비밀번호 확인
-		$("#passwd2").on("keyup", function(){
-			var passwd = $("#passwd1").val();
-			var passwd2 = $(this).val(); 
-			var mesg = "비밀번호 불일치";
-			
-			if(passwd == passwd2){
-				mesg = "비밀번호 일치"
-			}
-			
-			$("#result2").text(mesg);
-			
-			if(passwd2.length==0){
-				$("#result2").text("");
-			}
-		});
-		
-		//form submit
-		$("form").on("submit", function(e){
-			var userid = $("#userid");
-			var passwd1 = $("#passwd1");
-			var passwd2 = $("#passwd2");
-			var username = $("#username");
-			var sample4_postcode = $("#sample4_postcode");
-			var sample4_roadAddress = $("#sample4_roadAddresss");
-			var sample4_jibunAddress = $("#sample4_jibunAddress");
-			var phone1 = $("#phone1");
-			var phone2 = $("#phone2");
-			var phone3 = $("#phone3");
-			var email1 = $("#email1");
-			var email2 = $("#email2");
-			var email3 = $("#email3");
+		//비밀번호 유효성
+
 	
-			if(userid.val() == ""){
-				alert("아이디는 필수입력 사항입니다.");
-				userid.focus();
-				e.preventDefault();
-			}else if(passwd1.val() == ""){
-				alert("비밀번호는 필수입력 사항입니다.");
-				passwd1.focus();
-				e.preventDefault();
-			}else if(passwd2.val() == ""){
-				alert("비밀번호를 확인해주세요");
-				passwd2.focus();
-				e.preventDefault();
-			}else if(username.val() == ""){
-				alert("이름은 필수입력 사항입니다.");
-				username.focus();
-				e.preventDefault();
-			}else if(sample4_postcode.val() == "" || sample4_roadAddress.val() == "" || sample4_jibunAddress.val() == ""){
-				alert("주소는 필수입력 사항입니다.");
-				sample4_postcode.focus();
-				e.preventDefault();
-			}else if(phone2.val() == "" || phone3.val() == ""){
-				alert("전화번호는 필수입력 사항입니다.");
-				phone2.focus();
-				e.preventDefault();
-			}else if(email1.val() == "" || email2.val() == "" || email3.val() == ""){
-				alert("이메일은 필수입력 사항입니다.");
-				email1.focus();
-				e.preventDefault();
-			}
-		})
-		
-		$("#email3").on("change",function(){
-			$("#email2").val($(this).val());
-		}) 
-	})
+
+				//비밀번호 확인
+				$("#passwd2").on("keyup", function() {
+					var passwd = $("#passwd1").val();
+					var passwd2 = $(this).val();
+					var mesg = "비밀번호 불일치";
+					var pwcheck = "";
+
+					if (passwd == passwd2) {
+						mesg = "비밀번호 일치"
+					}
+					
+
+					$("#result2").text(mesg);
+
+					if (passwd2.length == 0) {
+						$("#result2").text("");
+					}
+				});
+
+				//form submit
+				$("form").on("submit", function(e) {
+									var userid = $("#userid");
+									var passwd1 = $("#passwd1");
+									var passwd2 = $("#passwd2");
+									var username = $("#username");
+									var sample4_postcode = $("#sample4_postcode");
+									var sample4_roadAddress = $("#sample4_roadAddresss");
+									var sample4_jibunAddress = $("#sample4_jibunAddress");
+									var phone1 = $("#phone1");
+									var phone2 = $("#phone2");
+									var phone3 = $("#phone3");
+									var email1 = $("#email1");
+									var email2 = $("#email2");
+									var email3 = $("#email3");
+
+									if (userid.val() == "") {
+										alert("아이디는 필수입력 사항입니다.");
+										userid.focus();
+										e.preventDefault();
+									} else if () {
+										
+									}
+									} else if (passwd1.val() == "") {
+										alert("비밀번호는 필수입력 사항입니다.");
+										passwd1.focus();
+										e.preventDefault();
+									} else if (passwd2.val() == "") {
+										alert("비밀번호를 확인해주세요");
+										passwd2.focus();
+										e.preventDefault();
+									} else if (username.val() == "") {
+										alert("이름은 필수입력 사항입니다.");
+										username.focus();
+										e.preventDefault();
+									} else if (sample4_postcode.val() == ""
+											|| sample4_roadAddress.val() == ""
+											|| sample4_jibunAddress.val() == "") {
+										alert("주소는 필수입력 사항입니다.");
+										sample4_postcode.focus();
+										e.preventDefault();
+									} else if (phone2.val() == ""
+											|| phone3.val() == "") {
+										alert("전화번호는 필수입력 사항입니다.");
+										phone2.focus();
+										e.preventDefault();
+									} else if (email1.val() == ""
+											|| email2.val() == ""
+											|| email3.val() == "") {
+										alert("이메일은 필수입력 사항입니다.");
+										email1.focus();
+										e.preventDefault();
+									}
+								})
+
+				$("#email3").on("change", function() {
+					$("#email2").val($(this).val());
+				})
+			})
 </script>
 
 <form action="memberAdd" method="post">
-<h1>REGISTER</h1>
+	<h1>REGISTER</h1>
 	<div class="memberForm">
 		<!-- <p class="tblInfo"><span>*</span> 필수입력</p> -->
 		<table class="tbl">
@@ -106,23 +119,18 @@
 			</colgroup>
 			<tr>
 				<th><span class="required" title="필수 입력">아이디</span></th>
-				<td>
-					<input type="text" name="userid" id="userid">
-					<span id="result"></span>
-				</td>
+				<td><input type="text" name="userid" id="userid"> <span
+					id="result"></span></td>
 			</tr>
 			<tr>
 				<th><span class="required" title="필수 입력">비밀번호</span></th>
-				<td>
-					<input type="password" name="passwd1" id="passwd1">
+				<td><input type="password" name="passwd1" id="passwd1">
 				</td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td>
-					<input type="password" name="passwd2" id="passwd2">
-					<span id="result2"></span>
-				</td>
+				<td><input type="password" name="passwd2" id="passwd2">
+					<span id="result2"></span></td>
 			</tr>
 			<tr>
 				<th><span class="required" title="필수 입력">이름</span></th>
@@ -130,38 +138,36 @@
 			</tr>
 			<tr>
 				<th><span class="required" title="필수 입력">주소</span></th>
-				<td>
-					<input type="text" name="post" id="sample4_postcode" placeholder="우편번호">
-					<input type="button" onclick="sample4_execDaumPostcode()" class="btn gray small" value="우편번호 찾기">
-					<span class="address">
-						<input type="text" name="addr1" id="sample4_roadAddress" placeholder="도로명주소">
-						<input type="text" name="addr2" id="sample4_jibunAddress" placeholder="지번주소">
-					</span>
-				</td>
+				<td><input type="text" name="post" id="sample4_postcode"
+					placeholder="우편번호"> <input type="button"
+					onclick="sample4_execDaumPostcode()" class="btn gray small"
+					value="우편번호 찾기"> <span class="address"> <input
+						type="text" name="addr1" id="sample4_roadAddress"
+						placeholder="도로명주소"> <input type="text" name="addr2"
+						id="sample4_jibunAddress" placeholder="지번주소">
+				</span></td>
 			</tr>
 			<tr>
 				<th><span class="required" title="필수 입력">휴대폰</span></th>
-				<td>
-					<select name="phone1" id="phone1">
+				<td><select name="phone1" id="phone1">
 						<option value="011">011</option>
 						<option value="010" selected="selected">010</option>
-					</select>  <input type="text" name="phone2" id="phone2"> <input type="text" name="phone3" id="phone3">
-				</td>
+				</select> <input type="text" name="phone2" id="phone2"> <input
+					type="text" name="phone3" id="phone3"></td>
 			</tr>
 			<tr>
 				<th><span class="required" title="필수 입력">이메일</span></th>
-				<td>
-					<input type="text" name="email1" id="email1"> @ <input type="text" name="email2" id="email2" placeholder="직접입력">
-					<select name="email3" id="email3">
+				<td><input type="text" name="email1" id="email1"> @ <input
+					type="text" name="email2" id="email2" placeholder="직접입력"> <select
+					name="email3" id="email3">
 						<option value="daum.net">daum.net</option>
 						<option value="naver.com" selected="selected">naver.com</option>
-					</select>
-				</td>
+				</select></td>
 			</tr>
 		</table>
 		<div class="btnGroup">
-			<input type="submit" value="회원가입" class="btn yellow">
-			<input type="reset" value="취소" class="btn gray">
+			<input type="submit" value="회원가입" class="btn yellow"> <input
+				type="reset" value="취소" class="btn gray">
 		</div>
 	</div>
 </form>
