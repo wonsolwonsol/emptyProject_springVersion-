@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.Notice;
-import com.dto.Page;
+
+import com.dto.Page2;
 import com.dto.Question;
 
 @Repository
@@ -26,8 +27,8 @@ public class QuestionDAO {
 	}
 	
 	// 목록 
-	public Page questionAll(int curpage) {
-		Page page = new Page() ; //list 3 
+	public Page2 questionAll(int curpage) {
+		Page2 page = new Page2() ; //list 3 
 		
 		//offset 데이터 인덱스 값
 				int offset = (curpage - 1) * page.getPerPage();
@@ -35,7 +36,7 @@ public class QuestionDAO {
 				List<Question> list = t.selectList("QuestionMapper.questionAll", null, 
 						new RowBounds(offset,page.getPerPage()));
 				System.out.println("questionAll in DAO =====");
-				page.setQlist(list); 
+				page.setList(list); 
 				page.setCurrentPage(curpage);
 				int totalCount = totalRecord();
 				page.setTotalCount(totalCount);

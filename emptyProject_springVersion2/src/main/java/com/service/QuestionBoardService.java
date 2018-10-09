@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.CartDAO;
 import com.dao.QuestionDAO;
-import com.dto.Page;
+import com.dto.Page2;
 
 @Service
 public class QuestionBoardService {
@@ -13,9 +13,10 @@ public class QuestionBoardService {
 	@Autowired
 	QuestionDAO dao; 
 	
-	public Page questionAll(int curpage) {
-		Page page = dao.questionAll(curpage); 
+	public Page2 questionAll(int curpage) {
+		Page2 page = dao.questionAll(curpage); 
 		System.out.println("QuestionAll in Service =======");
 		return page; 
 	}
+	
 }

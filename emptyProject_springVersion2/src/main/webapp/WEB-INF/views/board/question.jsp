@@ -1,5 +1,5 @@
- <%@page import="com.dto.Notice"%>
-<%@page import="com.dao.NoticeDAO"%> 
+ <%@page import="com.dto.Question"%>
+<%@page import="com.dao.QuestionDAO"%> 
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,7 +21,7 @@ for(var i = 1; i <= total; i++){
 		paging = paging+i+"&nbsp;&nbsp;";
 		
 	}else{
-		paging = paging+"<a href='/app/notice2?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
+		paging = paging+"<a href='/app/question?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
 	}			
 }
 
@@ -41,11 +41,12 @@ $("p").html(paging);
 	</tr>
 	</thead>
 <tbody>
- <c:forEach var="dto" items="${page.Qlist }" varStatus="status">	
+ <c:forEach var="dto" items="${page.list }" varStatus="status">	
 	<tr>
 	<td>${dto.question_number }</td>
-	<td>${dto.title }</td>
-	<td>${dto.author }</td>
+	<td class="td_default">
+	<a class="a_black" href="questionRetrieve?question_number=${dto.question_number}">${dto.title }</a></td>
+	<td align="center">${dto.author }</td>
 	<td>${dto.regdate }</td>
 	</tr>
 	</c:forEach> 

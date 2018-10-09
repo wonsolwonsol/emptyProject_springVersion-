@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.dto.Page;
-import com.dto.PagingVO;
+import com.dto.Page2;
 import com.dto.Question;
 import com.service.QuestionBoardService;
 
@@ -32,8 +31,12 @@ public class QuestionController {
 			if(currentPage == 0){
 				currentPage = 1;
 			}
-			Page page = service.questionAll(currentPage); 
+			Page2 page = service.questionAll(currentPage); 
 			System.out.println("pagelist:     "+page);
+			System.out.println("QuestionControll===============");
+			List<Question> m = page.getList();
+			System.out.println(m);
+			 
 			mod.addAttribute("page", page);	
 			
 			
@@ -53,5 +56,11 @@ public class QuestionController {
 		public String questionUpdate() {
 			
 			return null; 
+		}
+		
+		@RequestMapping("/questionRetrieve")
+		public String questionRetrieve(HttpSession session, String m) {
+			
+			return "questionRetrieve"; 
 		}
 }
