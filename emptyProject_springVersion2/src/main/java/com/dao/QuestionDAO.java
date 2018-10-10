@@ -43,7 +43,12 @@ public class QuestionDAO {
 				return page ; 
 	}
 
-	
+	// questionRetrieve
+	public Question questionRetrieve(String question_number){
+		System.out.println("questionRetrieveDAO 확인====="+ question_number);
+		Question q = t.selectOne("QuestionMapper.questionRetrieve", question_number); 
+		return q; 
+	}
 	
 	
 }
