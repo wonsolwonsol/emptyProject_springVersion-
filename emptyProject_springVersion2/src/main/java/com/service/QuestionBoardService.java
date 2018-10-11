@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.dao.CartDAO;
 import com.dao.QuestionDAO;
 import com.dto.Page2;
+import com.dto.Question;
 
 @Service
 public class QuestionBoardService {
@@ -17,6 +18,11 @@ public class QuestionBoardService {
 		Page2 page = dao.questionAll(curpage); 
 		System.out.println("QuestionAll in Service =======");
 		return page; 
+	}
+	
+	//questionRetrieve
+	public Question questionRetrieve(String question_number) {
+		return dao.questionRetrieve(question_number); 
 	}
 	
 }

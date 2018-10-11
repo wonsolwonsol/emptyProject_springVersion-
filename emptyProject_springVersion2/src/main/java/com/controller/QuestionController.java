@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.Page2;
 import com.dto.Question;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.service.QuestionBoardService;
 
 import ch.qos.logback.classic.Logger;
@@ -59,8 +61,42 @@ public class QuestionController {
 		}
 		
 		@RequestMapping("/questionRetrieve")
-		public String questionRetrieve(HttpSession session, String m) {
+		public ModelAndView questionRetrieve(@RequestParam String question_number
+				, ModelAndView m) {
+			Question q = service.questionRetrieve(question_number); 
+			m.setViewName("questionRetrieve");
+			m.addObject("questionRetrieve", q); 
 			
-			return "questionRetrieve"; 
+			return m; 
 		}
+		
+		@RequestMapping("/questionDelete")
+		public String questionDelete() {
+			return "redirect:question"; 
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }

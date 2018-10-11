@@ -116,6 +116,13 @@ select {height:27px;padding:0 5px;}
 .tblInfo {margin-bottom:10px;text-align:right;}
 .tblInfo span {display:inline-block;color:#ffba00;font-weight:bold;}
 
+/*board */ 
+.board {border-top:2px solid #bbb;}
+.board th{width:10px;}, .tbl td {padding:12px 10px;vertical-align:middle;border-bottom:1px solid #bbb;}
+.board th {color:#333;font-weight:bold;background:#F2F2F2;border-right:1px solid #bbb;}
+.board {margin-bottom:10px;text-align:right;}
+.board span {display:inline-block;color:#ffba00;font-weight:bold;}
+/* */ 
 .btnGroup {margin-top:30px;text-align:center;}
 .btn {padding:10px 20px;margin-right:3px;min-width:110px;height:auto;font-size:16px;line-height:21px;cursor:pointer;}
 .yellow {background:#ffba00;color:#fff;border:1px solid #DBA901;}
