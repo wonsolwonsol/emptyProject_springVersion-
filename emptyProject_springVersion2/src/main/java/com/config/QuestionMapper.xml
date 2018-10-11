@@ -3,6 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="QuestionMapper">
+<!-- Comment   -->
+<!--  >select * from question_board_comment-->
+<select id="questionComment" resultType="Question_Comments" parameterType="string">
+select * from question_board_comment
+where question_number = #{question_number} 
+</select>
+
 <select id="questionAll2" parameterType="PagingVO" resultType="Question">
 <!-- 안선언니가 하신 페이징처리는 이클립스에서, 이 페이징처리의 경우 SQL 자체에서 일정량의 데이터만 뽑아오는 것 -->
 <!-- PagingVO 사용합니다. -->
@@ -23,5 +30,14 @@ select * from question
 <select id="questionRetrieve" parameterType="string" resultType="Question">
 select * from question where question_number = #{question_number} 
 </select>
+<delete id="questionDelete" parameterType="int">
+delete from question 
+where question_number = #{question_number} 
+</delete>
+
+
+
+
+
 
 </mapper>

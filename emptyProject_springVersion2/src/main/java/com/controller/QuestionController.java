@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.Page2;
 import com.dto.Question;
+import com.dto.Question_Comments;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.service.QuestionBoardService;
+import com.service.QuestionCommentService;
 
 import ch.qos.logback.classic.Logger;
 
@@ -25,6 +27,23 @@ public class QuestionController {
 
 	@Autowired
 	QuestionBoardService service; 
+	@Autowired
+	QuestionCommentService qservice; 
+	
+		@RequestMapping(value="/questionCommentDelete")
+		public String questionCommentDelete(@RequestParam int comment_number, @RequestParam int question_number) {
+			System.out.println("question_num====="+question_number);
+			System.out.println("comment_number======="+comment_number);
+			return "redirect:/question?currentPage=1"; 
+			//return "redirect:/questionRetrieve?question_number=sth"; 
+		}
+	
+		@RequestMapping("/questionDelete")
+		public String questionDelete(@RequestParam int question_number){
+			System.out.println("=======questionDelete Controll>>>>"+question_number);
+			service.questionDelete(question_number); 
+			return "redirect:/question?currentPage=1"; 
+		}
 	
 		@RequestMapping(value="/question") 
 		public String question(HttpSession session, Model mod, @RequestParam int currentPage) {
@@ -65,17 +84,23 @@ public class QuestionController {
 		public ModelAndView questionRetrieve(@RequestParam String question_number
 				, ModelAndView m) {
 			Question q = service.questionRetrieve(question_number); 
+			
+			 
+			//questionComment 
+			List<Question_Comments> qc = qservice.Question_Comments(question_number); 
+			
+			m.addObject("questionRetrieve", q);
 			m.setViewName("questionRetrieve");
-			m.addObject("questionRetrieve", q); 
+			m.addObject("questionComment", qc); 
 			
 			return m; 
 		}
 		
-		@RequestMapping("/questionDelete")
+/*		@RequestMapping("/questionDelete")
 		public String questionDelete() {
 			return "redirect:question"; 
 		}
-		
+	*/
 		
 		
 		

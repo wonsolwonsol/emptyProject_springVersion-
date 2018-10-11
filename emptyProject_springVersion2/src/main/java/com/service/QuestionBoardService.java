@@ -25,4 +25,11 @@ public class QuestionBoardService {
 		return dao.questionRetrieve(question_number); 
 	}
 	
+	//questionDelete 
+	public int questionDelete(int question_number) {
+		//QuestionDAO dao = new QuestionDAO();
+		int n = dao.questionDelete(question_number); 
+		return n; 
+	}
+	
 }

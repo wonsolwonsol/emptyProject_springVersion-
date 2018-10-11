@@ -12,15 +12,34 @@ import com.dto.Notice;
 
 import com.dto.Page2;
 import com.dto.Question;
+import com.dto.Question_Comments;
 
 @Repository
 public class QuestionDAO {
 	@Autowired
 	SqlSessionTemplate t ;
 	
+	/*public SqlSessionTemplate getT() {
+		return t;
+	}
+	
+	public void setT(SqlSessionTemplate t) {
+		this.t = t;
+	}*/
+
+	//Comment from question_board_comment
+	// author, comment_contents, comment_number, question_number 
+	public List<Question_Comments> questionComment(String question_number){
+		System.out.println("Question_CommentsDAO=========="+question_number);
+		System.out.println(t);
+		List<Question_Comments> qc = t.selectList("QuestionMapper.questionComment", question_number); 
+		
+		return qc ; 
+	}
 	
 	// total Record 
 	public int totalRecord() {
+		System.out.println("=========chchchc"+t);
 		int n = t.selectOne("QuestionMapper.totalCount"); 
 		System.out.println("====totalRecord of Question   "+n);
 		return n; 
@@ -29,7 +48,7 @@ public class QuestionDAO {
 	// 목록 
 	public Page2 questionAll(int curpage) {
 		Page2 page = new Page2() ; //list 3 
-		
+		System.out.println("=========chchchc"+t);
 		//offset 데이터 인덱스 값
 				int offset = (curpage - 1) * page.getPerPage();
 				//page에 담을 list (인덱스부터 perpage 갯수 만큼)
@@ -48,6 +67,13 @@ public class QuestionDAO {
 		System.out.println("questionRetrieveDAO 확인====="+ question_number);
 		Question q = t.selectOne("QuestionMapper.questionRetrieve", question_number); 
 		return q; 
+	}
+	
+	//questionDelete 
+	public int questionDelete(int question_number) {
+		System.out.println("questionDelete DAO             >>" + question_number);
+		int n = t.delete("QuestionMapper.questionDelete", question_number); 
+		return n; 
 	}
 	
 	
