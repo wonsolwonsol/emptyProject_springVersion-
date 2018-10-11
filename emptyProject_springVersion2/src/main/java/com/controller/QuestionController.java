@@ -34,8 +34,8 @@ public class QuestionController {
 		public String questionCommentDelete(@RequestParam int comment_number, @RequestParam int question_number) {
 			System.out.println("question_num====="+question_number);
 			System.out.println("comment_number======="+comment_number);
-			return "redirect:/question?currentPage=1"; 
-			//return "redirect:/questionRetrieve?question_number=sth"; 
+			//return "redirect:/question?currentPage=1"; 
+			return "redirect:/questionRetrieve?question_number="+question_number; 
 		}
 	
 		@RequestMapping("/questionDelete")

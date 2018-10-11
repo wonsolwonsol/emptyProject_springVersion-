@@ -115,15 +115,15 @@ select {height:27px;padding:0 5px;}
 .address input{width:45%;}
 .tblInfo {margin-bottom:10px;text-align:right;}
 .tblInfo span {display:inline-block;color:#ffba00;font-weight:bold;}
-/* tbl2 */
-.tbl2 {border-top:2px solid #bbb;font-size:10px;}
-.tbl2 th, .tbl td {padding:12px 10px;vertical-align:middle;border-bottom:1px solid #bbb;font-size:10px;}
-.tbl2 th {color:#333;font-weight:bold;background:#F2F2F2;border-right:1px solid #bbb;font-size:10px;}
-.address {display:block;margin-top:10px;font-size:10px;}
-.address input{width:45%;}
-.tblInfo {margin-bottom:10px;text-align:right;font-size:10px;}
-.tblInfo span {display:inline-block;color:#ffba00;font-weight:bold;}
 
+/* 회원가입 테이블 */
+.tbl2 {border-top:2px solid #bbb;}
+.tbl2 th, .tbl2 td {padding:10px 8px;vertical-align:middle;border-bottom:1px solid #bbb;}
+.tbl2 th {color:#333;font-weight:bold;background:#F2F2F2;border-right:1px solid #bbb;}
+.address2 {display:block;margin-top:10px;}
+.address2 input{width:45%;}
+.tblInfo2 {margin-bottom:8px;text-align:right;}
+.tblInfo2 span {display:inline-block;color:#ffba00;font-weight:bold;}
 /*board */ 
 .board {border-top:2px solid #bbb;}
 .board th{width:10px;}, .tbl td {padding:12px 10px;vertical-align:middle;border-bottom:1px solid #bbb;}

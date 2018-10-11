@@ -37,7 +37,7 @@
 	<td width="10%"><a href="questionDelete?question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
 </table>
-<table class="tbl" border="0" font-size="10px">
+<table class="tbl">
 <tr>
 	<th width="10%">작성자</th>
 	<th>댓글</th>
@@ -48,7 +48,7 @@
 	<td width="10%" align="center">${dto.author }</td>
 	<td>${dto.comment_contents }</td>
 	<td align="left" width="3%"
-	><a href="questionCommentDelete?comment_number=${dto.comment_number}/question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
+	><a href="questionCommentDelete?comment_number=${dto.comment_number}&question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
 </c:forEach> 
 </table>
