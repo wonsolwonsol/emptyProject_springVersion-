@@ -34,7 +34,10 @@ select * from question where question_number = #{question_number}
 delete from question 
 where question_number = #{question_number} 
 </delete>
-
+<delete id="questionCommentDelete" parameterType="int">
+delete from question_board_comment
+where comment_number = #{comment_number} 
+</delete>
 
 
 

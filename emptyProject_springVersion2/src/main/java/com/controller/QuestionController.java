@@ -32,8 +32,9 @@ public class QuestionController {
 	
 		@RequestMapping(value="/questionCommentDelete")
 		public String questionCommentDelete(@RequestParam int comment_number, @RequestParam int question_number) {
-			System.out.println("question_num====="+question_number);
-			System.out.println("comment_number======="+comment_number);
+			System.out.println("Controller : question_num====="+question_number);
+			System.out.println("Controller : comment_number======="+comment_number);
+			qservice.questionCommentDelete(comment_number); 
 			//return "redirect:/question?currentPage=1"; 
 			return "redirect:/questionRetrieve?question_number="+question_number; 
 		}
@@ -44,6 +45,7 @@ public class QuestionController {
 			service.questionDelete(question_number); 
 			return "redirect:/question?currentPage=1"; 
 		}
+
 	
 		@RequestMapping(value="/question") 
 		public String question(HttpSession session, Model mod, @RequestParam int currentPage) {

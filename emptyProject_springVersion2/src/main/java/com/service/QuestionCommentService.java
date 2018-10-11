@@ -20,4 +20,9 @@ public class QuestionCommentService {
 		return qc; 
 	}
 
+	//questionCommentDelete
+	public int questionCommentDelete(int comment_number) {
+		int n = dao.questionCommentDelete(comment_number); 
+		return n; 
+	}
 }

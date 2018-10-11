@@ -76,6 +76,14 @@ public class QuestionDAO {
 		return n; 
 	}
 	
+	//questionCommentDelete
+	public int questionCommentDelete(int comment_number) {
+		System.out.println("questionCommentDelete   DAO ==============="+comment_number); 
+		int n = t.delete("QuestionMapper.questionCommentDelete", comment_number);
+		return n;
+		
+	}
+	
 	
 }
 
