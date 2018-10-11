@@ -4,8 +4,31 @@
 
 <script type="text/javascript">
 	$(function(){	
-		//id 중복여부
-		$("#userid").on("keyup", function(){
+		var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		var userid = $("#userid");
+		var passwd1 = $("#passwd1");
+		var passwd2 = $("#passwd2");
+		var username = $("#username");
+		var sample4_postcode = $("#sample4_postcode");
+		var sample4_roadAddress = $("#sample4_roadAddresss");
+		var sample4_jibunAddress = $("#sample4_jibunAddress");
+		var phone1 = $("#phone1");
+		var phone2 = $("#phone2");
+		var phone3 = $("#phone3");
+		var email1 = $("#email1");
+		var email2 = $("#email2");
+		var email3 = $("#email3");
+		
+		//id 유효성
+		$("#userid").on("keyup", function(){			
+				
+			if (!(userid.val() >= '0' && userid.val() <= '9') && !(userid.val() >= 'a' && userid.val() <= 'z')&& !(userid.val() >= 'A' && userid.val() <= 'Z')) {
+				$("#result").text("아이디는 대소문자, 숫자만 입력가능합니다.")
+			}else if (document.f.userid.value.indexOf(" ") >= 0) {
+				$("#result").text("아이디에 공백을 사용할 수 없습니다.")
+			}else if (document.f.userid.value.length<6 || document.f.userid.value.length>12) {
+				$("#result").text("아이디를 6~12자까지 입력해주세요.")			
+			}else{
 			$.ajax({
 				type:"GET",
 				url:"idCheck",
@@ -14,62 +37,46 @@
 					userid : $("#userid").val()
 				},
 				success:function(responseData,status,xhr){
-					$("#result").text(responseData);
-					if($("#userid").val().length==0){
-						$("#result").text("");
+					
+					if($("#userid").val().length == 0 ){
+						$("#result").text("");											
+						
+					}else{					
+						$("#result").text(responseData);
 					};
 				}, 
 				error:function(xhr,status,error){
 					console.log(error);
 				} 
-			}); 
+			});
+			}//ajax
 		})
 		//비밀번호 유효성
-
-	
-
 				//비밀번호 확인
 				$("#passwd2").on("keyup", function() {
 					var passwd = $("#passwd1").val();
-					var passwd2 = $(this).val();
-					var mesg = "비밀번호 불일치";
-					var pwcheck = "";
+					var passwd2 = $(this).val();						
 
-					if (passwd == passwd2) {
-						mesg = "비밀번호 일치"
-					}
-					
-
-					$("#result2").text(mesg);
-
-					if (passwd2.length == 0) {
+					if (passwd.length<6 || document.f.passwd1.value.length>12) {			        	
+			        	$("#result2").text("비밀번호를 4~12자까지 입력해주세요.")
+			        }
+			        if (passwd == passwd2) {
+			        	$("#result2").text("비밀번호 일치")			            
+			        }else if (passwd2.length == 0) {
 						$("#result2").text("");
-					}
+					}else{
+			        	$("#result2").text("비밀번호 불일치")		
+			        }					
 				});
 
 				//form submit
-				$("form").on("submit", function(e) {
-									var userid = $("#userid");
-									var passwd1 = $("#passwd1");
-									var passwd2 = $("#passwd2");
-									var username = $("#username");
-									var sample4_postcode = $("#sample4_postcode");
-									var sample4_roadAddress = $("#sample4_roadAddresss");
-									var sample4_jibunAddress = $("#sample4_jibunAddress");
-									var phone1 = $("#phone1");
-									var phone2 = $("#phone2");
-									var phone3 = $("#phone3");
-									var email1 = $("#email1");
-									var email2 = $("#email2");
-									var email3 = $("#email3");
+				$("form").on("submit", function(e) {									
 
+									//공백일 때
 									if (userid.val() == "") {
 										alert("아이디는 필수입력 사항입니다.");
 										userid.focus();
 										e.preventDefault();
-									} else if () {
-										
-									}
 									} else if (passwd1.val() == "") {
 										alert("비밀번호는 필수입력 사항입니다.");
 										passwd1.focus();
@@ -100,6 +107,45 @@
 										email1.focus();
 										e.preventDefault();
 									}
+									
+									//아이디 유효성 검사 (영문소문자, 숫자만 허용)
+									for (i = 0; i < document.f.userid.value.length; i++) {
+										ch = document.f.userid.value.charAt(i)
+								console.log(ch);
+										if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')
+												&& !(ch >= 'A' && ch <= 'Z')) {
+											alert("아이디는 대소문자, 숫자만 입력가능합니다.")
+											document.f.userid.focus()
+											document.f.userid.select()
+											e.preventDefault();
+										}
+									} 
+									//아이디에 공백 사용하지 않기
+								 	if (document.f.userid.value.indexOf(" ") >= 0) {
+										alert("아이디에 공백을 사용할 수 없습니다.")
+										document.f.userid.focus()
+										document.f.userid.select()
+										e.preventDefault();
+									} 
+									//아이디 길이 체크 (4~12자)
+									if (document.f.userid.value.length<6 || document.f.userid.value.length>12) {
+										alert("아이디를 6~12자까지 입력해주세요.")
+										document.f.userid.focus()
+										document.f.userid.select()
+										e.preventDefault();
+									}
+									if (f.passwd1.value == f.userid.value) {
+							            alert("아이디와 비밀번호가 같습니다.")
+							            document.f.passwd1.focus()
+							            e.preventDefault();
+							        }
+							        //비밀번호 길이 체크(4~8자 까지 허용)
+							        if (document.f.passwd1.value.length<6 || document.f.passwd1.value.length>12) {
+							            alert("비밀번호를 6~12자까지 입력해주세요.")
+							            document.f.passwd1.focus()
+							            document.f.passwd1.select()
+							            e.preventDefault();
+							        }									
 								})
 
 				$("#email3").on("change", function() {
@@ -107,8 +153,8 @@
 				})
 			})
 </script>
-
-<form action="memberAdd" method="post">
+<body oncopy="return false" oncut="return false" onpaste="return false">
+<form action="memberAdd" method="post" name="f">
 	<h1>REGISTER</h1>
 	<div class="memberForm">
 		<!-- <p class="tblInfo"><span>*</span> 필수입력</p> -->
@@ -124,7 +170,7 @@
 			</tr>
 			<tr>
 				<th><span class="required" title="필수 입력">비밀번호</span></th>
-				<td><input type="password" name="passwd1" id="passwd1">
+				<td><input type="password" name="passwd" id="passwd1">
 				</td>
 			</tr>
 			<tr>
@@ -171,6 +217,7 @@
 		</div>
 	</div>
 </form>
+</body>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>

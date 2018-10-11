@@ -55,7 +55,7 @@
 	}
 	
 	//
-/* 	$("#submit").click(function(e){
+ 	$("#submit").click(function(e){
         var goods_Code = $("#goods_Code").val();
         var goods_Category = $("#goods_Category").val();
         var goods_Brand = $("#goods_Brand").val();
@@ -95,7 +95,7 @@
             e.preventDefault();
         }     
         
-    }); */
+    }); 
 });
 </script>
 <form name="myForm" method="post" enctype="multipart/form-data"	action="adminCheck/adminGoodsAdd">

@@ -82,7 +82,7 @@
 				<th>이미지 파일</th>
 				<td>
 				<div class="imgs_wrap goods_Image">
-				<input type="file" id="input_imgs" multiple name="goods_file" />
+				<input type="file" id="input_imgs" multiple name="theFile" />
 				</div>
 				</td>				
 			</tr>

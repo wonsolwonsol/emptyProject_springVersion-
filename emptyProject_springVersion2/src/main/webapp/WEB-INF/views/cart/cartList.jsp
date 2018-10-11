@@ -117,12 +117,12 @@
 		<colgroup>
 			<col style="width:12%">
 			<col style="width:10%">
-			<col style="width:10">
+			<col style="width:*">
 			<col style="width:*">
 			<col style="width:10%">
 			<col style="width:12%">
 			<col style="width:10%">
-			<col style="width:15%">
+			<col style="width:12%">
 		</colgroup>
 		<thead>
 			<tr>
@@ -168,7 +168,7 @@
 			</tr>
 		</c:forEach>
 		<tr>
-						<td>
+				<td colspan="8">
 				<input type="text" value="" id="totalSum">
 				</td>
 				</tr>

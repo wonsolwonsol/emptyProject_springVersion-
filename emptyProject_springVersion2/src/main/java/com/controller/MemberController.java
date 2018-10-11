@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.Login;
 import com.dto.Member;
@@ -37,11 +38,13 @@ public class MemberController {
 		return "home";
 	}
 	@RequestMapping(value="/memberAdd", method=RequestMethod.POST)
-	public String memberAdd(Member member, Model model) {
-		System.out.println("member "+member);
+	public String memberAdd(Member member, RedirectAttributes red) {
+		System.out.println("회원가입 성공: "+member);
+		
 		int n = service.memberAdd(member);
-		model.addAttribute("success","회원가입에 성공했습니다.");
-		return "home";
+		red.addFlashAttribute("success","회원가입에 성공했습니다.");
+		
+		return "redirect:/";
 	}
 	@RequestMapping("/loginCheck/logout")
 	public String logout(HttpSession session ) {							
@@ -54,6 +57,7 @@ public class MemberController {
 		System.out.println("mypage");
 		return "redirect:../myPage";
 	}
+	
 	@RequestMapping("/loginCheck/memberUpdate")
 	public String memberUpdate(Member member) {
 		int n = service.memberUpdate(member);

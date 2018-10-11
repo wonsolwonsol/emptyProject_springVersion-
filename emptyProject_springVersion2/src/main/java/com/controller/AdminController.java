@@ -109,7 +109,9 @@ public class AdminController {
 	@RequestMapping(value="/adminCheck/adminGoodsUpdate", method=RequestMethod.POST)
 	public String update(Goods goods, Upload file) {
 		
-		String theText = file.getTheText();
+		System.out.println(goods);
+		System.out.println(file);
+
 		CommonsMultipartFile theFile = file.getTheFile();
 		long size = theFile.getSize();
 		String fileName = theFile.getName();
