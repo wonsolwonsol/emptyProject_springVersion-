@@ -81,7 +81,7 @@ select {height:27px;padding:0 5px;}
     margin: 5px;
     box-sizing: border-box;
 }
-
+/* .adminTop button{background:#F2F2F2;border:1px solid #aaa;} */
 .side {width:308px; float:left;}
 .side li{ margin:20px;}
 .side a {
@@ -123,7 +123,7 @@ select {height:27px;padding:0 5px;}
 .board {margin-bottom:10px;text-align:right;}
 .board span {display:inline-block;color:#ffba00;font-weight:bold;}
 /* */ 
-.btnGroup {margin-top:30px;text-align:center;}
+.btnGroup {margin-top:30px;text-align:center; margin-bottom: 30px;}
 .btn {padding:10px 20px;margin-right:3px;min-width:110px;height:auto;font-size:16px;line-height:21px;cursor:pointer;}
 .yellow {background:#ffba00;color:#fff;border:1px solid #DBA901;}
 .gray {background:#F2F2F2;border:1px solid #aaa;}
@@ -134,6 +134,7 @@ a.btn {text-decoration:none;}
 a.gray{color:#333;}
 
 .contents h1{text-align: center; font-weight: bold; font-size: 20px; margin:20px;}
+h1{text-align: center; font-weight: bold; font-size: 20px; margin:20px;}
 .contents h3{text-align: center; font-weight: bold; font-size: 16px; margin:50px 0px 15px 0px;; border-bottom: 2px;}
 
 /* 제품 상세 */
@@ -165,12 +166,14 @@ a.gray{color:#333;}
 .space {display:block;margin-top:12px;}
 
 .btns .btn {margin-right:0;}
+/* adminTop */
 
 
 /* adminpage */
 .bold{font-weight: bold; text-align: left; color: #000;}
 .aLink {color:#333;text-decoration:none;}
 .aLink:hover {text-decoration:underline;}
+
 
 /* page */
 .page {

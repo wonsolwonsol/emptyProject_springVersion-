@@ -12,6 +12,8 @@ https://handcoding.tistory.com/15
 
 --기존 게시판 테이블 모두 드랍해주세용.
 drop table questionboard; 
+drop table notice;
+drop table questionboard_comments;
 (코멘트테이블까지) 
 --
 ---새로운 테이블만들기-- 

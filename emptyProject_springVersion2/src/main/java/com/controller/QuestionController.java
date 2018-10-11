@@ -40,6 +40,7 @@ public class QuestionController {
 			System.out.println(m);
 			 
 			mod.addAttribute("page", page);	
+			System.out.println("dsada"+m);
 			
 			
 			

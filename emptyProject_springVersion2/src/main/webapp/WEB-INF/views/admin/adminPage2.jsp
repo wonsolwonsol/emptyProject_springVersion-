@@ -7,7 +7,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){ 
-		//all check
+		 //all check
 		$("#allCheck").on("click", function(){
 			var result = this.checked;
 			$(".check").each(function(idx,data){
@@ -15,15 +15,6 @@
 			})
 		})//
 		
-/* 		//삭제
-		$(".delBtn").on("click", function(){
-			var txt = confirm("삭제하시겠습니까?");
-			var num = $(this).attr("data-delBtn");
-			if(txt==true){
-				location.href="adminCheck/adminGoodsDelete/goods_Code/"+num;
-			}
-		});
-		 */
 		$(".delBtn").on("click", function() {
 			var txt = confirm("삭제하시겠습니까?");
 			var num = $(this).attr("data-delBtn");
@@ -31,11 +22,11 @@
 			console.log(xxx);
 			if(txt==true){
 				$.ajax({
-					url : 'adminCheck/adminGoodsDelete',
+					url : 'adminCheck/adminMemberDelete',
 					type : "get",
 					dataType : 'text',
 					data : {
-						goods_Code : num
+						userid:num
 					},
 					success : function(data, status, xhr) {
 						if (data == 'success') {
@@ -54,23 +45,17 @@
 
 		});
 		
-		//수정
-		$(".updateBtn").on("click", function(){
-			var num = $(this).attr("data-updateBtn");			
-			location.href="adminCheck/adminUpdateSelect?goods_Code="+num;
-			
-		});
 		
 		//delAll
 		$("#delAll").on("click",function(e){
 			var txt = confirm("삭제하시겠습니까?");
 			if(txt==true){
-				$("form").attr("action","adminCheck/adminGoodsDeleteAll");
+				$("form").attr("action","adminCheck/adminMemberDeleteAll");
 				$("form").submit();				
 			}else{
 			e.preventDefault();				
 			}
-		})//
+		})// 
 		
 		//충격과 공포의 페이징
 		var record = $("#totalCount").val()
@@ -84,7 +69,7 @@
 				paging = paging+i+"&nbsp;&nbsp;";
 				
 			}else{
-				paging = paging+"<a href='/app/adminCheck/adminGoods?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
+				paging = paging+"<a href='/app/adminCheck/adminMember?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
 			}			
 		}
 		$(".page").html(paging);
@@ -93,46 +78,50 @@
 </script>
 
 <form name="myForm" method="get">   
-		<h1>ADMIN GOODS</h1>	
+		<h1>ADMIN MEMBER</h1>	
 	<table class="tblList">
 		<colgroup>
 			<col style="width:12%">
 			<col style="width:10%">
-			<col style="width:*">
-			<col style="width:30%">
 			<col style="width:10%">
-			<col style="width:10%">
+			<col style="width:*">			
+			<col style="width:15%">
 		</colgroup>
 		<thead>
 			<tr>
 				<th><input type="checkbox" name="check" id="allCheck"><label for="allCheck">전체 선택</label></th>
-				<th>제품번호</th>
-				<th colspan="3">상품정보</th>
-				<th>판매가</th>				
+				<th>아이디</th>
+				<th>이름</th>
+				<th>주소</th>
+				<th>전화번호</th>
+				<th>이메일</th>						
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach var="dto" items="${page.getList()}">
 			<tr>
-				<td><input type="checkbox" name="check" class="check" value="${dto.goods_Code}"></td>
-				<td>${dto.goods_Code}</td>
+				<td><input type="checkbox" name="check" class="check" value="${dto.userid}"></td>
+				<td>${dto.userid}</td>				
 				<td>
-					<span class="img"><a href="" class="aLink"><img src="images/items/thum/${dto.goods_Image1}.jpg" /></a></span>
+					${dto.username}					
 				</td>
 				<td>
-					<p class="bold"><a href="" class="aLink">${dto.goods_Brand}</a></p>
-					<p class="alignL"><a href="" class="aLink">${dto.goods_Name}</a></p>
+					<p>${dto.post}<br>
+					${dto.addr1}<br>
+					${dto.addr2}<br></p>	
 				</td>
 				<td>
-					${dto.goods_Color}	
-				</td>
+					${dto.phone1}&nbsp;
+					${dto.phone2}&nbsp;
+					${dto.phone3}
+				</td>		
 				<td>
-					<fmt:formatNumber value="${dto.goods_Price}" type="currency" />
-				</td>				
+				${dto.email1}@${dto.email2}
+				</td>						
 				<td>					
-						<input type="button" class="btn xsmall yellow updateBtn" data-updateBtn="${dto.goods_Code}" value="수정" />
-						<input type="button" class="btn xsmall darkGray delBtn" data-delBtn="${dto.goods_Code}" value="삭제" />
+						<%-- <input type="button" class="btn xsmall yellow updateBtn" data-updateBtn="${dto.userid}" value="수정" /> --%>
+						<input type="button" class="btn xsmall yellow delBtn" data-delBtn="${dto.userid}" value="삭제" />
 					
 				</td>
 			</tr>
@@ -147,7 +136,7 @@
 	<p class="page"></p>
 <hr>
 <div class="btnGroup">
-	<a class="btn yellow" href="adminAddGoodsPage">제품등록</a>
+	<!-- <a class="btn yellow" href="adminAddGoodsPage">제품등록</a> -->
 	<button class="btn darkGray" id="delAll">선택 삭제하기</button>
 </div>
 </form>

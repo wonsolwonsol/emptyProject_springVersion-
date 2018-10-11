@@ -7,7 +7,7 @@
 <div class="body">
 	<div class="top"><jsp:include page="common/top.jsp" flush="true"/></div>	
 	<div class="adminTop"><jsp:include page="common/adminTop.jsp" flush="true"/></div>
-	<div class="contents"><jsp:include page="admin/adminPage.jsp" flush="true"/></div>
+	<div class="contents"><jsp:include page="admin/adminPage2.jsp" flush="true"/></div>
 </div>
 </div>
 

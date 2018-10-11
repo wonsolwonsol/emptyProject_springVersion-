@@ -55,4 +55,35 @@ public class AdminDAO {
 		template.delete("GoodsMapper.adminGoodsDelAll", check);
 		
 	}
+
+	public int totalRecord() {
+		//데이터의 총 갯수
+		int n = template.selectOne("MemberMapper.totalCount");
+		System.out.println("totalRecord    "+n);
+		return n;
+	}
+	
+	public Page adminMember(Integer curpage) {
+		Page page = new Page();
+		//offset 데이터 인덱스 값
+		int offset = (curpage - 1) * page.getPerPage();
+		//page에 담을 list (인덱스부터 perpage 갯수 만큼)
+		List<Goods> list = template.selectList("MemberMapper.memberAll", null, 
+				new RowBounds(offset,page.getPerPage()));
+		
+		page.setList(list);
+		page.setCurrentPage(curpage);
+		int totalCount = totalRecord();
+		page.setTotalCount(totalCount);
+		return page;
+	
+	}
+
+	public void adminMemberDelete(String userid) {
+		template.delete("MemberMapper.adminMemberDelete", userid);			
+	}
+
+	public void adminMemberDeleteAll(List<String> check) {
+		template.delete("MemberMapper.adminMemberDeleteAll",check);		
+	}
 }

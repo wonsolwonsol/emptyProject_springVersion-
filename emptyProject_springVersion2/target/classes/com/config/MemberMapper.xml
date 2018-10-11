@@ -19,6 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from member
 		where userid = #{userid} 
 	</select>
+	<select id="memberAll" resultType="Member">
+		select *
+		from member		
+	</select>
+	
 	<select id="idFind" resultType="String" parameterType="Member">
 	 select userid
 	 from member
@@ -34,4 +39,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	set passwd=#{passwd}, post=#{post}, addr1=#{addr1}, addr2=#{addr2}, phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2}
  	where userid=#{userid}
  </update>
+ <delete id="adminMemberDelete" parameterType="string">
+ 	delete from member
+	where userid = #{userid}
+ </delete>
+ 
+  <delete id="adminMemberDeleteAll" parameterType="list">
+ 	delete from member
+	where userid in
+	<foreach close=")" separator="," open="(" collection="list" index="index" item="item"> #{item} </foreach>
+ </delete>
+ 
+ 
+ <select id="totalCount" resultType="int">
+	 <!-- 전체 갯수를 세어주고 -->
+	 select count(*) 
+ 	from member
+</select>
 </mapper>

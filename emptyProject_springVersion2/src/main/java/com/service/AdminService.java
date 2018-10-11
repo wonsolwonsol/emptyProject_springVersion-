@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.AdminDAO;
 import com.dto.Goods;
+import com.dto.Page;
 
 @Service
 public class AdminService {
@@ -33,6 +34,21 @@ public class AdminService {
 
 	public void adminDeleteAll(List<String> check) {
 		dao.adminGoodsDeleteAll(check);
+		
+	}
+
+	public Page adminMember(Integer currentPage) {
+		Page page = dao.adminMember(currentPage);
+		return page;
+	}
+
+	public void adminMemberDelete(String userid) {
+		dao.adminMemberDelete(userid);
+		
+	}
+
+	public void adminMemberDeleteAll(List<String> check) {
+		dao.adminMemberDeleteAll(check);
 		
 	}
 }

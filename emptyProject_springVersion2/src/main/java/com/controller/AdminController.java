@@ -165,4 +165,31 @@ public class AdminController {
 		return "redirect:./adminGoods";
 	}
 	
+	@RequestMapping(value="/adminCheck/adminMember", method=RequestMethod.GET)
+	public String adminMember(@RequestParam(required=false) Integer currentPage, HttpSession session) {
+		if(currentPage == null || currentPage == 0 ){
+			currentPage = 1;
+		}
+		Page list = service.adminMember(currentPage);	
+		System.out.println("adminMember    "+list);
+		session.setAttribute("page",list);
+		return "redirect:../adminPage2";
+	}
+	
+	@RequestMapping(value="/adminCheck/adminMemberDelete", method=RequestMethod.GET)
+	public @ResponseBody String adminMemberDelete(@RequestParam String userid) {
+		System.out.println(userid);
+		service.adminMemberDelete(userid);
+
+		return "success";
+	}
+	
+	@RequestMapping(value="/adminCheck/adminMemberDeleteAll", method=RequestMethod.GET)
+	public String adminMemberDeleteAll(@RequestParam List<String> check) {
+		System.out.println(check);
+		service.adminMemberDeleteAll(check);
+		return "redirect:./adminMember";
+	}
+	
+	
 }
