@@ -67,5 +67,7 @@
 		<constructor-arg name="sqlSessionFactory" ref="factoryBean" />
 	</bean>
 	
+	
+	
 
 </beans>
