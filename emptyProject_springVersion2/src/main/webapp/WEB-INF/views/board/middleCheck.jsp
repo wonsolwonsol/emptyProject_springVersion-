@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>삭제가 완료되었습니다.</h1>
-<a href="question">목록으로</a>
+<a href="question?currentPage=1">목록으로</a>
 </body>
 </html>

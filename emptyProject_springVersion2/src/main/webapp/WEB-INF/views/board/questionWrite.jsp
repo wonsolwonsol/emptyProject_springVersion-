@@ -11,6 +11,23 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
 <h1>questionWrite View</h1>
+<table class="tbl"> 
+<tr> 
+	<td>제목</td>
+	<td colspan="2"><input type="text" name="title" style="width: 80%" align="center" /></td><pre></pre>
+</tr>
+<tr align="center">
+    <td align="center" colspan="2">
+        <textarea  name="content" rows="17" cols="100"></textarea><pre></pre>
+    </td>
+</tr>
+</table>
+<div style="text-align: center;padding-bottom: 15px;">
+    <input type="submit" value="등록" />
+    <input type="reset" value="다시쓰기" /> 
 
+</div>
+</form><br>
+<a href="">목록보기</a>
 </body>
 </html>

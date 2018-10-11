@@ -72,7 +72,7 @@ public class QuestionController {
 		
 		@RequestMapping("/questionDelete")
 		public String questionDelete() {
-			return "middleCheck"; 
+			return "redirect:question"; 
 		}
 		
 		

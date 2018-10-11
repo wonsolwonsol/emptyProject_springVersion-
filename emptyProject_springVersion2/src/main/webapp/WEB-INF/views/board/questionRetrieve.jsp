@@ -32,7 +32,8 @@
 <tr>
 	<th width="0%"></th>
 	<td width="90%">${questionRetrieve.content }</td>
-	<td width="10%"><a href="questionDelete"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
+	<td width="10%"><a href=""><img src="images/icon/update_icon.png" width="20px" height="30px" ></a></td>
+	<td width="10%"><a href="question?currentPage=1"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
 </table><br>
 <h1>코멘트</h1>
@@ -40,6 +41,7 @@
 <tr>
 	<th width="10%">작성자</th>
 	<td width="90%">내용</td>
+	<td width="10%"><a href=""><img src="images/icon/update_icon.png" width="20px" height="30px" ></td>
 	<td width="10%"><a href=""><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
 </table>
