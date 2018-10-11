@@ -15,7 +15,7 @@ public class QuestionCommentService {
 	
 	// Question_Comments
 	public List<Question_Comments> Question_Comments(String question_number){
-		QuestionDAO dao = new QuestionDAO(); 
+		//QuestionDAO dao = new QuestionDAO(); ==> t 에러 
 		List<Question_Comments> qc = dao.questionComment(question_number); 
 		return qc; 
 	}

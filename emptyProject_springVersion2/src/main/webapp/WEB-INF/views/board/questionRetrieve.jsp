@@ -1,13 +1,14 @@
+ <%@page import="com.dto.Question"%>
+<%@page import="com.dao.QuestionDAO"%> 
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>questionRetrieve</h1>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script type="text/javascript">
+</script>
+<h1>Question Retrieve</h1>
 <table class="tbl"> 
 <tr> 
 	<th width="20%">글번호</th>
@@ -35,28 +36,26 @@
 	<td width="10%"><a href=""><img src="images/icon/update_icon.png" width="20px" height="30px" ></a></td>
 	<td width="10%"><a href="questionDelete?question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
-</table><br>
-<h1>코멘트</h1>
-<table class="tbl">
+</table>
+<table class="tbl" border="0" font-size="10px">
 <tr>
 	<th width="10%">작성자</th>
-	<td width="90%">내용</td>
-	<td width="10%"><a href=""><img src="images/icon/update_icon.png" width="20px" height="30px" ></td>
-	<td width="10%"><a href=""><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
+	<th>댓글</th>
+	<th></th>
+	
+<c:forEach var="dto" items="${questionComment }"  varStatus="status">	
+<tr>
+	<td width="10%" align="center">${dto.author }</td>
+	<td>${dto.comment_contents }</td>
+	<td align="left" width="3%"
+	><a href="questionCommentDelete?comment_number=${dto.comment_number}/question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
+</c:forEach> 
 </table>
-<pre></pre><br>
-
-<ul>
-${questionComment }
-
-
-<c:if test="${!empty member }">
-<li>
-${member.userid} 님 : <input type="textarea" width="100%" id="comment"> 
-</li>
-</c:if></ul>
-
-
+<form>
+${userid } 님 : <input type="text" width="80%">
+</form>
 </body>
 </html>
+
+ 

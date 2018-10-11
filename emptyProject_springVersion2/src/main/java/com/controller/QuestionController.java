@@ -30,13 +30,19 @@ public class QuestionController {
 	@Autowired
 	QuestionCommentService qservice; 
 	
-	
+		@RequestMapping(value="/questionCommentDelete")
+		public String questionCommentDelete(@RequestParam int comment_number, @RequestParam int question_number) {
+			System.out.println("question_num====="+question_number);
+			System.out.println("comment_number======="+comment_number);
+			return "redirect:/question?currentPage=1"; 
+			//return "redirect:/questionRetrieve?question_number=sth"; 
+		}
 	
 		@RequestMapping("/questionDelete")
 		public String questionDelete(@RequestParam int question_number){
 			System.out.println("=======questionDelete Controll>>>>"+question_number);
 			service.questionDelete(question_number); 
-			return "redirect:./question"; 
+			return "redirect:/question?currentPage=1"; 
 		}
 	
 		@RequestMapping(value="/question") 
@@ -80,11 +86,11 @@ public class QuestionController {
 			
 			 
 			//questionComment 
-			//List<Question_Comments> qc = qservice.Question_Comments(question_number); 
+			List<Question_Comments> qc = qservice.Question_Comments(question_number); 
 			
 			m.addObject("questionRetrieve", q);
 			m.setViewName("questionRetrieve");
-			//m.addObject("questionComment", qc); 
+			m.addObject("questionComment", qc); 
 			
 			return m; 
 		}

@@ -28,6 +28,6 @@
 
 </div>
 </form><br>
-<a href="">목록보기</a>
+<a href="question">목록보기</a>
 </body>
 </html>

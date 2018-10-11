@@ -27,7 +27,7 @@ public class QuestionBoardService {
 	
 	//questionDelete 
 	public int questionDelete(int question_number) {
-		QuestionDAO dao = new QuestionDAO();
+		//QuestionDAO dao = new QuestionDAO();
 		int n = dao.questionDelete(question_number); 
 		return n; 
 	}
