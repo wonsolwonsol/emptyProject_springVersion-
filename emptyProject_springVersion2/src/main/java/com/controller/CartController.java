@@ -10,13 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.Cart;
 import com.dto.Goods;
 import com.dto.Member;
+import com.dto.Order;
 import com.service.CartService;
 import com.service.MemberService;
 
@@ -64,23 +67,34 @@ public class CartController {
 	}
 	
 	@RequestMapping("/loginCheck/cartToOrder")
-	public String cartToOrder(@RequestParam int num, HttpSession session, RedirectAttributes red) {
-		Member mem = (Member) session.getAttribute("login");
+	public String cartToOrder(@RequestParam int num, HttpSession session) {
+		System.out.println("ddd");
+		Member mem = (Member) session.getAttribute("member");
 		Cart cart = service.cartToOrder(num);
-		red.addFlashAttribute("cart", cart);
-		red.addFlashAttribute("member", mem);
-		
+//		red.addFlashAttribute("cart", cart);
+//		red.addFlashAttribute("member", mem);
+		session.setAttribute("orderTemp", cart);
+		session.setAttribute("member", mem);
+		System.out.println(session);
 		return "redirect:../cartToOrder";
 	}
 	
 	@RequestMapping("/loginCheck/cartToOrderAll")
-	public String cartToOrderAll(@RequestParam("check") ArrayList<String> check, HttpSession session, RedirectAttributes red) {
-		Member mem = (Member) session.getAttribute("login");
+	public String cartToOrderAll(@RequestParam("check") ArrayList<String> check, HttpSession session) {
+		Member mem = (Member) session.getAttribute("member");
 		List<Cart> list = service.cartToOrderAll(check);
-		red.addFlashAttribute("list", list);
-		red.addFlashAttribute("member", mem);
-		System.out.println(list);
+		session.setAttribute("orderTemp", list);
+		session.setAttribute("member", mem);
 		return "redirect:../cartToOrderAll";
+	}
+	
+	@RequestMapping(value="/loginCheck/orderConfirm", method=RequestMethod.POST)
+	public ModelAndView orderConfirm(Order order, HttpSession session, ModelAndView mav) {
+		Member mem = (Member) session.getAttribute("member");
+		order.setUserid(mem.getUserid());
+		mav.addObject("order", order);
+		mav.setViewName("../orderConfirm");
+		return mav;
 	}
 	
 }

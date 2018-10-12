@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,16 +55,16 @@ $(document).ready(function() {
 </head>
 <body>
 <h1>ORDER</h1>
-<form>
- 	<input type="hidden" name="num" value="${cart.num}"> 
- 	<input type="hidden" name="goods_Code" value="${cart.goods_Code}">
- 	<input type="hidden" name="goods_Name" value="${cart.goods_Name}">
- 	<input type="hidden" name="goods_Price" value="${cart.goods_Price}">
- 	<input type="hidden" name="goods_Brand" value="${cart.goods_Brand}">
- 	<input type="hidden" name="goods_Color" value="${cart.goods_Color}">
- 	<input type="hidden" name="goods_Amount" value="${cart.goods_Amount}">
- 	<input type="hidden" name="goods_Image" value="${cart.goods_Image}">
-</form>
+<form action="loginCheck/orderConfirm" method="post">
+ 	<input type="hidden" name="num" value="${orderTemp.num}"> 
+ 	<input type="hidden" name="goods_Code" value="${orderTemp.goods_Code}">
+ 	<input type="hidden" name="goods_Name" value="${orderTemp.goods_Name}">
+ 	<input type="hidden" name="goods_Price" value="${orderTemp.goods_Price}">
+ 	<input type="hidden" name="goods_Brand" value="${orderTemp.goods_Brand}">
+ 	<input type="hidden" name="goods_Color" value="${orderTemp.goods_Color}">
+ 	<input type="hidden" name="goods_Amount" value="${orderTemp.goods_Amount}">
+ 	<input type="hidden" name="goods_Image" value="${orderTemp.goods_Image}">
+
 <h3>주문정보</h3>
 <table class="tblList">
 	<tr>
@@ -74,16 +75,16 @@ $(document).ready(function() {
 		<th>합계</th>
 	</tr>
 	<tr>
-		<td>${cart.num}</td>
-		<td class="img"><img src="images/items/thum/${cart.goods_Image}.jpg"/></td>
+		<td>${orderTemp.num}</td>
+		<td class="img"><img src="images/items/thum/${orderTemp.goods_Image}.jpg"/></td>
 		<td><p class="bold">
-			${cart.goods_Brand}</p>
-			<p>${cart.goods_Name}</p>		
+			${orderTemp.goods_Brand}</p>
+			<p>${orderTemp.goods_Name}</p>		
 		</td>
-		<td>${cart.goods_Color}</td>
-		<td>${cart.goods_Amount}</td>
-		<td><fmt:formatNumber value="${cart.goods_Price * cart.goods_Amount}" type="currency" /></td>	
-		<input type="hidden" class="price" value="${cart.goods_Price * cart.goods_Amount}">
+		<td>${orderTemp.goods_Color}</td>
+		<td>${orderTemp.goods_Amount}</td>
+		<td><fmt:formatNumber value="${orderTemp.goods_Price * orderTemp.goods_Amount}" type="currency" /></td>	
+		<input type="hidden" class="price" value="${orderTemp.goods_Price * orderTemp.goods_Amount}">
 		<tr class="highlight gray"><th colspan="2">합계</th>
 			<td colspan="4" id="sum" style="font-weight: bold;"></td></tr>	
 </table>
@@ -169,7 +170,7 @@ $(document).ready(function() {
 	<input type="submit" value="결제" class="btn yellow">
 	<input type="reset" value="취소" class="btn gray">
 	</div>
-
+</form>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.

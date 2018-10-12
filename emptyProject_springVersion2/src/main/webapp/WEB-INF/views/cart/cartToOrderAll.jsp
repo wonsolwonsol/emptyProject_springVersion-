@@ -57,14 +57,14 @@ $(document).ready(function() {
 <body>
 <h1>ORDER</h1>
 <%-- <form>
- 	<input type="hidden" name="num" value="${cart.num}"> 
- 	<input type="hidden" name="goods_Code" value="${cart.goods_Code}">
- 	<input type="hidden" name="goods_Name" value="${cart.goods_Name}">
- 	<input type="hidden" name="goods_Price" value="${cart.goods_Price}">
- 	<input type="hidden" name="goods_Brand" value="${cart.goods_Brand}">
- 	<input type="hidden" name="goods_Color" value="${cart.goods_Color}">
- 	<input type="hidden" name="goods_Amount" value="${cart.goods_Amount}">
- 	<input type="hidden" name="goods_Image" value="${cart.goods_Image}">
+ 	<input type="hidden" name="num" value="${list.num}"> 
+ 	<input type="hidden" name="goods_Code" value="${list.goods_Code}">
+ 	<input type="hidden" name="goods_Name" value="${list.goods_Name}">
+ 	<input type="hidden" name="goods_Price" value="${list.goods_Price}">
+ 	<input type="hidden" name="goods_Brand" value="${list.goods_Brand}">
+ 	<input type="hidden" name="goods_Color" value="${list.goods_Color}">
+ 	<input type="hidden" name="goods_Amount" value="${list.goods_Amount}">
+ 	<input type="hidden" name="goods_Image" value="${list.goods_Image}">
 </form> --%>
 <h3>주문정보</h3>
 <table class="tblList">
@@ -80,18 +80,18 @@ $(document).ready(function() {
 		<th>수량</th>
 		<th>합계</th>
 	</tr>
-	<c:forEach items="${list}" var="cart">
+	<c:forEach items="${orderTemp}" var="list">
 	<tr>
-		<td>${cart.num}</td>
-		<td class="img"><img src="images/items/thum/${cart.goods_Image}.jpg"/></td>
+		<td>${list.num}</td>
+		<td class="img"><img src="images/items/thum/${list.goods_Image}.jpg"/></td>
 		<td><p class="bold">
-			${cart.goods_Brand}</p>
-			<p>${cart.goods_Name}</p>		
+			${list.goods_Brand}</p>
+			<p>${list.goods_Name}</p>		
 		</td>
-		<td>${cart.goods_Color}</td>
-		<td>${cart.goods_Amount}</td>
-		<td><fmt:formatNumber value="${cart.goods_Price * cart.goods_Amount}" type="currency" /></td>	
-		<input type="hidden" class="price" value="${cart.goods_Price * cart.goods_Amount}">
+		<td>${list.goods_Color}</td>
+		<td>${list.goods_Amount}</td>
+		<td><fmt:formatNumber value="${list.goods_Price * list.goods_Amount}" type="currency" /></td>	
+		<input type="hidden" class="price" value="${list.goods_Price * list.goods_Amount}">
 		</c:forEach>	
 		<tr class="highlight gray"><th colspan="2">합계</th>
 			<td colspan="4" id="sum" style="font-weight: bold;"></td></tr>

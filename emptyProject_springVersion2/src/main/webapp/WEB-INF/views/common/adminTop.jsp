@@ -7,6 +7,7 @@
 	.btnGroup{
 		background-color: #fff;
 		margin-top: 0px;
+		margin-bottom: 0px;
 	}
 
 </style>       

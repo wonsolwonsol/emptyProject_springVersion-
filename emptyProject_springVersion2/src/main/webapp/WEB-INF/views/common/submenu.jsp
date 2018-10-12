@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <div class="sidemenu">
-	<h1><a href="/app">logo</a></h1>
+	<h1><a href="/app" id="logo">logo</a></h1>
 	<br>
 	<ul id="side_category">
 

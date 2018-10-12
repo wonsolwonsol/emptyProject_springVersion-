@@ -25,6 +25,7 @@
 	<mvc:view-controller view-name="adminAddGoodsPage" path="/adminAddGoodsPage"/>
 	<mvc:view-controller view-name="adminUpdateGoodsPage" path="/adminUpdateGoodsPage"/>
 	<mvc:view-controller view-name="adminPage2" path="/adminPage2"/>
+	<mvc:view-controller view-name="orderConfirm" path="/orderConfirm"/>
 	
 	
 	
