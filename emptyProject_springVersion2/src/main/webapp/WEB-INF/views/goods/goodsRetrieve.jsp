@@ -80,8 +80,11 @@
 		<!-- <p><img src="images/divider_1.jpg"></p> -->
 		<hr>
 	</div>
-	<div>
-	<a href="QuestionBoardServlet"><img src="images/icon/question_icorn.png"></a>
+	<div align="center">
+	<button class="btn gray"><a href="question"> 질문하기 </a></button>
+	<button class="btn yellow"><a href="review"> 리뷰보기 </a></button>
+	
+	
 <!-- 		<button id="shareInfo" name="shareInfo">카톡으로 공유하기</button>구글링중 
 		<button id="reviewBoard" name="reviewBoard">리뷰</button>db테이블 따로 만들고 모든 사용자에게 insert/update/delete/나와 운영자만 보기 권한 필요 sys:답글권한
 		<button id="QnABoard" name="QnABoard">Q&amp;A</button>홈에 있는 질문게시판

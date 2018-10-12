@@ -18,6 +18,7 @@ insert into review values
 insert into review values
 ( review_number.NEXTVAL, '리뷰입니다3.', 'helloWorld.', null, 'n', sysdate);
 
+commit;
 -----------1012 end 
 
 

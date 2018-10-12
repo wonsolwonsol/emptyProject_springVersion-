@@ -116,5 +116,11 @@ public class QuestionController {
 			return "redirect:question"; 
 		}
 	*/
+		
+		//questionCommentWrite
+		@RequestMapping("/questionCommentWrite")
+		public String questionCommentWrite() {
+			return "question?currentPage=1"; 
+		}
 	
 }

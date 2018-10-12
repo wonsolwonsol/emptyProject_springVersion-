@@ -7,8 +7,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
-var date = new Date(); 
-
+$("#submit").click(function(e){
+	if(${empty member}){
+		alert("로그인이 필요합니다."); 
+	}
+}); 
 </script>
 <h1>Question Retrieve</h1>
 <table class="tbl"> 
@@ -57,10 +60,11 @@ var date = new Date();
 </c:forEach> 
 </table>
 <hr>  
-<form> 
-${userid } 님 : <input type="text" width="80%">
+<form name="myForm" method="post" action="questionCommentWrite">
+${member.userid } 님 : <br><br> 
+<textarea style="resize:none;" id="content" cols="110" rows="2" ></textarea>
+<input type="submit" id="submit" class="btn yellow" value="등록" />
 </form>
-
 </body>
 </html>
 
