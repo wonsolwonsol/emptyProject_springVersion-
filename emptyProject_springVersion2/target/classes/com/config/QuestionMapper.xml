@@ -38,7 +38,20 @@ where question_number = #{question_number}
 delete from question_board_comment
 where comment_number = #{comment_number} 
 </delete>
-
+<insert id="questionWriteSubmit" parameterType="Question">
+insert into question (
+	question_number
+	,title
+	,author
+	,content 
+	,regdate ) 
+values (
+	question_number.NEXTVAL
+	,#{title}
+	,#{author}
+	,#{content} 
+	,sysdate ) 
+</insert>
 
 
 

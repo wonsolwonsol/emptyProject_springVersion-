@@ -7,6 +7,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
+var date = new Date(); 
+
 </script>
 <h1>Question Retrieve</h1>
 <table class="tbl"> 
@@ -37,6 +39,8 @@
 	<td width="10%"><a href="questionDelete?question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
 </table>
+<br> 
+
 <table class="tbl">
 <tr>
 	<th width="10%">작성자</th>
@@ -52,9 +56,11 @@
 </tr>
 </c:forEach> 
 </table>
-<form>
+<hr>  
+<form> 
 ${userid } 님 : <input type="text" width="80%">
 </form>
+
 </body>
 </html>
 

@@ -57,9 +57,12 @@
 	<div class="content_box">
 		<div class="content">
 			 <img src="./images/banner_image.jpg" />
+			 
+			 
 		</div>
 		<div class="content">
-			 <img src="./images/banner_image.jpg" />
+			 <img src="./images/main2.jpg" />
+			
 		</div>
 	</div>
 </div>
