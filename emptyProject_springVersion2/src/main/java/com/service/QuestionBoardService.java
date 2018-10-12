@@ -31,5 +31,10 @@ public class QuestionBoardService {
 		int n = dao.questionDelete(question_number); 
 		return n; 
 	}
+	//questionWriteSubmit
+	public void questionWriteSubmit(Question question) {
+		dao.questionWriteSubmit(question);
+		System.out.println("questionWriteSubmit Service >>>>>>>>"+question);
+	}
 	
 }

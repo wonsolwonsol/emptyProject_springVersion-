@@ -84,6 +84,11 @@ public class QuestionDAO {
 		
 	}
 	
+	//questionWriteSubmit
+	public void questionWriteSubmit(Question question) {
+		t.insert("QuestionMapper.questionWriteSubmit", question); 
+	}
+	
 	
 }
 

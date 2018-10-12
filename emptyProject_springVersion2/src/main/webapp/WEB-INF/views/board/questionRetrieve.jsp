@@ -7,6 +7,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
+$("#submit").click(function(e){
+	if(${empty member}){
+		alert("로그인이 필요합니다."); 
+	}
+}); 
 </script>
 <h1>Question Retrieve</h1>
 <table class="tbl"> 
@@ -37,6 +42,8 @@
 	<td width="10%"><a href="questionDelete?question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
 </table>
+<br> 
+
 <table class="tbl">
 <tr>
 	<th width="10%">작성자</th>
@@ -52,8 +59,11 @@
 </tr>
 </c:forEach> 
 </table>
-<form>
-${userid } 님 : <input type="text" width="80%">
+<hr>  
+<form name="myForm" method="post" action="questionCommentWrite">
+${member.userid } 님 : <br><br> 
+<textarea style="resize:none;" id="content" cols="110" rows="2" ></textarea>
+<input type="submit" id="submit" class="btn yellow" value="등록" />
 </form>
 </body>
 </html>

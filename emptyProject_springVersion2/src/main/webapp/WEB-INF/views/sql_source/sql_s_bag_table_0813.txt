@@ -1,3 +1,30 @@
+--1012 게시판 업데이트 : review 게시판 DB입니다
+--비밀기능 : 제약조건 check (y or n ) 사용하기
+create table review 
+(review_number  number(5) primary key
+, title varchar2(50) not null
+, content varchar2(1000) not null 
+, image_name varchar2(50) 
+, term varchar2(1) CONSTRAINT privacy_term_ck check ( term in ( 'y', 'n') ) 
+, regdate date );
+
+create sequence review_number
+start with 1
+increment by 1 ;
+
+
+insert into review values
+( review_number.NEXTVAL, '리뷰입니다.', '가방 너무 마음에 듭니다.', null, 'n', sysdate);
+insert into review values
+( review_number.NEXTVAL, '리뷰입니다3.', 'helloWorld.', null, 'n', sysdate);
+
+commit;
+-----------1012 end 
+
+
+
+
+
 --1005 게시판 업데이트
 기존 게시판 관련 테이블 모두 드랍 부탁드립니다. (questionboard, notice, questionboard_comments)
 Spring Pagination 
@@ -44,6 +71,7 @@ author varchar2(20)
 alter table question_board_comment
 add constraint question_number
 foreign key(question_number) references question (question_number) ;
+
 
 
 --외래키 추가(코멘트넘버)

@@ -75,8 +75,21 @@ public class QuestionController {
 			return "questionWrite"; 
 			
 		}
+		@RequestMapping(value="/questionWriteSumit", method=RequestMethod.POST) 
+		public String questionWriteSumit(Question question){
+			System.out.println("===================questionWriteSumit>>>>>>>>>");
+			
+			System.out.println(question); 
 		
-		@RequestMapping("/questionUpdate")
+			service.questionWriteSubmit(question);
+			
+			
+			
+			return "redirect:/question?currentPage=1" ; 
+		}
+		
+		
+		@RequestMapping("/questionUpdate") 
 		public String questionUpdate() {
 			
 			return null; 
@@ -104,27 +117,10 @@ public class QuestionController {
 		}
 	*/
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		//questionCommentWrite
+		@RequestMapping("/questionCommentWrite")
+		public String questionCommentWrite() {
+			return "question?currentPage=1"; 
+		}
+	
 }
