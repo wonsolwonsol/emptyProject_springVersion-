@@ -10,7 +10,7 @@
  $("#submit").click(function(e){
  	if(${empty member}){
 		alert("로그인이 필요합니다."); 
-	}
+	} -----
 });  
 </script> -->
 <h1>Question Retrieve</h1>
