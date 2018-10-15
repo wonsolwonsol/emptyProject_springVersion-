@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderMapper">
+	<insert id="orderConfirm" parameterType="Order">
+		insert into order_info(num, userid, username, goods_code, goods_name, goods_price, goods_color, goods_amount, goods_image, goods_brand, post,addr1,addr2,phone,payMethod)
+		values(#{num}, #{userid}, #{username}, #{goods_Code}, #{goods_Name}, #{goods_Price}, #{goods_Color}, #{goods_Amount}, #{goods_Image}, #{goods_Brand}, #{post},#{addr1},#{addr2},#{phone},#{payMethod})
+	</insert>
+	
+	<insert id="orderConfirmAll" parameterType="arraylist">
+		insert all 
+	<foreach collection="list" index="index" item="item"> 
+	into order_info ( num, userid, username, goods_code, goods_name, goods_price, goods_color, goods_amount, goods_image, goods_brand, post,addr1,addr2,phone,payMethod)
+		values(#{item.num}, #{item.userid}, #{item.username}, #{item.goods_Code}, #{item.goods_Name}, #{item.goods_Price}, #{item.goods_Color}, #{item.goods_Amount}, #{item.goods_Image}, #{item.goods_Brand}, #{item.post},#{item.addr1},#{item.addr2},#{item.phone},#{item.payMethod})
+	</foreach>
+ 	select * from dual  
+	</insert>
+	
+	<select id="orderSel" parameterType="int" resultType="Order">
+		select * from order_info
+		where num = #{num}
+	</select>
+	
+</mapper>

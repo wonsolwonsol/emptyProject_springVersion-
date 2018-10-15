@@ -33,12 +33,16 @@
 		    // 루프 (순환)
 		    function ani_1(){
 		        animation()                         
-		        setTimeout( ani_2, 5000 );     // 1000 + 10( 여유 ) 초 뒤, function ani_2() 로 이동 
+		        setTimeout( ani_2, 5000 + 10 );     // 1000 + 10( 여유 ) 초 뒤, function ani_2() 로 이동 
 		    };                                      
 		    function ani_2(){
 		        animation()
-		        setTimeout( ani_1, 5000 );     // 1000 + 10( 여유 ) 초 뒤, function ani_1() 로 이동
+		        setTimeout( ani_1, 5000 + 10);     // 1000 + 10( 여유 ) 초 뒤, function ani_1() 로 이동
 		    };
+		   /*  function ani_3(){
+		        animation()
+		        setTimeout( ani_1, 5000 + 10 );     // 1000 + 10( 여유 ) 초 뒤, function ani_1() 로 이동
+		    }; */
 		    ani_1();                                // function ani_1() 로 루프 start 
 		      
 		    // 로직
@@ -56,13 +60,19 @@
 <div class="container">
 	<div class="content_box">
 		<div class="content">
-			 <img src="./images/banner_image.jpg" />
-			 
-			 
+			 <a href="goodsSortColorBrandAll?color=white">			 
+			 <img src="./images/banner/banner_white.jpg" />
+			 NEW CLASSIC: THE WHITE
+			 </a>		 
 		</div>
 		<div class="content">
-			 <img src="./images/main2.jpg" />
-			
+			<a href="goodsSortColorBrandAll?color=green&color=red&color=blue&color=pink&color=purple&color=yellow">
+			<img src="./images/banner/banner_vivid.jpg" />
+			VIVID POP!
+			</a>
 		</div>
+<!-- 		<div class="content">
+			 <a href="goodsSortColorBrandAll?brand=GUCCI"><img src="./images/banner/banner_gucci.png" /></a>		
+		</div> -->
 	</div>
 </div>

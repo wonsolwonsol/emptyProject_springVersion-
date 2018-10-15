@@ -92,9 +92,9 @@ $(document).ready(function() {
 <h3>고객정보</h3>
 
 <table class="tbl">			
-	<tr><th>이름</th><td><input type="text" value=" ${member.username}" id="name"></td></tr>
+	<tr><th>이름</th><td><input type="text" value=" ${member.username}" id="name" ></td></tr>
 	<tr><th>주소</th>
-		<td><input type="text" value="${member.post}" name="post" id="post" placeholder="우편번호">
+		<td><input type="text" value="${member.post}" id="post" placeholder="우편번호">
 		<!-- <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> -->
 		<span class="address">	
 		<input type="text" value="${member.addr1}" name="addr1" id="addr1" placeholder="도로명주소">
@@ -128,7 +128,7 @@ $(document).ready(function() {
 	</tr>
 	
 	<tr>		
-	<tr><th>이름</th><td><input type="text" id="name_same"></td></tr>
+	<tr><th>이름</th><td><input type="text" id="name_same" name="username"></td></tr>
 	<tr><th>주소</th>
 		<td><input type="text" name="post" id="sample4_postcode" placeholder="우편번호">
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">

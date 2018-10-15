@@ -1,3 +1,8 @@
+-- 181015 orderinfo 테이블 변경
+ALTER TABLE order_info ADD(goods_brand VARCHAR2(20));
+ALTER TABLE order_info DROP COLUMN order_name;
+
+
 --1012 게시판 업데이트 : review 게시판 DB입니다
 --비밀기능 : 제약조건 check (y or n ) 사용하기
 create table review 

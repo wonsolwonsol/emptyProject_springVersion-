@@ -10,10 +10,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	
- 	//
+	
 	var sum = 0;
 	$(".price").each(function(index){		
 		sum = (sum + parseInt($(this).val()));		
@@ -56,16 +57,16 @@ $(document).ready(function() {
 </head>
 <body>
 <h1>ORDER</h1>
-<%-- <form>
- 	<input type="hidden" name="num" value="${list.num}"> 
- 	<input type="hidden" name="goods_Code" value="${list.goods_Code}">
+<form action="loginCheck/orderConfirmAll" method="get">
+ 	
+<%--  	<input type="hidden" name="goods_Code" value="${list.goods_Code}">
  	<input type="hidden" name="goods_Name" value="${list.goods_Name}">
  	<input type="hidden" name="goods_Price" value="${list.goods_Price}">
  	<input type="hidden" name="goods_Brand" value="${list.goods_Brand}">
  	<input type="hidden" name="goods_Color" value="${list.goods_Color}">
  	<input type="hidden" name="goods_Amount" value="${list.goods_Amount}">
- 	<input type="hidden" name="goods_Image" value="${list.goods_Image}">
-</form> --%>
+ 	<input type="hidden" name="goods_Image" value="${list.goods_Image}"> --%>
+
 <h3>주문정보</h3>
 <table class="tblList">
 			<colgroup>
@@ -81,6 +82,7 @@ $(document).ready(function() {
 		<th>합계</th>
 	</tr>
 	<c:forEach items="${orderTemp}" var="list">
+	<input type="hidden" name="num" value="${list.num}"> 
 	<tr>
 		<td>${list.num}</td>
 		<td class="img"><img src="images/items/thum/${list.goods_Image}.jpg"/></td>
@@ -102,7 +104,7 @@ $(document).ready(function() {
 <table class="tbl">			
 	<tr><th>이름</th><td><input type="text" value=" ${member.username}" id="name"></td></tr>
 	<tr><th>주소</th>
-		<td><input type="text" value="${member.post}" name="post" id="post" placeholder="우편번호">
+		<td><input type="text" value="${member.post}" id="post" placeholder="우편번호">
 		<!-- <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> -->
 		<span class="address">	
 		<input type="text" value="${member.addr1}" name="addr1" id="addr1" placeholder="도로명주소">
@@ -136,7 +138,7 @@ $(document).ready(function() {
 	</tr>
 	
 	<tr>		
-	<tr><th>이름</th><td><input type="text" id="name_same"></td></tr>
+	<tr><th>이름</th><td><input type="text" id="name_same" name="username"></td></tr>
 	<tr><th>주소</th>
 		<td><input type="text" name="post" id="sample4_postcode" placeholder="우편번호">
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
@@ -173,12 +175,12 @@ $(document).ready(function() {
 		</td>					
 	</tr>
 </table>
-
 <div class="btnGroup">
 	<input type="submit" value="결제" class="btn yellow">
 	<input type="reset" value="취소" class="btn gray">
 	</div>
 
+</form>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.

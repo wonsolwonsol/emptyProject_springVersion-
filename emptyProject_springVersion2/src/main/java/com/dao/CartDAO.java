@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dto.Cart;
+import com.dto.Member;
+import com.dto.Order;
 
 @Repository
 public class CartDAO {
@@ -49,6 +51,21 @@ public class CartDAO {
 	public List<Cart> cartToOrderAll(ArrayList<String> check) {
 		List<Cart> list = template.selectList("CartMapper.cartToOrderAll", check);
 		return list;
+	}
+
+	public Order orderConfirm(Order order) {		
+		template.insert("OrderMapper.orderConfirm", order);
+		int n = order.getNum();
+		template.delete("CartMapper.cartDel", n);
+		Order list = template.selectOne("OrderMapper.orderSel", n);
+		return list;
+	}
+
+
+	public void orderConfirmAll(List<Order> oList, ArrayList<String> num) {
+		System.out.println("oList     "+oList);
+		template.insert("OrderMapper.orderConfirmAll", oList);
+		template.delete("CartMapper.cartDelAll", num);		
 	}
 
 }

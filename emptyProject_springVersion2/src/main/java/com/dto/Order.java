@@ -6,6 +6,7 @@ import org.apache.ibatis.type.Alias;
 public class Order {
 	private int num;
 	private String userid;
+	private String username;
 	private String goods_Code;
 	private String goods_Name;
 	private int goods_Price;
@@ -16,7 +17,7 @@ public class Order {
 	private String post;
 	private String addr1;
 	private String addr2;
-	private String phone1;
+	private String phone;
 	private String payMethod;
 	public int getNum() {
 		return num;
@@ -29,6 +30,12 @@ public class Order {
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getGoods_Code() {
 		return goods_Code;
@@ -90,11 +97,11 @@ public class Order {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	public String getPhone1() {
-		return phone1;
+	public String getPhone() {
+		return phone;
 	}
-	public void setPhone1(String phone1) {
-		this.phone1 = phone1;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getPayMethod() {
 		return payMethod;
@@ -104,21 +111,19 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [num=" + num + ", userid=" + userid + ", goods_Code=" + goods_Code + ", goods_Name=" + goods_Name
-				+ ", goods_Price=" + goods_Price + ", goods_Color=" + goods_Color + ", goods_Amount=" + goods_Amount
-				+ ", goods_Image=" + goods_Image + ", goods_Brand=" + goods_Brand + ", post=" + post + ", addr1="
-				+ addr1 + ", addr2=" + addr2 + ", phone1=" + phone1 + ", payMethod=" + payMethod + "]";
+		return "Order [num=" + num + ", userid=" + userid + ", username=" + username + ", goods_Code=" + goods_Code
+				+ ", goods_Name=" + goods_Name + ", goods_Price=" + goods_Price + ", goods_Color=" + goods_Color
+				+ ", goods_Amount=" + goods_Amount + ", goods_Image=" + goods_Image + ", goods_Brand=" + goods_Brand
+				+ ", post=" + post + ", addr1=" + addr1 + ", addr2=" + addr2 + ", phone=" + phone + ", payMethod="
+				+ payMethod + "]";
 	}
-	public Order() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Order(int num, String userid, String goods_Code, String goods_Name, int goods_Price, String goods_Color,
-			int goods_Amount, String goods_Image, String goods_Brand, String post, String addr1, String addr2,
-			String phone1, String payMethod) {
+	public Order(int num, String userid, String username, String goods_Code, String goods_Name, int goods_Price,
+			String goods_Color, int goods_Amount, String goods_Image, String goods_Brand, String post, String addr1,
+			String addr2, String phone, String payMethod) {
 		super();
 		this.num = num;
 		this.userid = userid;
+		this.username = username;
 		this.goods_Code = goods_Code;
 		this.goods_Name = goods_Name;
 		this.goods_Price = goods_Price;
@@ -129,9 +134,16 @@ public class Order {
 		this.post = post;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
-		this.phone1 = phone1;
+		this.phone = phone;
 		this.payMethod = payMethod;
 	}
+	public Order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 	
 	
 

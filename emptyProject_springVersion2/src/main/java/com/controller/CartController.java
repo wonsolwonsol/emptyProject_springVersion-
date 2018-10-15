@@ -68,7 +68,6 @@ public class CartController {
 	
 	@RequestMapping("/loginCheck/cartToOrder")
 	public String cartToOrder(@RequestParam int num, HttpSession session) {
-		System.out.println("ddd");
 		Member mem = (Member) session.getAttribute("member");
 		Cart cart = service.cartToOrder(num);
 //		red.addFlashAttribute("cart", cart);
@@ -89,12 +88,49 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="/loginCheck/orderConfirm", method=RequestMethod.POST)
-	public ModelAndView orderConfirm(Order order, HttpSession session, ModelAndView mav) {
+	public String orderConfirm(Order order, HttpSession session, 
+			@RequestParam String phone1 , @RequestParam String phone2, @RequestParam String phone3) {
 		Member mem = (Member) session.getAttribute("member");
+		String phone = phone1+phone2+phone3;
 		order.setUserid(mem.getUserid());
-		mav.addObject("order", order);
-		mav.setViewName("../orderConfirm");
-		return mav;
+		order.setPhone(phone);
+		System.out.println(order);
+		
+		Order list = service.orderConfirm(order);
+		session.setAttribute("order", list);
+		System.out.println(list);
+		return "redirect:../orderConfirm";
+	}
+	@RequestMapping(value="/loginCheck/orderConfirmAll", method=RequestMethod.GET)
+	public String orderConfirmAll(@RequestParam("num") ArrayList<String> num, HttpSession session, Order ord,
+			@RequestParam String phone1 , @RequestParam String phone2, @RequestParam String phone3) {
+		Member mem = (Member) session.getAttribute("member");		
+		List<Cart> cList = service.cartToOrderAll(num);
+		List<Order> oList = new ArrayList();
+		
+		for (Cart cart : cList) {
+			Order order = new Order();
+			order.setAddr1(ord.getAddr1());
+			order.setAddr2(ord.getAddr2());
+			order.setPayMethod(ord.getPayMethod());
+			order.setPhone(phone1+phone2+phone3);
+			order.setUserid(mem.getUserid());
+			order.setUsername(ord.getUsername());
+			order.setPost(ord.getPost());
+			order.setGoods_Amount(cart.getGoods_Amount());
+			order.setGoods_Brand(cart.getGoods_Brand());
+			order.setGoods_Code(cart.getGoods_Code());
+			order.setGoods_Color(cart.getGoods_Color());
+			order.setGoods_Image(cart.getGoods_Image());
+			order.setGoods_Name(cart.getGoods_Name());
+			order.setGoods_Price(cart.getGoods_Price());
+			order.setNum(cart.getNum());
+			oList.add(order);
+		}
+		service.orderConfirmAll(oList, num);
+		session.setAttribute("orderAll", oList);
+		
+		return "redirect:../orderConfirmAll";
 	}
 	
 }

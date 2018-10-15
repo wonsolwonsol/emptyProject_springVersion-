@@ -36,7 +36,10 @@ $(document).ready(function() {
 <h1>주문성공</h1>
 <p class="orderSuccess">
 감사합니다. 주문이 완료 되었습니다<br>
-주문번호: ${order.num}
+주문번호: 
+<c:forEach items="${orderAll}" var="order">
+${order.num}
+</c:forEach>
 </p>
 
 <h3>주문정보</h3>
@@ -49,6 +52,7 @@ $(document).ready(function() {
 		<th>수량</th>
 		<th>합계</th>
 	</tr>
+<c:forEach items="${orderAll}" var="order">
 	<tr>
 		<td>${order.num}</td>
 		<td class="img"><img src="images/items/thum/${order.goods_Image}.jpg"/></td>
@@ -60,6 +64,7 @@ $(document).ready(function() {
 		<td id="price">${order.goods_Price}</td>
 		<td>${order.goods_Amount}</td>
 		<td><fmt:formatNumber value="${order.goods_Price * order.goods_Amount}" type="currency" /></td>	
+</c:forEach>
 		<input type="hidden" class="price" value="${order.goods_Price * order.goods_Amount}">
 		<tr class="highlight gray"><th colspan="2">합계</th>
 			<td colspan="5" id="sum" style="font-weight: bold;"></td></tr>	
@@ -71,33 +76,35 @@ $(document).ready(function() {
 		<th>결제수단</th>
 		<th>상태</th>
 	</tr>
+
 	<tr>
-		<td>${order.payMethod}</td>
+		<td>${orderAll[0].payMethod}</td>
 		<td>결제완료</td>
 	</tr>
+
 </table>
 
 <h3>고객정보</h3>
 
-<table class="tbl">			
-	<tr><th>이름</th><td>${order.username}</td></tr>
+<table class="tbl">	
+
+	<tr><th>이름</th><td>${orderAll[0].username}</td></tr>
 	<tr><th>주소</th>
-		<td>${order.post}
+		<td>${orderAll[0].post}
 		<span class="address">	
-		${order.addr1}
-		${order.addr2}</span>
+		${orderAll[0].addr1}
+		${orderAll[0].addr2}</span>
 		</td>
 	</tr>	
 	<tr>
-		<th>휴대폰</th><td>${order.phone}
+		<th>휴대폰</th><td>${orderAll[0].phone}
 	</tr>
-	
+
 </table>
-	
 
 <div class="btnGroup">
-	<input type="submit" value="확인" class="btn yellow">
-	<input type="reset" value="쇼핑 계속하기" class="btn gray">
+	<input type="submit" value="결제" class="btn yellow">
+	<input type="reset" value="취소" class="btn gray">
 	</div>
 </body>
 </html>

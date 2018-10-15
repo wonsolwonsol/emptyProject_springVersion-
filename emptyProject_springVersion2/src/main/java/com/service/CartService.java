@@ -6,9 +6,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.CartDAO;
 import com.dto.Cart;
+import com.dto.Member;
+import com.dto.Order;
 
 @Service
 public class CartService {
@@ -49,5 +52,16 @@ public class CartService {
 	public List<Cart> cartToOrderAll(ArrayList<String> check) {
 		List<Cart> list = dao.cartToOrderAll(check);
 		return list;
+	}
+
+	@Transactional
+	public Order orderConfirm(Order order) {
+		Order list = dao.orderConfirm(order);	
+		return list;
+	}	
+
+	@Transactional
+	public void orderConfirmAll(List<Order> oList, ArrayList<String> num) {
+		dao.orderConfirmAll(oList, num);		
 	}
 }

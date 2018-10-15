@@ -142,7 +142,7 @@
 							<table style='padding:15px'>
 								<tr>
 									<td>
-										<a href="goodsRetrieve?goods_Code=${dto.goods_Code}">
+										<a href="goodsRetrieve?goods_Code=${dto.goods_Code}" class="aLink">
 											<img src="images/items/thum/${dto.goods_Image1}.jpg" border="0" align="center" width="200">
 										</a>
 									</td>
