@@ -38,7 +38,7 @@ $("#submit").click(function(e){
 <tr>
 	<th width="0%"></th>
 	<td width="90%">${questionRetrieve.content }</td>
-	<td width="10%"><a href=""><img src="images/icon/update_icon.png" width="20px" height="30px" ></a></td>
+	<td width="10%"><a href="questionUpdateUI?question_number=${questionRetrieve.question_number } "><img src="images/icon/update_icon.png" width="20px" height="30px" ></a></td>
 	<td width="10%"><a href="questionDelete?question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
 </table>

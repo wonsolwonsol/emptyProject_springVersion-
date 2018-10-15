@@ -17,16 +17,7 @@ import com.dto.Question_Comments;
 @Repository
 public class QuestionDAO {
 	@Autowired
-	SqlSessionTemplate t ;
-	
-	/*public SqlSessionTemplate getT() {
-		return t;
-	}
-	
-	public void setT(SqlSessionTemplate t) {
-		this.t = t;
-	}*/
-
+	SqlSessionTemplate t ;	
 	//Comment from question_board_comment
 	// author, comment_contents, comment_number, question_number 
 	public List<Question_Comments> questionComment(String question_number){
@@ -89,6 +80,11 @@ public class QuestionDAO {
 		t.insert("QuestionMapper.questionWriteSubmit", question); 
 	}
 	
+	//questionUpdate
+	public void questionUpdate(Question question) {
+		t.update("QuestionMapper.questionUpdate", question); 
+		System.out.println("questionUpdate DAO >>>>>>>"+question);
+	}
 	
 }
 

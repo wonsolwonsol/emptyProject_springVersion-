@@ -37,4 +37,11 @@ public class QuestionBoardService {
 		System.out.println("questionWriteSubmit Service >>>>>>>>"+question);
 	}
 	
+	//questionUpdate
+	public void questionUpdate(Question question) {
+		System.out.println("QuestionService>>>update"+question);
+		dao.questionUpdate(question); 
+		
+	}
+	
 }

@@ -52,8 +52,11 @@ values (
 	,#{content} 
 	,sysdate ) 
 </insert>
-
-
-
+<update id="questionUpdate" parameterType="Question">
+update question
+set title = #{title} 
+	,content = #{content} 
+where question_number = #{question_number} 
+</update>
 
 </mapper>
