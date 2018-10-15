@@ -32,15 +32,12 @@ public class QuestionController {
 	
 		@RequestMapping(value="/questionCommentDelete")
 		public String questionCommentDelete(@RequestParam int comment_number, @RequestParam int question_number) {
-			System.out.println("Controller : question_num====="+question_number);
-			System.out.println("Controller : comment_number======="+comment_number);
 			qservice.questionCommentDelete(comment_number); 
 			//return "redirect:/question?currentPage=1"; 
 			return "redirect:/questionRetrieve?question_number="+question_number; 
 		}
 		@RequestMapping("/questionDelete")
 		public String questionDelete(@RequestParam int question_number){
-			System.out.println("=======questionDelete Controll>>>>"+question_number);
 			service.questionDelete(question_number); 
 			return "redirect:/question?currentPage=1"; 
 		}
@@ -50,12 +47,8 @@ public class QuestionController {
 			if(currentPage == 0){
 				currentPage = 1;}
 			Page2 page = service.questionAll(currentPage); 
-			System.out.println("pagelist:     "+page);
-			System.out.println("QuestionControll===============");
 			List<Question> m = page.getList();
-			System.out.println(m);
 			mod.addAttribute("page", page);	
-			System.out.println("dsada"+m);
 			return "question"; }
 		
 		@RequestMapping("/questionWrite")
@@ -63,9 +56,6 @@ public class QuestionController {
 			return "questionWrite";}
 		@RequestMapping(value="/questionWriteSumit", method=RequestMethod.POST) 
 		public String questionWriteSumit(Question question){
-			System.out.println("===================questionWriteSumit>>>>>>>>>");
-
-			System.out.println(question); 
 			service.questionWriteSubmit(question);
 			return "redirect:/question?currentPage=1" ; 
 		}
@@ -90,28 +80,49 @@ public class QuestionController {
 			return "redirect:question"; 
 		}
 	*/
-		//questionCommentWrite
-		@RequestMapping("/questionCommentWrite")
-		public String questionCommentWrite() {
-			return "question?currentPage=1"; 
-		}
 		//questionUpdate
 		@RequestMapping("/questionUpdateUI")
 		public ModelAndView questionUpdateUI(@RequestParam String question_number, ModelAndView m, Question question) {
-			System.out.println("QuestionController>>>>questionUpdate>>>>>>>>"+question_number);
-			//return "redirect:/question?currentPage=1" ; 
 			Question q = service.questionRetrieve(question_number); 
-			System.out.println("CHECK >>>>>>>>"+q);
 			m.addObject("questionUpdateUI", q);
 			m.setViewName("questionUpdateUI");
 			return m; 
 		}
 		@RequestMapping("/questionUpdate")
 		public String questionUpdate(Question q) {
-			System.out.println("contoller>>>>>>update>>>>>>");
-			System.out.println(">>>>>>>>>>>>>>>>>>>"+q);
+
 			service.questionUpdate(q); 
 			return "redirect:/question?currentPage=1"; 
 		}
+		//questionCommentWrite
+		@RequestMapping("/questionCommentWrite")
+		public String questionCommentWrite(Question_Comments qc, @RequestParam String question_number) {
+			System.out.println("Contoller of comment >>>>>"+qc);
+			qservice.questionCommentWrite(qc);
+			return "redirect:/questionRetrieve?question_number="+question_number; 
+		}
+		
+		//questionAdmin
+		@RequestMapping("questionAdmin")
+		public String questionAdmin(HttpSession session, Model mod, @RequestParam int currentPage) {
+			System.out.println("admin question >>>>>>>>>>>>>>>>>>>>>>>>>>>");
+			if(currentPage == 0){
+				currentPage = 1;}
+			Page2 page = service.questionAll(currentPage); 
+			List<Question> m = page.getList();
+			mod.addAttribute("page", page);	
+			return "questionAdmin"; 
+			
+		}
+		
+		//questionAdminDelAll
+		@RequestMapping("/questionAdminDelAll")
+		public String questionAdminDelAll(@RequestParam List<String> check) {
+			System.out.println("controll of questionAdminDelAll >>>>");
+			System.out.println(check); // 번호로 가져오고 
+			service.questionAdminDelAll(check);
+			return "redirect:/question?currentPage=1"; 
+		}
+	
 	
 }

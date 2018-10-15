@@ -61,8 +61,10 @@ $("#submit").click(function(e){
 </table>
 <hr>  
 <form name="myForm" method="post" action="questionCommentWrite">
+<input type="hidden" value="${member.userid }" name="author"> 
+<input type="hidden" value="${questionRetrieve.question_number }" name="question_number"> 
 ${member.userid } 님 : <br><br> 
-<textarea style="resize:none;" id="content" cols="110" rows="2" ></textarea>
+<textarea style="resize:none;" id="content" cols="110" rows="2" name="comment_contents"></textarea>
 <input type="submit" id="submit" class="btn yellow" value="등록" />
 </form>
 </body>

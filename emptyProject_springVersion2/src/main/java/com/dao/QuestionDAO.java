@@ -66,6 +66,12 @@ public class QuestionDAO {
 		int n = t.delete("QuestionMapper.questionDelete", question_number); 
 		return n; 
 	}
+	// questionCommentWrite
+	public void questionCommentWrite(Question_Comments qc) {
+		System.out.println("QuestionComment DAO >>>>"+qc);
+		t.insert("questionCommentWrite", qc);
+		
+	}
 	
 	//questionCommentDelete
 	public int questionCommentDelete(int comment_number) {
@@ -86,6 +92,11 @@ public class QuestionDAO {
 		System.out.println("questionUpdate DAO >>>>>>>"+question);
 	}
 	
+	public void questionAdminDelAll(List<String> check) {
+		System.out.println("questionAdminDelAll DAO>>>>>>"+check);
+		t.delete("QuestionMapper.questionAdminDelAll", check); 
+		
+	}
 }
 
 

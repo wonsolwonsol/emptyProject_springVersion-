@@ -25,4 +25,10 @@ public class QuestionCommentService {
 		int n = dao.questionCommentDelete(comment_number); 
 		return n; 
 	}
+	
+	//questionCommentWrite
+	public void questionCommentWrite(Question_Comments qc) {
+		System.out.println("QuestionComment Service >>>>>>>"+qc);
+		dao.questionCommentWrite(qc);
+	}
 }
