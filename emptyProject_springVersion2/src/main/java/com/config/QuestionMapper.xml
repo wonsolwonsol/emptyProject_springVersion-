@@ -38,6 +38,19 @@ where question_number = #{question_number}
 delete from question_board_comment
 where comment_number = #{comment_number} 
 </delete>
+<insert id="questionCommentWrite" parameterType="Question_Comments"> 
+insert into question_board_comment (
+ question_number
+, comment_number
+, author
+, comment_contents ) 
+values ( #{question_number} 
+,comment_number.NEXTVAL 
+,#{author}
+,#{comment_contents} ) 
+</insert>
+
+<!-- 질문 -->
 <insert id="questionWriteSubmit" parameterType="Question">
 insert into question (
 	question_number
@@ -52,8 +65,17 @@ values (
 	,#{content} 
 	,sysdate ) 
 </insert>
+<update id="questionUpdate" parameterType="Question">
+update question
+set title = #{title} 
+	,content = #{content} 
+where question_number = #{question_number} 
+</update>
 
-
-
+<delete id="questionAdminDelAll" parameterType="list">
+delete from question
+where question_number in 
+<foreach close=")" separator="," open="(" collection="list" index="index" item="item"> #{item} </foreach>
+</delete>
 
 </mapper>

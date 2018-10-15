@@ -38,7 +38,7 @@ $("#submit").click(function(e){
 <tr>
 	<th width="0%"></th>
 	<td width="90%">${questionRetrieve.content }</td>
-	<td width="10%"><a href=""><img src="images/icon/update_icon.png" width="20px" height="30px" ></a></td>
+	<td width="10%"><a href="questionUpdateUI?question_number=${questionRetrieve.question_number } "><img src="images/icon/update_icon.png" width="20px" height="30px" ></a></td>
 	<td width="10%"><a href="questionDelete?question_number=${questionRetrieve.question_number }"><img src="images/icon/delete_icon.png" width="20px" height="30px" ></a></td>
 </tr>
 </table>
@@ -61,8 +61,10 @@ $("#submit").click(function(e){
 </table>
 <hr>  
 <form name="myForm" method="post" action="questionCommentWrite">
+<input type="hidden" value="${member.userid }" name="author"> 
+<input type="hidden" value="${questionRetrieve.question_number }" name="question_number"> 
 ${member.userid } 님 : <br><br> 
-<textarea style="resize:none;" id="content" cols="110" rows="2" ></textarea>
+<textarea style="resize:none;" id="content" cols="110" rows="2" name="comment_contents"></textarea>
 <input type="submit" id="submit" class="btn yellow" value="등록" />
 </form>
 </body>

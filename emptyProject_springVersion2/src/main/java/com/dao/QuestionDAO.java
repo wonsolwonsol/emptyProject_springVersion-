@@ -17,16 +17,7 @@ import com.dto.Question_Comments;
 @Repository
 public class QuestionDAO {
 	@Autowired
-	SqlSessionTemplate t ;
-	
-	/*public SqlSessionTemplate getT() {
-		return t;
-	}
-	
-	public void setT(SqlSessionTemplate t) {
-		this.t = t;
-	}*/
-
+	SqlSessionTemplate t ;	
 	//Comment from question_board_comment
 	// author, comment_contents, comment_number, question_number 
 	public List<Question_Comments> questionComment(String question_number){
@@ -75,6 +66,12 @@ public class QuestionDAO {
 		int n = t.delete("QuestionMapper.questionDelete", question_number); 
 		return n; 
 	}
+	// questionCommentWrite
+	public void questionCommentWrite(Question_Comments qc) {
+		System.out.println("QuestionComment DAO >>>>"+qc);
+		t.insert("questionCommentWrite", qc);
+		
+	}
 	
 	//questionCommentDelete
 	public int questionCommentDelete(int comment_number) {
@@ -89,7 +86,17 @@ public class QuestionDAO {
 		t.insert("QuestionMapper.questionWriteSubmit", question); 
 	}
 	
+	//questionUpdate
+	public void questionUpdate(Question question) {
+		t.update("QuestionMapper.questionUpdate", question); 
+		System.out.println("questionUpdate DAO >>>>>>>"+question);
+	}
 	
+	public void questionAdminDelAll(List<String> check) {
+		System.out.println("questionAdminDelAll DAO>>>>>>"+check);
+		t.delete("QuestionMapper.questionAdminDelAll", check); 
+		
+	}
 }
 
 

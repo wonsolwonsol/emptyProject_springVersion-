@@ -62,7 +62,8 @@ $("p").html(paging);
 <button class="btn yellow" style="width:10%" ><a href="questionWrite">질문하기</a></button>
 <c:if test="${!empty member }">
  	<c:if test="${member.userid eq 'admin' }">
- 	<button class="btn gray"><a href=""></a>질문관리 </button>
+ 	<button class="btn yellow" style="width:10%" ><a href="questionAdmin?currentPage=1">관리자</a></button>
+ 	<!-- <button class="btn gray"><a href="questionAdmin"></a>질문관리 </button> -->
  	</c:if>
  	</c:if>
 </body>

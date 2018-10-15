@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +38,17 @@ public class QuestionBoardService {
 		dao.questionWriteSubmit(question);
 		System.out.println("questionWriteSubmit Service >>>>>>>>"+question);
 	}
+	
+	//questionUpdate
+	public void questionUpdate(Question question) {
+		System.out.println("QuestionService>>>update"+question);
+		dao.questionUpdate(question); 
+		
+	}
+	public void questionAdminDelAll(List<String> check) {
+		System.out.println("Service >>> questionAdminDelAll >>"+check);
+		dao.questionAdminDelAll(check);
+	}
+	
 	
 }
