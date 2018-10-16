@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-	.logo{width:150px; margin-bottom: 50px; align-items:center; }
+	.logo{width:150px; margin-bottom: 50px; margin-left:7px; text-decoration:none;
+	}
 </style>
 <div class="sidemenu">	
-		<a href="/app" id="logo">
+		<a href="/app" class="logo">
 		<img src="images/emFty_logo.png" class="logo">
 		</a>
 	<br>

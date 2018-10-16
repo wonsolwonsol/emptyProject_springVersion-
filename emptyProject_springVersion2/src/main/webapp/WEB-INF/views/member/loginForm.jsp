@@ -44,8 +44,9 @@
 	</td></tr>	
 </table>
 <div>
-<a href="idFind">아이디 찾기</a>
-<a href="memberForm">회원가입</a><br><br>
+<br>
+<a href="idFind" class="aLink">아이디 찾기</a>
+<a href="memberForm" class="aLink">회원가입</a><br><br>
 </div>
 <div class="btnGroup">
 <input type="submit" value="로그인" class="btn yellow">
