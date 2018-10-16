@@ -59,7 +59,8 @@ select {height:27px;padding:0 5px;}
 	float: left;	
 	padding: 50px;
 }
-.sidemenu img{filter:invert(100%); width:16px; opacity: 30%;}
+
+.sidemenu #side_sns img{filter:invert(100%); width:16px; opacity: 30%;}
 .sidemenu #side_sns{display: inline-block;}
 .topmenu{
 	background-color:#fff;

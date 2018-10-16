@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<div class="sidemenu">
-	<h1><a href="/app" id="logo">logo</a></h1>
+<style>
+	.logo{width:150px; margin-bottom: 50px; align-items:center; }
+</style>
+<div class="sidemenu">	
+		<a href="/app" id="logo">
+		<img src="images/emFty_logo.png" class="logo">
+		</a>
 	<br>
 	<ul id="side_category">
 
