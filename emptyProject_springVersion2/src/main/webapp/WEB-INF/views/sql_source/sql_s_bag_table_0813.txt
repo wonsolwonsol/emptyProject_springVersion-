@@ -5,7 +5,7 @@ commit;
 create table review (
 review_number  number(5) primary key
 , title varchar2(50) not null
-, author varchar(20) not null 
+, author varchar2(20) not null 
 , content varchar2(1000) not null 
 , image_name varchar2(50) 
 , readcnt number(6) default 0 
