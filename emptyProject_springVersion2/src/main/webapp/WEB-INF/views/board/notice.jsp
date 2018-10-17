@@ -54,6 +54,7 @@ $("p").html(paging);
 <input type="hidden" value="${page.currentPage}" id="curpage">
 <pre></pre>
 <p align="center">page</p>
+<a href="reviewRetrieve">임시테스트</a>
 <%-- <table class="tbl" border="1">
 <thead>
 	<tr>

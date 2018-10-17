@@ -7,10 +7,12 @@ public class Review {
 	
 	private int review_number;
 	private String title ;
+	private String author;
 	private String content;
 	private String image_name; 
 	private String term;
 	private String regdate ;
+	private int readcnt ;
 	public int getReview_number() {
 		return review_number;
 	}
@@ -22,6 +24,12 @@ public class Review {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	public String getContent() {
 		return content;
@@ -47,24 +55,35 @@ public class Review {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	public int getReadcnt() {
+		return readcnt;
+	}
+	public void setReadcnt(int readcnt) {
+		this.readcnt = readcnt;
+	}
 	@Override
 	public String toString() {
-		return "Review [review_number=" + review_number + ", title=" + title + ", content=" + content + ", image_name="
-				+ image_name + ", term=" + term + ", regdate=" + regdate + "]";
+		return "Review [review_number=" + review_number + ", title=" + title + ", author=" + author + ", content="
+				+ content + ", image_name=" + image_name + ", term=" + term + ", regdate=" + regdate + ", readcnt="
+				+ readcnt + "]";
 	}
-	public Review(int review_number, String title, String content, String image_name, String term, String regdate) {
+	public Review(int review_number, String title, String author, String content, String image_name, String term,
+			String regdate, int readcnt) {
 		super();
 		this.review_number = review_number;
 		this.title = title;
+		this.author = author;
 		this.content = content;
 		this.image_name = image_name;
 		this.term = term;
 		this.regdate = regdate;
+		this.readcnt = readcnt;
 	}
 	public Review() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 	

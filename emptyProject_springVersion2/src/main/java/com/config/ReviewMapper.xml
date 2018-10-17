@@ -3,10 +3,30 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReviewMapper">
-<select id="reviewAll" parameterType="string" resultType="Review">
+<select id="review" parameterType="String"> 
 select * from review 
 </select>
+<!-- 글 자세히보기 + 조회수  -->
+<select id="reviewRetrieve" parameterType="hashmap" resultType="Review">
+select review_number
+,title
+,author 
+,content
+,term 
+,regdate
+,image_name 
+,readcnt
+from review 
+where review_number = 2 
+</select>
+
+<update id="updateReadCnt" parameterType="string">
+update review set readcnt = NVL(readcnt, 0) + 1 
+where review_number = #{review_number}
+</update>
+
 <select id="totalCount" resultType="int">
 select count(*) from question
 </select>
+
 </mapper>
