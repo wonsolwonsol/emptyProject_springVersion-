@@ -26,7 +26,7 @@ public class ReviewDAO {
 		int n = t.selectOne("ReviewMapper.totalCount");
 		return n ; }
 	
-	
+	//
 	//@SuppressWarnings("unchecked")
 	public Review reviewRetrieve(String review_number){
 	
