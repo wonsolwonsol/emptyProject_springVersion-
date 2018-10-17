@@ -1,3 +1,35 @@
+-- 181017 sql 업데이트
+drop table review ; -- 아마 언니 db에는 review_board_comment는 없을 거라 테이블 한개만 드롭해주시면 됩니다.
+drop sequence review_number;  --같이 사용했던 시퀀스도 내려주시면 되어요.
+commit; 
+create table review (
+review_number  number(5) primary key
+, title varchar2(50) not null
+, author varchar(20) not null 
+, content varchar2(1000) not null 
+, image_name varchar2(50) 
+, readcnt number(6) default 0 
+, term varchar2(1) CONSTRAINT privacy_term_ck check ( term in ( 'y', 'n') ) 
+, regdate date );
+create sequence review_number
+start with 1
+increment by 1 ;
+
+--여기까지 create 
+insert into review values ( 1, '첫 글입니다', 'wonsol', '첫 글 테스트 내용입니다', 
+null, 0, 'n', sysdate);
+insert into review values ( review_number.NEXTVAL, 
+'두번째 글입니다', 'wonsol', 
+'두번째 글 테스트 내용입니다', 
+null, 0, 'y', 
+sysdate); -- 테스트용 insert 
+select * from review;
+update review set readcnt = NVL(readcnt, 0) +1 where review_number = 1;
+select * from review where review_number = 1; -- 조회수 증가용 쿼리문 
+
+
+
+
 -- 181015 orderinfo 테이블 변경
 ALTER TABLE order_info ADD(goods_brand VARCHAR2(20));
 ALTER TABLE order_info DROP COLUMN order_name;
