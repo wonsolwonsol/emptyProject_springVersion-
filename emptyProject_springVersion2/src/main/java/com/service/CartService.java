@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.CartDAO;
 import com.dto.Cart;
+import com.dto.Goods;
 import com.dto.Member;
 import com.dto.Order;
 
@@ -63,5 +64,10 @@ public class CartService {
 	@Transactional
 	public void orderConfirmAll(List<Order> oList, ArrayList<String> num) {
 		dao.orderConfirmAll(oList, num);		
+	}
+
+	public Goods goodsSelect(String goods_Code) {
+		Goods goods = dao.goodsSelect(goods_Code);
+		return goods;
 	}
 }

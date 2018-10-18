@@ -17,8 +17,6 @@ select goods_Code
 		where goods_Code=#{goods_Code} 
 </select>
 
-
-
 <select id="goodsAll" resultType="Goods">
 select goods_Code
    		,goods_Color

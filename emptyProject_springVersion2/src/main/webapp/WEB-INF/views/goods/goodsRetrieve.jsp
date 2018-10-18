@@ -70,8 +70,8 @@
 		</dl>
 	</div>
 	<div class="btnGroup">
-		<button class="btn yellow">구매</button>
-		<button class="btn gray" id="cart">장바구니</button> 
+		<!-- <button class="btn yellow">구매</button> -->
+		<button class="btn yellow" id="cart">장바구니</button> 
 	</div>
 	<p class="alignC"><img src="images/divider_1.jpg"></p>
 	<div class="alignC">

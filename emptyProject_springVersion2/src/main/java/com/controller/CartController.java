@@ -40,6 +40,31 @@ public class CartController {
 		return "redirect:../goodsRetrieve?goods_Code="+cart.getGoods_Code();
 	}
 	
+	@RequestMapping("/loginCheck/goodsDirectCart")
+	public @ResponseBody String goodsDirectCart(@RequestParam String goods_Code, 
+			@RequestParam String goods_Category, @RequestParam int currentPage, HttpSession session) {
+		System.out.println("진입");
+		Goods goods = service.goodsSelect(goods_Code);		
+		Member member = (Member) session.getAttribute("member");	
+		System.out.println(member);
+		System.out.println(goods);
+		Cart cart = new Cart();				
+		cart.setUserid(member.getUserid());
+		cart.setGoods_Amount(1);
+		cart.setGoods_Brand(goods.getGoods_Brand());
+		cart.setGoods_Code(goods_Code);
+		cart.setGoods_Color(goods.getGoods_Color());
+		cart.setGoods_Image(goods.getGoods_Image1());
+		cart.setGoods_Name(goods.getGoods_Name());
+		int price = Integer.parseInt(goods.getGoods_Price());
+		cart.setGoods_Price(price);		
+		
+		service.goodsCart(cart);
+		String mesg = cart.getGoods_Name()+" 이 카트에 저장되었습니다.";
+		
+		return mesg;
+	}
+	
 	@RequestMapping("/loginCheck/cartlist")
 	public String goodsList(HttpSession session) {
 		Member member = (Member) session.getAttribute("member");
