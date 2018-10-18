@@ -6,6 +6,7 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <script type="text/javascript">
 	$(document).ready(function(){		
 		
@@ -121,27 +122,23 @@
 			
 						
 </table> --%>
+<hr>
 <table width="100%" cellspacing="0" cellpadding="0">
+
 	<tr>
 		<td>
-			<table align="center" width="710" cellspacing="0" cellpadding="0"
-				border="0">
+			<table align="center" width="50px" cellspacing="0" cellpadding="0" border="0">
+
+
 				
 				<tr>
-					<td height="5"></td>
-				</tr>
-				<tr>
-					<td height="1" colspan="8" bgcolor="CECECE"></td>
-				</tr>
-				<tr>
-					<td height="10"></td>
-				</tr>
-				<tr>
     <c:forEach var="dto" items="${page.list}" varStatus="status">	
-						<td>
-							<table style='padding:15px'>
+						<td width="20%" style="padding: 5px">
+							<table style='padding:15px' class="fontSmall">
+							
 								<tr>
-									<td>
+									<td align="center">
+									
 										<a href="goodsRetrieve?goods_Code=${dto.goods_Code}" class="aLink">
 											<img src="images/items/thum/${dto.goods_Image1}.jpg" border="0" align="center" width="200">
 										</a>
@@ -149,22 +146,23 @@
 								</tr>
 								<tr>
 								<td class= "td_default" align ="center">
-										<a class= "a_black">
+								<br>
+										<a href="goodsRetrieve?goods_Code=${dto.goods_Code}" class= "a_black bold aLink">
 										${dto.goods_Brand}<br>
 										</a>
 										<font color="gray">
 										 <br>
 										</font>
 									</td>
-									<td height="10">
+									
 								</tr>
 								<tr>
 									<td class= "td_default" align ="center">
-										<a class= "a_black" href="goodsRetrieve?goods_Code=${dto.goods_Code}">
+										<a class= "a_black aLink" href="goodsRetrieve?goods_Code=${dto.goods_Code}">
 										${dto.goods_Name}<br>
 										</a>
 										<font color="gray">
-										 <br>
+										 
 										</font>
 									</td>
 									
@@ -179,14 +177,16 @@
 								</tr>
 								<tr>
 									<td class="td_gray" align ="center">
+									<a href="goodsRetrieve?goods_Code=${dto.goods_Code}" class="aLink">
 										${dto.goods_Content}
+										</a>
 									</td>
 								</tr>
 								<tr>
 									<td height="10">
 								</tr>
 								<tr>
-									<td class="td_red" align ="center"><font color="red"><strong>
+									<td class="td_red" align ="center"><font color="gray"><strong>
 									
 					<fmt:formatNumber value="${dto.goods_Price}" type="currency"> </fmt:formatNumber>				
 					

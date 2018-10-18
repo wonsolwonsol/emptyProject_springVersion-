@@ -68,6 +68,7 @@ $(function(){
 </form>
 </div>
 <br>
+<!-- 목록보기에는 curpage도 쿼리스트링으로 붙여주세요 -->
 <a href="question">목록보기</a>
 </body>
 </html>

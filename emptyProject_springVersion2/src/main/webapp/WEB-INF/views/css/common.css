@@ -19,7 +19,7 @@ time, mark, audio, video {
 	font-size: 14px;
 	font: inherit;
 	vertical-align: baseline;
-	font-family:'Nanum Gothic', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -58,6 +58,8 @@ select {height:27px;padding:0 5px;}
 .sidemenu{	
 	float: left;	
 	padding: 50px;
+	font-size: 14px;
+	font-weight: lighter;
 }
 
 .sidemenu #side_sns img{filter:invert(100%); width:16px; opacity: 30%;}
@@ -132,6 +134,9 @@ select {height:27px;padding:0 5px;}
 .board {margin-bottom:10px;text-align:right;}
 .board span {display:inline-block;color:#ffba00;font-weight:bold;}
 /* */ 
+.goodslist{
+	width:100px;
+}
 .btnGroup {margin-top:30px;text-align:center; margin-bottom: 30px;}
 .btn {padding:10px 20px;margin-right:3px;min-width:110px;height:auto;font-size:16px;line-height:21px;cursor:pointer;}
 .yellow {background:#ffba00;color:#fff;border:1px solid #DBA901;}
@@ -228,6 +233,22 @@ h3{
 .xsmall {padding:2px 5px 1px;font-size:13px;min-width:auto;}
 a.btn {text-decoration:none;}
 a.gray{color:#333;}
+.linkNone{
+	text-decoration: none;	
+	color: #fff;
+}
+.linkNone:hover{
+	text-decoration: none;
+	color: #fff;
+}
+hr{
+	background-color: transparent;
+    border-top: 1px dotted #ccc;
+}
+.sortBox{
+	
+}
+.fontSmall{font-size: 12px;}
 
 .contents h1{text-align: center; font-weight: bold; font-size: 20px; margin:20px;}
 /* .contents h3{text-align: center; font-weight: bold; font-size: 16px; margin:50px 0px 15px 0px; border-bottom: 2px;} */

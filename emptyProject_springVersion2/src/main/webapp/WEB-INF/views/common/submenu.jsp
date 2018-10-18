@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,700&subset=korean');
 	.logo{width:150px; margin-bottom: 50px; margin-left:7px; text-decoration:none;
+	}
+	.logo:hover{
+		text-decoration:none;
 	}
 </style>
 <div class="sidemenu">	
