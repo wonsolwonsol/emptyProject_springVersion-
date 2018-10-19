@@ -73,7 +73,7 @@
 			if(mem.length != 0){ 		
 				
 				$.ajax({ 
-					type:"get",
+					type:"post",
 					url:"loginCheck/goodsDirectCart",
 					dataType:"text", 
 					data:{
@@ -119,6 +119,9 @@
 		
 </script>
 <!-- <div class="adsense" style="text-align: center; padding:0px 0px 10px 10px"> --> 
+
+
+
 <div class="select" >
 <form method="get" id="sortSelectForm">
 	<select name="sortSelect" id="sortSelect">

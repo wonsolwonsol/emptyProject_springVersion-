@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#passwd2").on("keyup", function(){
@@ -81,19 +81,37 @@
 </form>
 
 
-<h1>ORDER LIST</h1>
-<table class="tbl">
+<h3>주문내역</h3>
+<table class="tblList">
 	<colgroup>
-		<col width="20%" />
+		<col width="15%" />
+		<col width="15%" />
+		<col width="25%" />
+		<col width="10%" />
 		<col width="*" />
+		<col width="10%" />
 	</colgroup>
 	<tr>
-		<th>주문번호</th><th>주문내역</th><th>주문가격</th><th>상태</th></tr>
-<c:forEach var="dto" items="${orderList}" varStatus="status">
-	<tr><td>temp</td>
-		<td>temp</td>
-		<td>temp</td>
-		<td>temp</td>
+		<th>주문번호</th>
+		<th colspan="2">주문내역</th>
+		<th>색상</th>
+		<th>주문가격</th>
+		<th>수량</th>
+		<th>합계</th>
+		<th>상태</th>
+	</tr>
+<c:forEach var="dto" items="${orderlist}" varStatus="status">
+	<tr><td>${dto.num}</td>
+		<td><span class="img"><img src="images/items/thum/${dto.goods_Image}.jpg" /></a></span></td>
+		<td>
+			<p class="bold">${dto.goods_Brand}</p>
+			<p>${dto.goods_Name}</p>
+		</td>
+		<td>${dto.goods_Color}</td>
+		<td><fmt:formatNumber value="${dto.goods_Price}" type="currency"/></td>
+		<td>${dto.goods_Amount}</td>
+		<td><fmt:formatNumber value="${dto.goods_Amount * dto.goods_Price}" type="currency"/></td>
+		<td>결제완료</td>
 	</tr>
 </c:forEach>
 </table>

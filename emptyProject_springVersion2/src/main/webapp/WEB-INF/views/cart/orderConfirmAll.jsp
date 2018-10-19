@@ -64,8 +64,8 @@ ${order.num}
 		<td id="price">${order.goods_Price}</td>
 		<td>${order.goods_Amount}</td>
 		<td><fmt:formatNumber value="${order.goods_Price * order.goods_Amount}" type="currency" /></td>	
-</c:forEach>
 		<input type="hidden" class="price" value="${order.goods_Price * order.goods_Amount}">
+</c:forEach>
 		<tr class="highlight gray"><th colspan="2">합계</th>
 			<td colspan="5" id="sum" style="font-weight: bold;"></td></tr>	
 </table>

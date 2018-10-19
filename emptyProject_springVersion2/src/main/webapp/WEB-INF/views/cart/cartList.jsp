@@ -45,38 +45,45 @@
 			var goods_Amount = $("#cartAmount"+num).val();
 			var gPrice = $(this).attr("data-price");
 			var total;
-			$.ajax({ 
-				type:"get",
-				url:"loginCheck/goodsCartUpdate",
-				dataType:"text", 
-				data:{ 
-					num:num,
-					goods_Amount:goods_Amount
-				},
-				success:function(data,status,xhr){
-					if(data=='success'){
-						total = Number.parseInt(goods_Amount) * Number.parseInt(gPrice);
-						var txt = "￦"+numeral( total ).format('0,0');
-						$("#sum"+num).text(txt);
+			location.href="loginCheck/goodsCartUpdate?num="+num+"&goods_Amount="+goods_Amount;
+			
+/* 				$.ajax({ 
+					type:"get",
+					url:"loginCheck/goodsCartUpdate",
+					dataType:"text", 
+					data:{ 
+						num:num,
+						goods_Amount:goods_Amount
+					},
+					success:function(data,status,xhr){
+						if(data=='success'){
+							total = Number.parseInt(goods_Amount) * Number.parseInt(gPrice);
+							var txt = "￦"+numeral( total ).format('0,0');
+							$("#sum"+num).text(txt);
+							console.log()
+							$("#cartAmount"+num).val(goods_Amount);												
+						}
 						
-
-		    		    var totalSum = 0;
+						var totalSum = 0;
 		    		    
-		    		    $(".price").each(function(idx,ele){
-		    		    	console.log(ele);
-		    		    	console.log(totalSum);
-		    		    	totalSum += Number.parseInt($(ele).text());
-		    		    })
+			   		     $(".price").each(function(idx,ele){
+				    			var pr = $(ele).attr("data-price");
+				    			var n = $(ele).attr("data-amount");
+				    			console.log(pr);
+				    			console.log(n*pr);
+				    			console.log(n);
+				    		    	totalSum = totalSum + Number.parseInt(pr*n);
+				    		    })
 
-		    		     $("#totalSum").text(totalSum); 
-		    		    console.log(totalSum);
-						
-					}
-				}, 
-				error:function(xhr,status,error){
-					console.log(error); 
-				}
-			}); 
+			   		     $("#totalSum").val(totalSum);  
+			   		     
+					}, 
+					error:function(xhr,status,error){
+						console.log(error); 
+					}    		    
+				});  */
+				
+							
 		})
 		
 		//전체 삭제
@@ -101,6 +108,22 @@
 			var num = $(this).attr("data-orderBtn");
 			location.href="loginCheck/cartToOrder?num="+num;
 		})
+
+		//
+		var totalSum = 0;
+	    
+		     $(".price").each(function(idx,ele){
+   			var pr = $(ele).attr("data-price");
+   			var n = $(ele).attr("data-amount");
+   			console.log(pr);
+   			console.log(n*pr);
+   			console.log(n);
+   		    	totalSum = totalSum + Number.parseInt(pr*n);
+   		    })
+
+		     var txt = "￦"+numeral( totalSum ).format('0,0');
+		     $("#totalSum").text(txt);  
+		
 	})
 </script>
 
@@ -153,10 +176,10 @@
 				</td>
 				<td>
 					<input class="alignR" type="text" name="cart_gAmount" value="${cart.goods_Amount}" id="cartAmount${cart.num}" maxlength="3" style="width:50px;">
-					<input type="button" class="btn xsmall updateBtn" value="수정" data-num="${cart.num}" data-price="${cart.goods_Price}" /> 
+					<input type="button" class="btn xsmall updateBtn price" value="수정" data-amount="${cart.goods_Amount}"data-num="${cart.num}" data-price="${cart.goods_Price}" /> 
 				</td>
 				<td>
-					<span id="sum${cart.num}" class="price"><fmt:formatNumber value="${cart.goods_Amount * cart.goods_Price}" type="currency"/></span>
+					<span id="sum${cart.num}"><fmt:formatNumber value="${cart.goods_Amount * cart.goods_Price}" type="currency"/></span>
 					
 				</td>
 				<td>
@@ -167,9 +190,11 @@
 				</td>
 			</tr>
 		</c:forEach>
-		<tr>
-				<td colspan="8">
-				<input type="text" value="" id="totalSum">
+		<tr class="highlight gray bold">
+		<td colspan="3" class="aLignR">합계</td>
+				<td colspan="5">
+				<!-- <input type="text" value="" id="totalSum"> -->
+				<span id="totalSum" ></span>
 				</td>
 				</tr>
 		</tbody>

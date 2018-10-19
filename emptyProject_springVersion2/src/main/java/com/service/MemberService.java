@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import com.dao.CartDAO;
 import com.dao.MemberDAO;
 import com.dto.Login;
 import com.dto.Member;
+import com.dto.Order;
 
 @Service
 public class MemberService {
@@ -39,5 +42,10 @@ public class MemberService {
 	public String idfind(Member member) {
 		String userid = dao.idfind(member);
 		return userid;
+	}
+
+	public List<Order> orderList(String userid) {
+		List<Order> list = dao.orderList(userid);
+		return list;
 	}
 }

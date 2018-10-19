@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.Login;
 import com.dto.Member;
+import com.dto.Order;
 import com.service.MemberService;
 
 @Controller
@@ -53,8 +56,11 @@ public class MemberController {
 		return "redirect:../";
 	}
 	@RequestMapping("/loginCheck/mypage")
-	public String mypage() {
-		System.out.println("mypage");
+	public String mypage(HttpSession session) {
+		Member mem = (Member) session.getAttribute("member");
+		
+		List<Order> list = service.orderList(mem.getUserid());
+		session.setAttribute("orderlist", list);
 		return "redirect:../myPage";
 	}
 	

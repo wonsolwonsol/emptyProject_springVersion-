@@ -40,7 +40,7 @@ public class CartController {
 		return "redirect:../goodsRetrieve?goods_Code="+cart.getGoods_Code();
 	}
 	
-	@RequestMapping("/loginCheck/goodsDirectCart")
+	@RequestMapping(value="/loginCheck/goodsDirectCart", method=RequestMethod.POST, produces="application/text; charset=utf8")
 	public @ResponseBody String goodsDirectCart(@RequestParam String goods_Code, @RequestParam int currentPage, HttpSession session) {
 		Goods goods = service.goodsSelect(goods_Code);		
 		Member member = (Member) session.getAttribute("member");	
@@ -72,15 +72,24 @@ public class CartController {
 	}
 	
 	@RequestMapping("/loginCheck/goodsCartDel")
-	public @ResponseBody String goodsCartDel(@RequestParam int num) {
+	public @ResponseBody String goodsCartDel(@RequestParam int num,  HttpSession session) {
 		int n = service.goodsCartDel(num);
+		goodsList(session);
 		return "success";
 	}
 	
-	@RequestMapping("/loginCheck/goodsCartUpdate")
-	public @ResponseBody String goodsCartUpdate(@RequestParam HashMap<String, Integer> map) {		
+/*	@RequestMapping("/loginCheck/goodsCartUpdate")
+	public @ResponseBody String goodsCartUpdate(@RequestParam HashMap<String, Integer> map, HttpSession session) {	
 		int n = service.goodsCartUpdate(map);
+		goodsList(session);
 		return "success";
+	}*/
+	
+	@RequestMapping("/loginCheck/goodsCartUpdate")
+	public String goodsCartUpdate(@RequestParam HashMap<String, Integer> map, HttpSession session) {	
+		int n = service.goodsCartUpdate(map);
+		goodsList(session);
+		return "redirect:./cartlist";
 	}
 	
 	@RequestMapping("/loginCheck/goodsCartDelAll")

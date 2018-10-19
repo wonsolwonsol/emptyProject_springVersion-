@@ -73,7 +73,7 @@
 			if(mem.length != 0){ 
 			
 				$.ajax({ 
-					type:"get",
+					type:"post",
 					url:"loginCheck/goodsDirectCart",
 					dataType:"text", 
 					data:{
