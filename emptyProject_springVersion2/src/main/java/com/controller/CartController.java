@@ -41,9 +41,7 @@ public class CartController {
 	}
 	
 	@RequestMapping("/loginCheck/goodsDirectCart")
-	public @ResponseBody String goodsDirectCart(@RequestParam String goods_Code, 
-			@RequestParam String goods_Category, @RequestParam int currentPage, HttpSession session) {
-		System.out.println("진입");
+	public @ResponseBody String goodsDirectCart(@RequestParam String goods_Code, @RequestParam int currentPage, HttpSession session) {
 		Goods goods = service.goodsSelect(goods_Code);		
 		Member member = (Member) session.getAttribute("member");	
 		System.out.println(member);

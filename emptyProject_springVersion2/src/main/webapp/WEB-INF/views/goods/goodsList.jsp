@@ -67,30 +67,37 @@
 		//directCart
 		$(".cover-btn").on("click", function(){	
 			var num = $(this).attr("data-code");
-			var cate =  $("#cate").val();			
 			var curpage = $("#curpage").val();
-			console.log(this);
-			console.log(num);
-			$.ajax({ 
-				type:"get",
-				url:"loginCheck/goodsDirectCart",
-				dataType:"text", 
-				data:{
-					goods_Category:cate,
-					currentPage:curpage,
-					goods_Code:num
-				},
-				success:function(data,status,xhr){		
-					//세션에 유저가 없으면 error로 가는 게 아니라 전체 스크립트가 오네
-					//한글 깨짐 문제 수정할 것
-					 alert(data);
-				}, 
-				error:function(xhr,status,error){
-					console.log(error);
-					console.log("에러")
-				}
-			})
-		})
+			var mem = "${member}";
+			
+			if(mem.length != 0){ 
+			
+				$.ajax({ 
+					type:"get",
+					url:"loginCheck/goodsDirectCart",
+					dataType:"text", 
+					data:{
+						currentPage:curpage,
+						goods_Code:num
+					},
+					success:function(data,status,xhr){		
+						//세션에 유저가 없으면 error로 가는 게 아니라 전체 스크립트가 오네
+						//한글 깨짐 문제 수정할 것 필터는 문제 없음
+						 alert(data);
+					}, 
+					error:function(xhr,status,error){
+						console.log(error);
+						console.log("에러")
+					}
+				})
+			}else{
+				var txt = confirm("로그인이 필요한 서비스 입니다.");
+				if(txt==true){
+					location.href="loginForm";					
+				}				
+			}
+		
+	})
 		
 		
 		//충격과 공포의 페이징
@@ -165,7 +172,6 @@
 											<img src="images/items/thum/${dto.goods_Image1}.jpg" border="0" align="center" width="200" class="hover-cart">
 										</a>
 										<div class="cover">
-											<%-- <a href="loginCheck/goodsDirectCart?goods_Code=${dto.goods_Code}"> --%>
 											<button class="darkgray cover-btn" data-code="${dto.goods_Code}" >+</button>
 										</div>
 									</td>

@@ -6,7 +6,51 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+.hover-container {
+    position: relative;    
+}
 
+.hover-cart {
+  opacity: 1;
+  display: block;  
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.cover {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hover-container:hover .hover-cart {
+  opacity: 0.5;
+}
+
+.hover-container:hover .cover {
+  opacity: 1;
+}
+
+.cover-btn  {  
+	border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+</style>
 <script type="text/javascript">
 	$(document).ready(function(){		
 		
@@ -20,6 +64,41 @@
 			$(".box").stop().slideToggle("300");
 		})
 		
+				//directCart
+		$(".cover-btn").on("click", function(){	
+			var num = $(this).attr("data-code");
+			var curpage = $("#curpage").val();
+			var mem = "${member}";
+			
+			if(mem.length != 0){ 		
+				
+				$.ajax({ 
+					type:"get",
+					url:"loginCheck/goodsDirectCart",
+					dataType:"text", 
+					data:{
+						currentPage:curpage,
+						goods_Code:num
+					},
+					success:function(data,status,xhr){		
+						//세션에 유저가 없으면 error로 가는 게 아니라 전체 스크립트가 오네
+						//한글 깨짐 문제 수정할 것 필터는 문제 없음
+						 alert(data);
+					}, 
+					error:function(xhr,status,error){
+						console.log(error);
+						console.log("에러")
+					}
+				})
+			}else{
+				var txt = confirm("로그인이 필요한 서비스 입니다.");
+				if(txt==true){
+					location.href="loginForm";					
+				}				
+			}
+		
+	})
+		
 		//충격과 공포의 페이징
 		var record = $("#totalCount").val()
 		var total = record/8;
@@ -28,7 +107,6 @@
 		var paging = "";
 		
 		for(var i = 1; i <= total; i++){
-			console.log(i);
 			if(i==curpage){
 				paging = paging+i+"&nbsp;&nbsp;";
 				
@@ -36,7 +114,6 @@
 				paging = paging+"<a href='/app/goodsAll?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
 			}			
 		}
-		console.log(paging);
 		$("p").html(paging);
 	})//
 		
@@ -133,15 +210,19 @@
 				
 				<tr>
     <c:forEach var="dto" items="${page.list}" varStatus="status">	
+        
 						<td width="20%" style="padding: 5px">
 							<table style='padding:15px' class="fontSmall">
 							
 								<tr>
-									<td align="center">
+									<td align="center" class="hover-container">
 									
-										<a href="goodsRetrieve?goods_Code=${dto.goods_Code}" class="aLink">
-											<img src="images/items/thum/${dto.goods_Image1}.jpg" border="0" align="center" width="200">
+										<a href="goodsRetrieve?goods_Code=${dto.goods_Code}" >
+											<img src="images/items/thum/${dto.goods_Image1}.jpg" border="0" align="center" width="200" class="hover-cart">
 										</a>
+										<div class="cover">
+											<button class="darkgray cover-btn" data-code="${dto.goods_Code}" >+</button>
+										</div>
 									</td>
 								</tr>
 								<tr>
