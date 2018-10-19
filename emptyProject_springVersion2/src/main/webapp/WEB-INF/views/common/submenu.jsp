@@ -26,7 +26,7 @@
 	<ul id="side_board">
 		<li><a href="notice2?currentPage=1">NOTICE</a></li>
 		<li><a href="question?currentPage=1">Q N A</a></li>
-		<li><a href="review">REVIEW</a></li>
+		<li><a href="review?currentPage=1">REVIEW</a></li>
 	</ul>
 	<br>
 	<ul id="side_sns">

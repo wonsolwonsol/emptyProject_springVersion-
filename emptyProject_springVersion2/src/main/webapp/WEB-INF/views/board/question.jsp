@@ -27,8 +27,11 @@ for(var i = 1; i <= total; i++){
 
 console.log(paging);
 $("p").html(paging);
-
+$("#questionAdmin").on("click", function(){
+	location.href="adminCheck/questionAdmin?currentPage=1" 
 })
+})
+
 </script>
 <h1>Question Board</h1>
 <table class="tbl" border="1" align="center">
@@ -60,12 +63,10 @@ $("p").html(paging);
 <pre></pre>
 <br> 
 <button class="btn yellow" style="width:10%" ><a href="questionWrite">질문하기</a></button>
-<c:if test="${!empty member }">
- 	<c:if test="${member.userid eq 'admin' }">
- 	<button class="btn yellow" style="width:10%" ><a href="questionAdmin?currentPage=1">관리자</a></button>
+
+ 	<button class="btn yellow" style="width:10%" id="questionAdmin">관리자</button>
  	<!-- <button class="btn gray"><a href="questionAdmin"></a>질문관리 </button> -->
- 	</c:if>
- 	</c:if>
+ 	
 </body>
 </html>
 

@@ -3,9 +3,18 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReviewMapper">
-<select id="review" parameterType="String"> 
+<select id="review" parameterType="String" resultType="Review"> 
 select * from review 
 </select>
+<delete id="reviewDelete" parameterType="string">
+delete from  review 
+where review_number = #{review_number}
+</delete>
+<update id="reviewUpdate" parameterType="string">
+update review
+set title=#{title}
+	content=#{content} 
+</update>
 <!-- 글 자세히보기 + 조회수  -->
 <select id="reviewRetrieve" parameterType="hashmap" resultType="Review">
 select review_number
@@ -17,16 +26,28 @@ select review_number
 ,image_name 
 ,readcnt
 from review 
-where review_number = 2 
+where review_number = #{review_number} 
 </select>
 
 <update id="updateReadCnt" parameterType="string">
 update review set readcnt = NVL(readcnt, 0) + 1 
 where review_number = #{review_number}
 </update>
-
 <select id="totalCount" resultType="int">
 select count(*) from question
+</select>
+<select id="reviewRetrieveJoin" resultType="ReviewJoin" parameterType="string">
+select review.review_number as review_review_number 
+, review.regdate as review_regdate 
+, review.title as review_title 
+, review.author as review_author 
+,review.readcnt as review_readcnt
+, review.content as review_content 
+,review_comment.author as review_comment_author 
+, review_comment.content as review_comment_content 
+from review, review_comment 
+where review.review_number = review_comment.review_number 
+and review.review_number = #{review_number} 
 </select>
 
 </mapper>
