@@ -1,3 +1,25 @@
+-- 181019 SQL 업데이트 
+-- review Comment table 생성
+create table review_comment 
+( review_number number(6) 
+, r_comment_number number(6) primary key 
+, author varchar2(20) 
+, content varchar2(2000) not null 
+, regdate date
+default sysdate  ) ; 
+
+--
+create sequence r_comment_number
+start with 1
+increment by 1;
+
+alter table review_comment 
+add CONSTRAINT review_number FOREIGN key (review_number)
+references review(review_number) on delete cascade;
+
+
+
+--------------------------------------------------------------//end 181019 
 -- 181017 sql 업데이트
 drop table review ; -- 아마 언니 db에는 review_board_comment는 없을 거라 테이블 한개만 드롭해주시면 됩니다.
 drop sequence review_number;  --같이 사용했던 시퀀스도 내려주시면 되어요.

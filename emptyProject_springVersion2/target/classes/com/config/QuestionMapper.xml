@@ -25,7 +25,7 @@ select count(*)
 from question
 </select>
 <select id="questionAll" parameterType="hashmap" resultType="Question"> 
-select * from question
+select * from question order by question_number desc 
 </select>
 <select id="questionRetrieve" parameterType="string" resultType="Question">
 select * from question where question_number = #{question_number} 

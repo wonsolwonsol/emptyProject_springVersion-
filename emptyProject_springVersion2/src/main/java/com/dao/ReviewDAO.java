@@ -19,20 +19,19 @@ public class ReviewDAO {
 	@Autowired
 	SqlSessionTemplate t ;	
 	
-	//HashMap버전
-
-	
-	
+	public int reviewDelete(String review_number) {
+		int n = t.delete("ReviewMapper.reviewDelete", review_number); 
+		return n; 
+	}
+	public void reviewUpdate(Review review_number) {
+		t.update("ReviewMapper.reviewUpdate", review_number); 
+	}
 	public int totalRecord() {
 		int n = t.selectOne("ReviewMapper.totalCount");
 		return n ; }
-	
-	////
-	//@SuppressWarnings("unchecked")
+
 	public Review reviewRetrieve(String review_number){
-	
-		Review review = t.selectOne("ReviewMapper.reviewRetrieve", review_number);
-		System.out.println("review DAO >>>>>>>>>>>>"+ review);
+		Review review = t.selectOne("ReviewMapper.reviewRetrieve", review_number); 
 		//List result = t.selectList("ReviewMapper.reviewRetrieve", param); 
 		return review; 
 				
@@ -45,13 +44,8 @@ public class ReviewDAO {
 	
 	public List<ReviewJoin> reviewRetrieveJoin(String review_number){
 		List<ReviewJoin> rj = t.selectList("ReviewMapper.reviewRetrieveJoin", review_number );
-	
-		System.out.println("DAO ==============reviewRetrieveJoin"+rj);
 		return rj; 
 	}
-	
-	
-	
 	public Page3 review(int curpage){ //목록보기
 		Page3 page = new Page3(); 
 		//offset 데이터 인덱스 값

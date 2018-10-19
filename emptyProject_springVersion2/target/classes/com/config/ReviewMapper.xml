@@ -6,7 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="review" parameterType="String" resultType="Review"> 
 select * from review 
 </select>
-
+<delete id="reviewDelete" parameterType="string">
+delete from  review 
+where review_number = #{review_number}
+</delete>
+<update id="reviewUpdate" parameterType="string">
+update review
+set title=#{title}
+	content=#{content} 
+</update>
 <!-- 글 자세히보기 + 조회수  -->
 <select id="reviewRetrieve" parameterType="hashmap" resultType="Review">
 select review_number

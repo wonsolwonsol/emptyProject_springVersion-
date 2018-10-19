@@ -103,7 +103,7 @@ public class QuestionController {
 		}
 		
 		//questionAdmin
-		@RequestMapping("questionAdmin")
+		@RequestMapping(value="adminCheck/questionAdmin")
 		public String questionAdmin(HttpSession session, Model mod, @RequestParam int currentPage) {
 			System.out.println("admin question >>>>>>>>>>>>>>>>>>>>>>>>>>>");
 			if(currentPage == 0){
