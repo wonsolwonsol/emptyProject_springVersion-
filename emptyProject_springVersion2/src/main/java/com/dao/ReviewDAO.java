@@ -45,6 +45,7 @@ public class ReviewDAO {
 	
 	public List<ReviewJoin> reviewRetrieveJoin(String review_number){
 		List<ReviewJoin> rj = t.selectList("ReviewMapper.reviewRetrieveJoin", review_number );
+	
 		System.out.println("DAO ==============reviewRetrieveJoin"+rj);
 		return rj; 
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.CartDAO;
 import com.dao.ReviewDAO;
+import com.dto.Page3;
 import com.dto.Review;
 import com.dto.ReviewJoin;
 
@@ -26,8 +27,16 @@ public class ReviewBoardService {
 	
 	public List<ReviewJoin> reviewRetrieveJoin(String review_number) {
 		List<ReviewJoin> rj = dao.reviewRetrieveJoin(review_number);
+		dao.updateReadCnt(review_number);
 		System.out.println("Service reviewRetrieveJoin =========================");
 		return rj; 
+	}
+	
+	public Page3 review(int curpage){
+		Page3 page = dao.review(curpage);
+		System.out.println("review Service ============");
+		return page ; 
+		
 	}
 	
 }

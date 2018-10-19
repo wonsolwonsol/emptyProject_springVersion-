@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReviewMapper">
-<select id="review" parameterType="String"> 
+<select id="review" parameterType="String" resultType="Review"> 
 select * from review 
 </select>
 
@@ -28,7 +28,7 @@ where review_number = #{review_number}
 <select id="totalCount" resultType="int">
 select count(*) from question
 </select>
-<select id="reviewRetrieveJoin" resultType="reviewJoin" parameterType="string">
+<select id="reviewRetrieveJoin" resultType="ReviewJoin" parameterType="string">
 select review.review_number as review_review_number 
 , review.regdate as review_regdate 
 , review.title as review_title 

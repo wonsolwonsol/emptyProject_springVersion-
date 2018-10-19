@@ -7,7 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
-/* $(document).ready(function(){	
+$(document).ready(function(){	
 //충격과 공포의 페이징
 var record = $("#totalCount").val()
 var total = record/8;
@@ -21,14 +21,14 @@ for(var i = 1; i <= total; i++){
 		paging = paging+i+"&nbsp;&nbsp;";
 		
 	}else{
-		paging = paging+"<a href='/app/question?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
+		paging = paging+"<a href='/app/review?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
 	}			
 }
 
 console.log(paging);
 $("p").html(paging);
 
-}) */
+}) 
 </script>
 <h1>Question Board</h1>
 <table class="tbl" border="1" align="center">
@@ -41,20 +41,20 @@ $("p").html(paging);
 	</tr>
 	</thead>
 <tbody>
-<%--  <c:forEach var="dto" items="${page.list }" varStatus="status">	 --%>
+  <c:forEach var="dto" items="${page.list }" varStatus="status">	 
 	<tr>
-	<td></td>
+	<td>${dto. review_number }</td>
 	<td class="td_default">
-	<a class="a_black" href="reviewRetrieve?review_number="></a></td>
-	<td align="center"></td>
-	<td></td>
+	<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a></td>
+	<td align="center">${dto.author}</td>
+	<td>${dto.regdate}</td>
 	</tr>
-	<%-- </c:forEach>  --%>
+	</c:forEach> 
 </tbody> 
 </table>
 <hr>
-<input type="hidden" value="" id="totalCount">
-<input type="hidden" value="" id="curpage">
+<input type="hidden" value="${page.totalCount}" id="totalCount">
+<input type="hidden" value="${page.currentPage}" id="curpage">
 <pre></pre>
 <p align="center">page</p>
 <pre></pre>
