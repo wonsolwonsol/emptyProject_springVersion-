@@ -38,7 +38,6 @@ $("p").html(paging);
 		<th style="width:30%">글제목</th>
 		<th style="width:10%">글쓴이</th>
 		<th style="width:10%">작성일</th>
-		<th style="width:10%">이미지</th>
 	</tr>
 	</thead>
 <tbody>
@@ -60,7 +59,7 @@ $("p").html(paging);
 <p align="center">page</p>
 <pre></pre>
 <br> 
-<button class="btn yellow" style="width:10%" ><a href="questionWrite">질문하기</a></button>
+<button class="btn yellow" style="width:10%" ><a href="reviewRetrieve">질문하기</a></button>
 <%-- <c:if test="${!empty member }">
  	<c:if test="${member.userid eq 'admin' }">
  	<button class="btn gray"><a href=""></a>질문관리 </button>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.dto.Page3;
 
 import com.dto.Review;
+import com.dto.ReviewJoin;
 
 //put, get 입출력 
 @Repository
@@ -39,6 +40,13 @@ public class ReviewDAO {
 	}
 	public void updateReadCnt(String review_number) {
 		t.update("ReviewMapper.updateReadCnt", review_number);
+	}
+	
+	
+	public List<ReviewJoin> reviewRetrieveJoin(String review_number){
+		List<ReviewJoin> rj = t.selectList("ReviewMapper.reviewRetrieveJoin", review_number );
+		System.out.println("DAO ==============reviewRetrieveJoin"+rj);
+		return rj; 
 	}
 	
 	

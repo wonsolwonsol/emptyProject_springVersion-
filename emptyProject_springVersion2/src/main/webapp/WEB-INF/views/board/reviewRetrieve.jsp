@@ -13,7 +13,7 @@
 <table class="tbl"> 
 <tr> 
 	<th width="20%">글번호</th>
-	<td>${reviewRetrieve.review_number }</td>
+	<td></td>
 	<td width="10%"></td>
 </tr>
 <tr>

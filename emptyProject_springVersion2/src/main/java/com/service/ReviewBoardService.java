@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dao.CartDAO;
 import com.dao.ReviewDAO;
 import com.dto.Review;
+import com.dto.ReviewJoin;
 
 @Service
 public class ReviewBoardService {
@@ -21,6 +22,12 @@ public class ReviewBoardService {
 		Review review = dao.reviewRetrieve(review_number);
 		System.out.println("review Service           >>>>>"+review);
 		return review; 
+	}
+	
+	public List<ReviewJoin> reviewRetrieveJoin(String review_number) {
+		List<ReviewJoin> rj = dao.reviewRetrieveJoin(review_number);
+		System.out.println("Service reviewRetrieveJoin =========================");
+		return rj; 
 	}
 	
 }

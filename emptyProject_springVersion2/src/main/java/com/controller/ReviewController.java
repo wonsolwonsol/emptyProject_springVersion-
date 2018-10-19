@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.Review;
+import com.dto.ReviewJoin;
 import com.service.ReviewBoardService;
 
 @Controller
@@ -26,14 +27,14 @@ public class ReviewController {
 	public String review() {
 		return "review"; 
 	}
+
 	
 	//@RequestParam String review_number ==> 임시고정 
 	@RequestMapping("/reviewRetrieve")
-	public ModelAndView reviewRetrieve( ModelAndView m) {
+	public ModelAndView reviewRetrieve(@RequestParam String review_number, ModelAndView m) {
 		System.out.println("review Controller >>>>>>>>>>>>>>>>>>");
-		String review_number = "2";
-			Review r = service.reviewRetrieve(review_number);
-			m.addObject("reviewRetrieve", r);
+			List<ReviewJoin> rj = service.reviewRetrieveJoin(review_number);
+			m.addObject("reviewRetrieve", rj);
 			m.setViewName("reviewRetrieve");
 
 		return m; 
