@@ -47,4 +47,21 @@ public class ReviewController {
 	}
 	
 	
+	@RequestMapping("/reviewDelete")
+	public String reviewDelete(@RequestParam String review_number) {
+		return null ; 
+	}
+	
+	@RequestMapping("/reviewUpdate")
+	public String reviewUpdate(@RequestParam String review_number) {
+		return null ; 
+	}
+	@RequestMapping("/reviewWrite")
+	public String reviewWrite(@RequestParam String review_number) {
+		return null ; 
+	}
+	
+	
+	
+	
 }
