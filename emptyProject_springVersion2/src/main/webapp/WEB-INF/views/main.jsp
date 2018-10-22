@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
+.imgOnTop{
+	position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 60px;    
+    font-style: italic;
+    color: #000;
+}
 .container {
 	float:left;	
 	overflow: hidden;
@@ -17,6 +25,7 @@
 }
 
 .content {
+position: relative;
 	float: left;
 	width: 50%;
 	height: 100%;
@@ -62,13 +71,13 @@
 		<div class="content">
 			 <a href="goodsSortColorBrandAll?color=white">			 
 			 <img src="./images/banner/banner_white.jpg" />
-			 NEW CLASSIC: THE WHITE
+			 <div class="imgOnTop" >NEW CLASSIC<br>: THE WHITE</div>
 			 </a>		 
 		</div>
 		<div class="content">
 			<a href="goodsSortColorBrandAll?color=green&color=red&color=blue&color=pink&color=purple&color=yellow">
 			<img src="./images/banner/banner_vivid.jpg" />
-			VIVID POP!
+			<div class="imgOnTop" >VIVID POP!</div>
 			</a>
 		</div>
 <!-- 		<div class="content">

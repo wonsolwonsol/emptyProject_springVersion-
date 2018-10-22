@@ -33,11 +33,11 @@ $(document).ready(function(){
 		</li>
 		<li><a href=loginCheck/cartlist><img src="images/icon/cart.png"></a></li>
 <c:if test="${empty member}">
-		<li><a href="loginForm"><img src="images/icon/user.png"></a></li>
+		<li><a href="loginForm"><img src="images/icon/users.png"></a></li>
 </c:if>
 <c:if test="${!empty member}">
 	<c:if test="${member.userid eq 'admin'}">
-		<li><a href="adminCheck/adminGoods?currentPage=1"><img src="images/icon/user.png"></a></li>
+		<li><a href="adminCheck/adminGoods?currentPage=1"><img src="images/icon/admin.png"></a></li>
 	</c:if>
 		<li><a href="loginCheck/mypage"><img src="images/icon/user.png"></a></li>
 		<li><a href="loginCheck/logout"><img src="images/icon/logout.png"></a></li>

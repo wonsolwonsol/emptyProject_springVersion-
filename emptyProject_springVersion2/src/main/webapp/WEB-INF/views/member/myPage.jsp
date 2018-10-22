@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+	.img{
+		width: 20px;
+	}
+</style>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#passwd2").on("keyup", function(){
@@ -85,7 +90,7 @@
 <table class="tblList">
 	<colgroup>
 		<col width="15%" />
-		<col width="15%" />
+		<col width="10%" />
 		<col width="25%" />
 		<col width="10%" />
 		<col width="*" />

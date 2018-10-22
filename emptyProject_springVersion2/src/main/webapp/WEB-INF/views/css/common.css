@@ -73,7 +73,7 @@ select {height:27px;padding:0 5px;}
 	/* position: fixed; */
 }
 .topmenu li{display: inline-block; margin:10px; }
-.topmenu img{}
+
 .topmenu ul{text-align: right; margin-right: 70px;}
 #search{  
 	display: none;
@@ -223,7 +223,7 @@ h3{
 .commenttbl th, ..commenttbl td {padding:10px 10px;vertical-align:middle;border-bottom:1px solid #bbb;}
 .commenttbl td {text-align: center;}
 .commenttbl p {text-align:left;}
-.img img {width:100px;}
+
 .space {display:block;margin-top:10px;}
 /* .btnGroup {margin-top:30px;text-align:center;} */
 .btn {padding:10px 20px;margin-right:3px;min-width:110px;height:auto;font-size:16px;line-height:21px;cursor:pointer;}

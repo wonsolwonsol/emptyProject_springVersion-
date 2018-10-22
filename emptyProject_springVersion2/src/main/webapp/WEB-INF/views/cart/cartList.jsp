@@ -19,6 +19,10 @@
 		$(".delBtn").on("click", function(){
 			var txt = confirm("삭제하시겠습니까?");
 			var num = $(this).attr("data-delBtn");
+			var price = $(this).attr("data-price");
+			var amount = $(this).attr("data-amount");
+			console.log(amount*price);
+			console.log(totalSum);
 			var it = $(this);
 			if(txt=true){
 
@@ -28,8 +32,13 @@
 				dataType:"text", 
 				success:function(data,status,xhr){
 					 if(data=='success'){
-						console.log(data); 
+						 //tr 삭제하고
 						it.parents().filter("tr").remove();
+						// 합산금액 업데이트
+						totalSum=totalSum-(price*amount);
+						//반영
+						var txt = "￦"+numeral( totalSum ).format('0,0');
+					     $("#totalSum").text(txt);  
 					 }
 				}, 
 				error:function(xhr,status,error){
@@ -47,6 +56,7 @@
 			var total;
 			location.href="loginCheck/goodsCartUpdate?num="+num+"&goods_Amount="+goods_Amount;
 			
+			//에이젝스로 수정시 합계 금액에 반영되지 않는 문제가 있어서 부득이하게 새로고침 합니다
 /* 				$.ajax({ 
 					type:"get",
 					url:"loginCheck/goodsCartUpdate",
@@ -115,9 +125,6 @@
 		     $(".price").each(function(idx,ele){
    			var pr = $(ele).attr("data-price");
    			var n = $(ele).attr("data-amount");
-   			console.log(pr);
-   			console.log(n*pr);
-   			console.log(n);
    		    	totalSum = totalSum + Number.parseInt(pr*n);
    		    })
 
@@ -185,7 +192,7 @@
 				<td>
 					<span class="btns">
 						<input type="button" class="btn xsmall yellow orderBtn" id="order" data-orderBtn="${cart.num}" value="주문" />
-						<input type="button" class="btn xsmall darkGray delBtn" data-delBtn="${cart.num}" value="삭제" />
+						<input type="button" class="btn xsmall darkGray delBtn" data-delBtn="${cart.num}" data-price="${cart.goods_Price}" data-amount="${cart.goods_Amount}" value="삭제" />
 					</span>
 				</td>
 			</tr>
