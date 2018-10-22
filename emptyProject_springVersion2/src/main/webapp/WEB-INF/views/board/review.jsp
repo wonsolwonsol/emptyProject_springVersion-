@@ -30,7 +30,12 @@ $("p").html(paging);
 
 }) 
 </script>
-<h1>Question Board</h1>
+
+<h1>Review Board</h1>
+<span align="center"><c:if test="${member.userid eq 'admin'}">
+운영자로 로그인하셨습니다. 모든 글 보기가 가능합니다. 
+</c:if></span><pre></pre>
+<br> 
 <table class="tbl" border="1" align="center">
 <thead>
 	<tr>
@@ -43,9 +48,23 @@ $("p").html(paging);
 <tbody>
   <c:forEach var="dto" items="${page.list }" varStatus="status">	 
 	<tr>
-	<td>${dto. review_number }</td>
+	<td>${dto. review_number }<%-- &nbsp;${dto.term } --%></td>
 	<td class="td_default">
-	<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a></td>
+		<c:if test="${dto.term == 'n'}">
+		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
+		</c:if>
+	<c:if test="${dto.term =='y'}">
+			<c:if test="${empty member}">
+			 작성자와 운영자만 볼 수 있는 글입니다. 
+			</c:if>
+		<c:if test="${dto.author == member.userid }">
+		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
+		</c:if>
+		<c:if test="${member.userid eq 'admin'}">
+		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
+		</c:if>
+	</c:if>
+	</td>
 	<td align="center">${dto.author}</td>
 	<td>${dto.regdate}</td>
 	</tr>
