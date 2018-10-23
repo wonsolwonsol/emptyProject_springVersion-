@@ -15,7 +15,7 @@
 			if($("#passwd2").val()==$(this).val()){
 				mesg = "비밀번호 일치"
 			}else{
-				mesg = "비밀번호 불일치" //git 
+				mesg = "비밀번호 불일치" //git gg
 			}
 		})				
 		$("#passwd2").on("keyup",function(){
