@@ -14,8 +14,11 @@
 <tr> 
 	<th>글번호</th>
 	<td>${reviewRetrieve[0].review_review_number}</td>
-
-	
+	<th>관리</th>
+	<td>
+<a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}">수정하기</a>&nbsp;
+<a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}">삭제하기</a>
+	</td>
 </tr>
 <tr>
 	<th>작성일</th>
@@ -34,6 +37,12 @@
 	<th>내용</th>
 	<td>>${reviewRetrieve[0].review_content}</td>
 </tr>
+<c:if test="${ !empty reviewRetrieve[0].review_image_name }">
+<tr>
+	<th>첨부파일</th>
+	<td>${reviewRetrieve[0].review_image_name }</td>
+</tr>
+</c:if>
 </table>
 <hr> 
 <table class="tbl">
