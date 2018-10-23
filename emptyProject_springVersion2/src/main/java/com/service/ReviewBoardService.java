@@ -51,5 +51,9 @@ public class ReviewBoardService {
 	   dao.reviewCommentInsert(rc);
    }
    
+   public void reviewCommentDelete(String r_comment_number) {
+	   dao.reviewCommentDelete(r_comment_number);
+   }
+   
 	
 }

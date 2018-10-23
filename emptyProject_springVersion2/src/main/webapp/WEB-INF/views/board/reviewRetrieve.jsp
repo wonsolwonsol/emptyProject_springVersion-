@@ -13,7 +13,18 @@ $(document).ready(function() {
     $('#content').on('keyup', function() {
   if($(this).val().length > 50) {
             $(this).val($(this).val().substring(0, 50));
-        } });});
+        } }); //end content, 코멘트 글자 수 제한 
+        
+
+
+
+
+
+
+
+    
+    
+    });
 
 </script>
 <h1>Review Retrieve</h1>
@@ -59,21 +70,42 @@ $(document).ready(function() {
 <tr>
 	<th width="10%">작성자</th>
 	<th>내용</th>
+	<c:if test="${!empty member}">
+		<th>제어</th>
+	</c:if>
+	<c:if test="${empty member}"></c:if>
+	
 </tr>
 <c:forEach items="${reviewRetrieve}" var="data"> 
 <tr>
 <td width="10%">${data.review_comment_author } </td>
 <td>${data.review_comment_content  }</td>
+<c:if test="${!empty member}">
+	<c:if test="${member.userid eq 'admin' }">
+		<td> 
+		<a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a>
+		</td>
+	</c:if>
+	<c:if test="${ data.review_comment_author != member.userid  }">
+		<td></td>
+	</c:if>
+	<c:if test="${ data.review_comment_author == member.userid }">
+		<td><a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a></td>
+	</c:if>
+</c:if>
+
+<c:if test="${empty member}"></c:if>
 </tr>
+
 </c:forEach>
 </table>
 <br> 
 
 <hr>  
-<c:if test="${ empty member.userid  }">
+<c:if test="${ empty member  }">
 댓글 작성은 회원만 이용이 가능합니다. 
 </c:if>
-<c:if test="${ !empty member.userid }"> 
+<c:if test="${ !empty member }"> 
 <form id="myForm" action="reviewComment">
 ${member.userid } 님 
 <input type="hidden" value="${ reviewRetrieve[0].review_review_number}" name="review_number">
