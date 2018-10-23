@@ -33,7 +33,7 @@ $("p").html(paging);
 
 <h1>Review Board</h1>
 <span align="center"><c:if test="${member.userid eq 'admin'}">
-운영자로 로그인하셨습니다. 모든 글 보기가 가능합니다. 
+<d align="center">운영자로 로그인하셨습니다. 모든 글 보기가 가능합니다. </d>
 </c:if></span><pre></pre>
 <br> 
 <table class="tbl" border="1" align="center">
@@ -78,7 +78,7 @@ $("p").html(paging);
 <p align="center">page</p>
 <pre></pre>
 <br> 
-<button class="btn yellow" style="width:10%" ><a href="reviewRetrieve">질문하기</a></button>
+<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
 <%-- <c:if test="${!empty member }">
  	<c:if test="${member.userid eq 'admin' }">
  	<button class="btn gray"><a href=""></a>질문관리 </button>

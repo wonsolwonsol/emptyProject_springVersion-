@@ -39,6 +39,11 @@ public class ReviewController {
 		m.addAttribute("page", page);
 		return "review"; }
 
+		@RequestMapping("/reviewWrite")
+		public String reviewWrite() {
+			return "reviewWrite"; 
+		}
+	
 	//@RequestParam String review_number ==> 임시고정 
 	@RequestMapping("/reviewRetrieve")
 	public ModelAndView reviewRetrieve(@RequestParam String review_number, ModelAndView m) {
@@ -86,15 +91,56 @@ public class ReviewController {
 	
 	@RequestMapping("/reveiwDelete")
 	public String reviewDelete(@RequestParam String review_number) {
-		
+		int rj = Integer.parseInt(review_number); 
+		service.reviewDelete(rj);
 		return "redirect:./review?currentPage=1"; 
 	}
 	
 	
-	@RequestMapping("/reveiwUpdate")
-	public String reviewUpdate(Review review) {
-		
-		return "redirect:/review?currentPage=1"; 
+	@RequestMapping("/reviewUpdate")
+	public ModelAndView reviewUpdate(@RequestParam String review_number, ModelAndView m, Review r) {
+		System.out.println("review Controller Update>>>>>>"+review_number);
+		Review review = 
+				service.reviewRetrieve(review_number);
+		System.out.println("review UpdateUI GO!"+review);
+		m.addObject("reviewUpdate", review);
+		m.setViewName("reviewUpdate");
+		return m; 
+	}
+	
+	@RequestMapping("/reviewUpdateSubmit")
+	public String reviewUpdateSubmit(Review r,ReviewUpload file) {
+        System.out.println(">>>>>>>>>>reviewUpdateSubmit Controller 통과");
+        System.out.println(r);
+        System.out.println(file);
+        CommonsMultipartFile theFile = file.getTheFile();
+        long size = theFile.getSize();
+        String fileName = theFile.getName();
+        String oriFileName = theFile.getOriginalFilename();
+        String type = theFile.getContentType();
+        
+        System.out.println("size "+size);
+        System.out.println("fileName "+fileName);
+        System.out.println("oriFileName "+oriFileName);
+        System.out.println("type "+type);
+        File f = null;
+        
+        f = new File("c:\\upload", oriFileName);
+        
+        try {
+               theFile.transferTo(f);
+        } catch (IllegalStateException e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
+        } catch (IOException e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
+        }
+        r.setImage_name(oriFileName);
+     
+        System.out.println("===============>>>>"+r);
+        service.reviewUpdate(r); 
+		return "redirect:/review?currentPage=1" ; 
 	}
 	
 	
