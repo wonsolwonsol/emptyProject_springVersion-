@@ -74,5 +74,9 @@ public class ReviewDAO {
 		public void reviewCommentInsert(ReviewComment rc) {
 			t.insert("ReviewMapper.ReviewCommentInsert", rc); 
 		}
+		
+	public void reviewCommentDelete(String r_comment_number) {
+		t.delete("ReviewMapper.reviewCommentDelete", r_comment_number); 
+	}
 	
 }

@@ -105,7 +105,7 @@ public class QuestionController {
 		
 		//questionAdmin
 		@RequestMapping(value="adminCheck/questionAdmin")
-		public String questionAdmin(HttpSession session, Model mod, @RequestParam int currentPage, RedirectAttributes a) {
+		public String questionAdmin(HttpSession session, @RequestParam int currentPage, RedirectAttributes a) {
 			System.out.println("!!!!!!!!!!!!!!!!!!admin question >>>>>>>>>>>>>>>>>>>>>>>>>>>");
 			if(currentPage == 0){
 				currentPage = 1;}

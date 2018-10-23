@@ -146,11 +146,18 @@ public class ReviewController {
 	
 	@RequestMapping("/reviewComment")
 	public String reviewComment(ReviewComment rc) {
-		System.out.println("===================="+rc);
+		
 		service.ReviewCommentInsert(rc);
 		return "redirect:/review?currentPage=1"; 
 	}
-	//commit 
+	
+	@RequestMapping("/reviewCommentDelete")
+	public String reviewCommentDelete(@RequestParam("r_comment_number") String r_comment_number) {
+		System.out.println("코멘트 넘버 넘어오니?====="+r_comment_number);
+		service.reviewCommentDelete(r_comment_number);
+		return "redirect:/review?currentPage=1"; 
+		
+	}
 	
 	
 	

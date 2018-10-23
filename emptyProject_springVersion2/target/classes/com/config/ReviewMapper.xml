@@ -37,6 +37,7 @@ select review.review_number as review_review_number
 ,review.image_name as review_image_name
 ,review_comment.author as review_comment_author 
 , review_comment.content as review_comment_content 
+,review_comment.r_comment_number as review_comment_number
 
 from review, review_comment 
 where review.review_number = review_comment.review_number(+)
@@ -44,6 +45,7 @@ and review.review_number = #{review_number}
 </select>
 <insert id="reviewWrite" parameterType="Review">
 insert into review (review_number
+,r_comment_number 
 , title
 , author
 , content
@@ -51,7 +53,8 @@ insert into review (review_number
 , term
 , regdate
 , readcnt)
-values ( review_number.NEXTVAL
+values ( #{review_number} 
+,r_comment_number.NEXTVAL 
 ,#{title}
 ,#{author}
 ,#{content}
@@ -83,6 +86,10 @@ values
 ,sysdate
 )
 </insert>
+<delete id="reviewCommentDelete" parameterType="string">
+delete from review_comment 
+where r_comment_number=#{r_comment_number} 
+</delete>
 
 
 
