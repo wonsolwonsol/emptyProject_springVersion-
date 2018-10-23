@@ -51,7 +51,7 @@
 		<input type="hidden" name="goods_Color" value="${goodsRetrieve.goods_Color}">
 	<div class="proView">
 		<div class="imgSec">
-			<img src="images/items/thum/${goodsRetrieve.goods_Image1}.jpg">
+			<img src="images/items/thum/${goodsRetrieve.goods_Image1}">
 		</div>
 		<dl>
 			<dt>제품코드</dt>
@@ -76,7 +76,7 @@
 	<!-- <p class="alignC"><img src="images/divider_1.jpg"></p> -->
 	<hr>
 	<div class="alignC">
-		<p><img src="images/items/${goodsRetrieve.goods_Image2}.jpg"></p>
+		<p><img src="images/items/${goodsRetrieve.goods_Image2}"></p>
 		<p><img src="images/wash_info.jpg"></p>
 		<!-- <p><img src="images/divider_1.jpg"></p> -->
 		<hr>

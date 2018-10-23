@@ -76,7 +76,7 @@ $(document).ready(function() {
 	</tr>
 	<tr>
 		<td>${orderTemp.num}</td>
-		<td class="img"><img src="images/items/thum/${orderTemp.goods_Image}.jpg"/></td>
+		<td class="img"><img src="images/items/thum/${orderTemp.goods_Image}"/></td>
 		<td><p class="bold">
 			${orderTemp.goods_Brand}</p>
 			<p>${orderTemp.goods_Name}</p>		

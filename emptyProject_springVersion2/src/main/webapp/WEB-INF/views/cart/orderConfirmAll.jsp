@@ -55,7 +55,7 @@ ${order.num}
 <c:forEach items="${orderAll}" var="order">
 	<tr>
 		<td>${order.num}</td>
-		<td class="img"><img src="images/items/thum/${order.goods_Image}.jpg"/></td>
+		<td class="img"><img src="images/items/thum/${order.goods_Image}"/></td>
 		<td><p class="bold">
 			${order.goods_Brand}</p>
 			<p>${order.goods_Name}</p>		

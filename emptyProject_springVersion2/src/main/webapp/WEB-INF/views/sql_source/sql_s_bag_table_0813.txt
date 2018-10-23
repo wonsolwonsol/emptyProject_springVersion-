@@ -1,4 +1,4 @@
--- 181022
+-- 181023
 --오더단에 사용자 이름
 ALTER TABLE order_info ADD(username VARCHAR2(10) );
 --가격과 텍스트 길이 수정
@@ -6,6 +6,15 @@ ALTER TABLE goods modify (goods_price number(10) not null);
 ALTER TABLE cart modify (goods_price number(10) not null);
 ALTER TABLE order_info modify (goods_price number(10) not null);
 ALTER TABLE order_info modify (paymethod varchar2(20));
+
+--이미지 한계 늘리고
+ALTER TABLE goods modify (goods_image1 varchar2(30));
+ALTER TABLE goods modify (goods_image2 varchar2(30));
+--이미지 확장자 붙이고
+update goods set goods_image1 = concat(goods_image1,'.jpg');
+update goods set goods_image2 = concat(goods_image2,'.jpg')
+where goods_category = 'Shoulder_Bags';
+
 
 
 -- 181019 SQL 업데이트 

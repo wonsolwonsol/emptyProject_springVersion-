@@ -85,7 +85,7 @@ $(document).ready(function() {
 	<input type="hidden" name="num" value="${list.num}"> 
 	<tr>
 		<td>${list.num}</td>
-		<td class="img"><img src="images/items/thum/${list.goods_Image}.jpg"/></td>
+		<td class="img"><img src="images/items/thum/${list.goods_Image}"/></td>
 		<td><p class="bold">
 			${list.goods_Brand}</p>
 			<p>${list.goods_Name}</p>		

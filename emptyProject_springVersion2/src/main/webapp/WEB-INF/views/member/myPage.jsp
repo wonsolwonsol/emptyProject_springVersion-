@@ -15,7 +15,7 @@
 			if($("#passwd2").val()==$(this).val()){
 				mesg = "비밀번호 일치"
 			}else{
-				mesg = "비밀번호 불일치"
+				mesg = "비밀번호 불일치" //git 
 			}
 		})				
 		$("#passwd2").on("keyup",function(){
@@ -116,7 +116,7 @@
 	</tr>
 <c:forEach var="dto" items="${orderlist}" varStatus="status">
 	<tr><td>${dto.num}</td>
-		<td><span class="img"><img src="images/items/thum/${dto.goods_Image}.jpg" /></a></span></td>
+		<td><span class="img"><img src="images/items/thum/${dto.goods_Image}" /></a></span></td>
 		<td>
 			<p class="bold">${dto.goods_Brand}</p>
 			<p>${dto.goods_Name}</p>

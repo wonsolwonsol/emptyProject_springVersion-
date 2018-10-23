@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<style>
+#result{
+	color:orange;
+}
+#result2{
+	color:orange;
+}
+</style>
 <script type="text/javascript">
 	$(function(){	
 		var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
@@ -56,17 +63,18 @@
 				$("#passwd2").on("keyup", function() {
 					var passwd = $("#passwd1").val();
 					var passwd2 = $(this).val();						
-
-					if (passwd.length<6 || document.f.passwd1.value.length>12) {			        	
-			        	$("#result2").text("비밀번호를 4~12자까지 입력해주세요.")
-			        }
+				
 			        if (passwd == passwd2) {
 			        	$("#result2").text("비밀번호 일치")			            
 			        }else if (passwd2.length == 0) {
 						$("#result2").text("");
 					}else{
 			        	$("#result2").text("비밀번호 불일치")		
-			        }					
+			        }	
+			        
+			        if (passwd.length<6 || document.f.passwd1.value.length>12) {			        	
+			        	$("#result2").text("비밀번호를 4~10자까지 입력해주세요.")
+			        }
 				});
 
 				//form submit
@@ -165,8 +173,8 @@
 			</colgroup>
 			<tr>
 				<th><span class="required" title="필수 입력">아이디</span></th>
-				<td><input type="text" name="userid" id="userid"> <span
-					id="result"></span></td>
+				<td><input type="text" name="userid" id="userid"> 
+				<span id="result" class="small bold"></span></td>
 			</tr>
 			<tr>
 				<th><span class="required" title="필수 입력">비밀번호</span></th>
@@ -176,7 +184,7 @@
 			<tr>
 				<th>비밀번호 확인</th>
 				<td><input type="password" name="passwd2" id="passwd2">
-					<span id="result2"></span></td>
+					<span id="result2" class="small bold"></span></td>
 			</tr>
 			<tr>
 				<th><span class="required" title="필수 입력">이름</span></th>
