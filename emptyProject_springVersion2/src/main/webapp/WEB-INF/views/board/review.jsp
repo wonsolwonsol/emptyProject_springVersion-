@@ -55,7 +55,8 @@ $("p").html(paging);
 		</c:if>
 	<c:if test="${dto.term =='y'}">
 			<c:if test="${empty member}">
-			 작성자와 운영자만 볼 수 있는 글입니다. 
+			 작성자와 운영자만 볼 수 있는 글입니다.
+			 <img src="images/icon/key_icon.png" width="12px" height="12px" >
 			</c:if>
 		<c:if test="${dto.author == member.userid }">
 		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>

@@ -7,11 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
-$("#submit").click(function(e){
-	if(${empty member}){
-		alert("로그인이 필요합니다."); 
-	}
-}); 
+
 </script>
 <h1>Question Retrieve</h1>
 <table class="tbl"> 
@@ -27,7 +23,9 @@ $("#submit").click(function(e){
 </tr>
 <tr>
 	<th width="20%">제목</th>
-	<td>${questionRetrieve.title }</td>
+	<td>
+	${questionRetrieve.title }
+	</td>
 	<td width="10%"></td>
 </tr>
 <tr>
@@ -61,6 +59,7 @@ $("#submit").click(function(e){
 </table>
 <hr>  
 <form name="myForm" method="post" action="questionCommentWrite">
+
 <input type="hidden" value="${member.userid }" name="author"> 
 <input type="hidden" value="${questionRetrieve.question_number }" name="question_number"> 
 ${member.userid } 님 : <br><br> 
