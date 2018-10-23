@@ -33,14 +33,29 @@ $(document).ready(function() {
 	<th>글번호</th>
 	<td>${reviewRetrieve[0].review_review_number}</td>
 	<th>삭제</th>
+<c:if test="${!empty member }">
+	<c:if test="${reviewRetrieve[0].review_author == member.userid }">
 	<td>
-<a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}">수정하기</a>&nbsp;
-<a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}">삭제하기</a>
+	<a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/write.png"></a>&nbsp;&nbsp;&nbsp;
+	<a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/trash.png"></a>
 	</td>
+	</c:if>
+	<c:if test="${member.userid eq 'admin' }">
+	<td>
+	<a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/write.png"></a>&nbsp;&nbsp;&nbsp;
+	<a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/trash.png"></a>
+	</td>
+	</c:if>
+	<c:if test="${reviewRetrieve[0].review_author != member.userid }">
+	</c:if>	
+</c:if>
+<c:if test="${ empty member} ">
+</c:if>
+
 </tr>
 <tr>
 	<th>작성일</th>
-	<td>>${reviewRetrieve[0].review_regdate}</td>
+	<td>${reviewRetrieve[0].review_regdate}</td>
 	<th>조회수</th>
 	<td>${reviewRetrieve[0].review_readcnt}</td>
 </tr>
@@ -54,13 +69,14 @@ $(document).ready(function() {
 
 </tr>
 <tr>
-	<th>내용</th>
-	<td>>${reviewRetrieve[0].review_content}</td>
+	<th >내용</th>
+	<td colspan="3">${reviewRetrieve[0].review_content}</td>
 </tr>
 <c:if test="${ !empty reviewRetrieve[0].review_image_name }">
 <tr>
 	<th>첨부파일</th>
-	<td>${reviewRetrieve[0].review_image_name }</td>
+	<td colspan="3"><img src="/images/${reviewRetrieve[0].review_image_name }"></td>
+	
 </tr>
 </c:if>
 </table>
@@ -71,7 +87,7 @@ $(document).ready(function() {
 	<th width="10%">작성자</th>
 	<th>내용</th>
 	<c:if test="${!empty member}">
-		<th>제어</th>
+		<th width="10%">제어</th>
 	</c:if>
 	<c:if test="${empty member}"></c:if>
 	
@@ -80,21 +96,35 @@ $(document).ready(function() {
 <tr>
 <td width="10%">${data.review_comment_author } </td>
 <td>${data.review_comment_content  }</td>
-<c:if test="${!empty member}">
+<%-- <c:if test="${!empty member}">
 	<c:if test="${member.userid eq 'admin' }">
-		<td> 
+		<td width="10%"> 
 		<a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a>
 		</td>
 	</c:if>
 	<c:if test="${ data.review_comment_author != member.userid  }">
-		<td></td>
+		<td width="10%"></td>
 	</c:if>
 	<c:if test="${ data.review_comment_author == member.userid }">
-		<td><a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a></td>
+		<td width="10%"><a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a></td>
 	</c:if>
 </c:if>
-
-<c:if test="${empty member}"></c:if>
+<c:if test="${empty member}"></c:if> --%>
+<c:choose>
+<c:when test="${member.userid eq 'admin' }">
+		<td width="10%"> 
+		<a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a>
+		</td>
+	</c:when>
+	<c:when test="${ data.review_comment_author != member.userid  }">
+		<td width="10%"></td>
+	</c:when>
+	<c:when test="${ data.review_comment_author == member.userid }">
+		<td width="10%"><a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a></td>
+	</c:when>
+<c:otherwise>
+</c:otherwise>
+</c:choose>
 </tr>
 
 </c:forEach>

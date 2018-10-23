@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReviewMapper">
 <select id="review" parameterType="String" resultType="Review"> 
-select * from review 
+select * from review order by review_number desc
 </select>
 <!-- 글 자세히보기 + 조회수  -->
 <select id="reviewRetrieve" parameterType="hashmap" resultType="Review">
@@ -45,7 +45,6 @@ and review.review_number = #{review_number}
 </select>
 <insert id="reviewWrite" parameterType="Review">
 insert into review (review_number
-,r_comment_number 
 , title
 , author
 , content
@@ -53,8 +52,7 @@ insert into review (review_number
 , term
 , regdate
 , readcnt)
-values ( #{review_number} 
-,r_comment_number.NEXTVAL 
+values ( review_number.NEXTVAL
 ,#{title}
 ,#{author}
 ,#{content}
@@ -63,10 +61,11 @@ values ( #{review_number}
 ,sysdate
 ,0
 )
+<!-- end eeee -->
 </insert>
 <delete id="reviewDelete" parameterType="int">
 delete from review 
-from review_number = #{review_number}
+where review_number = #{review_number}
 </delete>
 <update id="reviewUpdate" parameterType="Review">
 update review set 

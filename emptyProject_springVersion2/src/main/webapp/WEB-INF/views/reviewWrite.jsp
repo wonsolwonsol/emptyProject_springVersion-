@@ -6,6 +6,6 @@
 <div class="side"><jsp:include page="common/submenu.jsp" flush="true"/></div>
 <div class="body">
 	<div class="top"><jsp:include page="common/top.jsp" flush="true"/></div>
-	<div class="contents"><jsp:include page="board/reviewUpdate.jsp" flush="true"/></div>
+	<div class="contents"><jsp:include page="board/reviewWrite.jsp" flush="true"/></div>
 </div>
 </div>
