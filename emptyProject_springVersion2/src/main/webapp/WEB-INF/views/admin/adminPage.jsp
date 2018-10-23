@@ -118,7 +118,7 @@
 				<td><input type="checkbox" name="check" class="check" value="${dto.goods_Code}"></td>
 				<td>${dto.goods_Code}</td>
 				<td>
-					<span class="img"><a href="" class="aLink"><img src="images/items/thum/${dto.goods_Image1}.jpg" /></a></span>
+					<span class="img"><a href="" class="aLink"><img src="images/items/thum/${dto.goods_Image1}" /></a></span>
 				</td>
 				<td>
 					<p class="bold"><a href="" class="aLink">${dto.goods_Brand}</a></p>
