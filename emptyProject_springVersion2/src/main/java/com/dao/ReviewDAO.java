@@ -23,9 +23,7 @@ public class ReviewDAO {
 		int n = t.delete("ReviewMapper.reviewDelete", review_number); 
 		return n; 
 	}
-	public void reviewUpdate(Review review_number) {
-		t.update("ReviewMapper.reviewUpdate", review_number); 
-	}
+
 	public int totalRecord() {
 		int n = t.selectOne("ReviewMapper.totalCount");
 		return n ; }
@@ -61,6 +59,16 @@ public class ReviewDAO {
 		return page ; 
 	
 	}
-	
+	public void reviewWrite(Review review) {
+        t.insert("ReviewMapper.reviewWrite", review);
+			}
+	public int reviewDelete(int review_number) {
+        int n = t.delete("ReviewMapper.reviewDelete", review_number);
+        return n;
+        }
+	public void reviewUpdate(Review review) {
+        t.update("ReviewMapper.reviewUpdate", review);
+			}
+
 	
 }

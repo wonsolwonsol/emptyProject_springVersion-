@@ -38,5 +38,13 @@ public class ReviewBoardService {
 		return page ; 
 		
 	}
+	 public void reviewDelete(int review_number) {
+         dao.reviewDelete(review_number); }
+   public void reviewUpdate(Review review) {
+         dao.reviewUpdate(review);  }
+   public void reviewWrite(Review review) {
+         dao.reviewWrite(review);
+   }
+   
 	
 }
