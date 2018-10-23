@@ -32,7 +32,7 @@ $(document).ready(function() {
 <tr> 
 	<th>글번호</th>
 	<td>${reviewRetrieve[0].review_review_number}</td>
-	<th>관리</th>
+	<th>삭제</th>
 	<td>
 <a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}">수정하기</a>&nbsp;
 <a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}">삭제하기</a>
