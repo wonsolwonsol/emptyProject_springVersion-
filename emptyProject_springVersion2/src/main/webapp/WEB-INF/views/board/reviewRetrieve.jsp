@@ -60,7 +60,8 @@ $(document).ready(function() {
 <c:if test="${ !empty reviewRetrieve[0].review_image_name }">
 <tr>
 	<th>첨부파일</th>
-	<td>${reviewRetrieve[0].review_image_name }</td>
+	<td><img src="${reviewRetrieve[0].review_image_name }"></td>
+	
 </tr>
 </c:if>
 </table>

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -55,12 +56,12 @@ public class ReviewController {
 
 		return m; 
 	}
-	@RequestMapping("/reviewWriteSubmit")
+	@RequestMapping(value="/reviewWriteSubmit", method=RequestMethod.POST)
     public String reviewWrite(Review r, ReviewUpload file) {
           System.out.println(">>>>>>>>>>reviewWriteSubmit Controller 통과");
           System.out.println(r);
           System.out.println(file);
-          CommonsMultipartFile theFile = file.getTheFile();
+        CommonsMultipartFile theFile = file.getTheFile();
           long size = theFile.getSize();
           String fileName = theFile.getName();
           String oriFileName = theFile.getOriginalFilename();
@@ -72,7 +73,11 @@ public class ReviewController {
           System.out.println("type "+type);
           File f = null;
           
-          f = new File("c:\\upload", oriFileName);
+          
+          //안선팀원용 경로 
+         // f = new File("C:\\Users\\acorn\\git\\emptyProject_springVersion\\"
+          		//+ "emptyProject_springVersion2\\src\\main\\webapp\\WEB-INF\\views\\images\\review", oriFileName);
+          f = new File("C:\\upload", oriFileName); 
           
           try {
                  theFile.transferTo(f);
@@ -90,11 +95,12 @@ public class ReviewController {
           
     }
 	
-	@RequestMapping("/reveiwDelete")
+	@RequestMapping(value="/reviewDelete", method=RequestMethod.GET)
 	public String reviewDelete(@RequestParam String review_number) {
+		System.out.println("review_number 넘어옵니까 delete"+review_number);
 		int rj = Integer.parseInt(review_number); 
 		service.reviewDelete(rj);
-		return "redirect:./review?currentPage=1"; 
+		return "redirect:/review?currentPage=1"; 
 	}
 	
 	
@@ -109,7 +115,7 @@ public class ReviewController {
 		return m; 
 	}
 	
-	@RequestMapping("/reviewUpdateSubmit")
+	@RequestMapping(value="/reviewUpdateSubmit", method=RequestMethod.POST)
 	public String reviewUpdateSubmit(Review r,ReviewUpload file) {
         System.out.println(">>>>>>>>>>reviewUpdateSubmit Controller 통과");
         System.out.println(r);
@@ -126,8 +132,10 @@ public class ReviewController {
         System.out.println("type "+type);
         File f = null;
         
-        f = new File("c:\\upload", oriFileName);
+       /* f = new File("C:\\Users\\acorn\\git\\emptyProject_springVersion\\"
+          		+ "emptyProject_springVersion2\\src\\main\\webapp\\WEB-INF\\views\\images\\review", oriFileName);*/
         
+        f = new File("C:\\upload", oriFileName); 
         try {
                theFile.transferTo(f);
         } catch (IllegalStateException e) {
