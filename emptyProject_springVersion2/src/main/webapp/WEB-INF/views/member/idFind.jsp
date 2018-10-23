@@ -10,7 +10,7 @@
 
 </script>
 <div>
-<form action="idfind" method="post">
+<form action="idfind" method="post" name="myForm">
 <h1>FIND ID</h1>
 	<table class="tbl">
 				<colgroup>
@@ -36,7 +36,8 @@
 				</select></td></tr>		
 	</table>
 	<div class="btnGroup">
-	<input type="submit" value="메일 보내기" class="btn yellow"><input type="reset" value="취소" class="btn gray">
+	<button type="submit" class="btn yellow">메일 보내기</button>
+	<input type="reset" value="취소" class="btn gray">
 	</div>
 </form>
 </div>

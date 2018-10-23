@@ -9,29 +9,38 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#passwd2").on("keyup", function(){
-			var passwd = $("#passwd1").val();
-			var passwd2 = $(this).val(); 
-			var mesg = "비밀번호 불일치";
-			
-			if(passwd == passwd2){
+				
+		var mesg = "비밀번호 불일치";		
+		$("#passwd1").on("keyup",function(){
+			if($("#passwd2").val()==$(this).val()){
 				mesg = "비밀번호 일치"
+			}else{
+				mesg = "비밀번호 불일치"
+			}
+		})				
+		$("#passwd2").on("keyup",function(){
+			if($("#passwd1").val()==$(this).val()){
+				mesg = "비밀번호 일치"
+			}else{
+				mesg = "비밀번호 불일치"
 			}
 			
-			$("#presult").text(mesg);
+		$("#presult").text(mesg);
 			
 			if(passwd2.length==0){
 				$("#presult").text("");
 			}
-		});
+		})
+
 		
 		$("form").on("submit", function(e){
-			if($("#passwd2").val().length==0){
+			if($("#passwd2").val().length==0 || mesg =="비밀번호 불일치"){
 				alert("비밀번호를 한번 더 확인하세요.");
 				$("#passwd2").focus();
 				e.preventDefault();
 			}
 		})
+		
 		
 		$("#emailAdd").on("change",function(){
 			$("#emailaddress").val($(this).val());

@@ -25,9 +25,8 @@ public class MemberDAO {
 		return n;
 	}
 
-	public int memberUpdate(Member member) {
-		int n = template.update("MemberMapper.memberUpdate", member);
-		return n;
+	public void memberUpdate(Member member) {
+		template.update("MemberMapper.memberUpdate", member);		
 	}
 
 	public int idCheck(String userid) {

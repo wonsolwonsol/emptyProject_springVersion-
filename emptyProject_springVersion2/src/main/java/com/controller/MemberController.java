@@ -58,16 +58,19 @@ public class MemberController {
 	@RequestMapping("/loginCheck/mypage")
 	public String mypage(HttpSession session) {
 		Member mem = (Member) session.getAttribute("member");
-		
 		List<Order> list = service.orderList(mem.getUserid());
 		session.setAttribute("orderlist", list);
 		return "redirect:../myPage";
 	}
 	
 	@RequestMapping("/loginCheck/memberUpdate")
-	public String memberUpdate(Member member) {
-		int n = service.memberUpdate(member);
-		return "redirect:mypage";		
+	public String memberUpdate(Member member, HttpSession session, RedirectAttributes red) {
+		Member mem = (Member) session.getAttribute("member");
+		member.setUsername(mem.getUsername());
+		service.memberUpdate(member);
+		System.out.println("       ????????            "+member);
+		red.addFlashAttribute("mesg", "수정했습니다.");
+		return "redirect:../";
 	}
 	@RequestMapping(value="/idCheck", produces="application/text; charset=UTF-8")
 	public @ResponseBody String idCheck(@RequestParam String userid) {
@@ -78,12 +81,14 @@ public class MemberController {
 		}
 		return mesg;		
 	}
-	@RequestMapping("/idfind")
+	
+	@RequestMapping(value="/idfind", method=RequestMethod.POST)
 	public String idfind(Member member) {
+		System.out.println("           member            "+member);
 		String userid = service.idfind(member);
 		System.out.println("userid "+userid);
 		
-		return "redirect:../idFind";		
+		return "idFind";		
 	}
 	
 }
