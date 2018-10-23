@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.Page2;
 import com.dto.Question;
@@ -104,14 +105,15 @@ public class QuestionController {
 		
 		//questionAdmin
 		@RequestMapping(value="adminCheck/questionAdmin")
-		public String questionAdmin(HttpSession session, Model mod, @RequestParam int currentPage) {
-			System.out.println("admin question >>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		public String questionAdmin(HttpSession session, Model mod, @RequestParam int currentPage, RedirectAttributes a) {
+			System.out.println("!!!!!!!!!!!!!!!!!!admin question >>>>>>>>>>>>>>>>>>>>>>>>>>>");
 			if(currentPage == 0){
 				currentPage = 1;}
 			Page2 page = service.questionAll(currentPage); 
 			List<Question> m = page.getList();
-			mod.addAttribute("page", page);	
-			return "questionAdmin"; 
+			a.addFlashAttribute("page", page);	
+			return "redirect:../questionAdmin"; 
+			
 			
 		}
 		

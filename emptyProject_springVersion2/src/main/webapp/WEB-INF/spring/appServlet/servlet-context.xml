@@ -29,6 +29,7 @@
 	<mvc:view-controller view-name="adminPage2" path="/adminPage2"/>
 	<mvc:view-controller view-name="orderConfirm" path="/orderConfirm"/>
 	<mvc:view-controller view-name="orderConfirmAll" path="/orderConfirmAll"/>
+	<mvc:view-controller view-name="questionAdmin" path="/questionAdmin"/>
 	
 	
 	
