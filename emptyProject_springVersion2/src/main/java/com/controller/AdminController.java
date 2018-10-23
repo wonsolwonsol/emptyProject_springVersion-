@@ -173,9 +173,9 @@ public class AdminController {
 	@RequestMapping(value="/adminCheck/adminGoodsDelete", method=RequestMethod.GET)
 	public @ResponseBody String delete(@RequestParam String goods_Code, HttpSession session) {
 		System.out.println(goods_Code);
-		Page list = goodsService.goodsAllPage(1);		
-		session.setAttribute("page",list);
 		service.adminGoodsDelete(goods_Code);
+		Page list = goodsService.goodsAllPage(1);
+		session.setAttribute("page",list);
 		
 		return "success";
 	}
