@@ -93,7 +93,7 @@ public class AdminController {
 			File loc = null;
 			
 			if(f == theFile[0]) {
-			loc = new File("c:/upload", oriFileName);
+				loc = new File("c:/upload"+"/items/thum", oriFileName);
 			try {
 				f.transferTo(loc);
 			} catch (IllegalStateException | IOException e) {
@@ -101,7 +101,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 			}else if(f == theFile[1]) {
-				loc = new File("c:/upload", oriFileName);
+				loc = new File("c:/upload"+"/items", oriFileName);
 				try {
 					f.transferTo(loc);
 				} catch (IllegalStateException | IOException e) {
@@ -138,7 +138,7 @@ public class AdminController {
 			File loc = null;
 			
 			if(f == theFile[0]) {
-			loc = new File("c:/upload", oriFileName);
+			loc = new File("c:/upload"+"/items/thum", oriFileName);
 			try {
 				f.transferTo(loc);
 			} catch (IllegalStateException | IOException e) {
@@ -146,7 +146,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 			}else if(f == theFile[1]) {
-				loc = new File("c:/upload", oriFileName);
+				loc = new File("c:/upload"+"/items", oriFileName);
 				try {
 					f.transferTo(loc);
 				} catch (IllegalStateException | IOException e) {
