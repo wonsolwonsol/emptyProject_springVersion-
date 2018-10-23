@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  <update id="memberUpdate" parameterType="Member">
  	update member
- 	set passwd=#{passwd}, post=#{post}, addr1=#{addr1}, addr2=#{addr2}, phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2}
+ 	set passwd=#{passwd}, username=#{username}, post=#{post}, addr1=#{addr1}, addr2=#{addr2}, phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2}
  	where userid=#{userid}
  </update>
  <delete id="adminMemberDelete" parameterType="string">
