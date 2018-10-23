@@ -72,6 +72,17 @@ title = #{title}
 	,image_name=#{image_name}
 where review_number=#{review_number} 
 </update>
+<insert id="ReviewCommentInsert" parameterType="ReviewComment">
+insert into review_comment 
+( author, review_number, r_comment_number, content, regdate )
+values 
+( #{author}
+, #{review_number}
+,r_comment_number.NEXTVAL
+,#{content}
+,sysdate
+)
+</insert>
 
 
 

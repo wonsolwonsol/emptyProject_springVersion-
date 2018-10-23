@@ -10,6 +10,7 @@ import com.dao.CartDAO;
 import com.dao.ReviewDAO;
 import com.dto.Page3;
 import com.dto.Review;
+import com.dto.ReviewComment;
 import com.dto.ReviewJoin;
 
 @Service
@@ -34,7 +35,7 @@ public class ReviewBoardService {
 	
 	public Page3 review(int curpage){
 		Page3 page = dao.review(curpage);
-		System.out.println("review Service ============");
+	
 		return page ; 
 		
 	}
@@ -44,6 +45,10 @@ public class ReviewBoardService {
          dao.reviewUpdate(review);  }
    public void reviewWrite(Review review) {
          dao.reviewWrite(review);
+   }
+   
+   public void ReviewCommentInsert(ReviewComment rc) {
+	   dao.reviewCommentInsert(rc);
    }
    
 	

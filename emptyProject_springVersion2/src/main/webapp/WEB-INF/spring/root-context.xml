@@ -55,6 +55,7 @@
 				<value>com.dto.Order</value>
 				<value>com.dto.Page3</value>
 				<value>com.dto.ReviewJoin</value>
+				<value>com.dto.ReviewComment</value>
 			
 				
 				

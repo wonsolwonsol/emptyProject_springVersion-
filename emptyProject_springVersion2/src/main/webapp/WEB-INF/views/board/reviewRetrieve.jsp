@@ -7,7 +7,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
-// var 
+
+
+$(document).ready(function() {
+    $('#content').on('keyup', function() {
+  if($(this).val().length > 50) {
+            $(this).val($(this).val().substring(0, 50));
+        } });});
+
 </script>
 <h1>Review Retrieve</h1>
 <table class="tbl"> 
@@ -28,7 +35,9 @@
 </tr>
 <tr>
 	<th>제목 </th>
-	<td>${reviewRetrieve[0].review_title}</td>
+	<td>
+	${reviewRetrieve[0].review_title}
+	</td>
 	<th>작성자</th>
 	<td>${reviewRetrieve[0].review_author}</td>
 
@@ -61,7 +70,18 @@
 <br> 
 
 <hr>  
-
+<c:if test="${ empty member.userid  }">
+댓글 작성은 회원만 이용이 가능합니다. 
+</c:if>
+<c:if test="${ !empty member.userid }"> 
+<form id="myForm" action="reviewComment">
+${member.userid } 님 
+<input type="hidden" value="${ reviewRetrieve[0].review_review_number}" name="review_number">
+<input type="hidden" value=${member.userid } name="author">
+<input type="textarea" name="content" style="width:85%; height:5%;" >
+<input type="submit" value="등록"> 
+</form>
+</c:if>
 </body>
 </html>
 

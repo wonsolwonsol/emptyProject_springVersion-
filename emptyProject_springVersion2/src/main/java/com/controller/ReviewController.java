@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.Page3;
 import com.dto.Review;
+import com.dto.ReviewComment;
 import com.dto.ReviewJoin;
 import com.dto.ReviewUpload;
 import com.service.ReviewBoardService;
@@ -47,7 +48,7 @@ public class ReviewController {
 	//@RequestParam String review_number ==> 임시고정 
 	@RequestMapping("/reviewRetrieve")
 	public ModelAndView reviewRetrieve(@RequestParam String review_number, ModelAndView m) {
-		System.out.println("review Controller >>>>>>>>>>>>>>>>>>");
+		
 			List<ReviewJoin> rj = service.reviewRetrieveJoin(review_number);
 			m.addObject("reviewRetrieve", rj);
 			m.setViewName("reviewRetrieve");
@@ -83,7 +84,7 @@ public class ReviewController {
                  e.printStackTrace();
           }
           r.setImage_name(oriFileName);
-          System.out.println("===============>>>>"+r);
+          
           service.reviewWrite(r);
           return "redirect:./review?currentPage=1" ;
           
@@ -99,7 +100,7 @@ public class ReviewController {
 	
 	@RequestMapping("/reviewUpdate")
 	public ModelAndView reviewUpdate(@RequestParam String review_number, ModelAndView m, Review r) {
-		System.out.println("review Controller Update>>>>>>"+review_number);
+		
 		Review review = 
 				service.reviewRetrieve(review_number);
 		System.out.println("review UpdateUI GO!"+review);
@@ -138,9 +139,16 @@ public class ReviewController {
         }
         r.setImage_name(oriFileName);
      
-        System.out.println("===============>>>>"+r);
+      
         service.reviewUpdate(r); 
 		return "redirect:/review?currentPage=1" ; 
+	}
+	
+	@RequestMapping("/reviewComment")
+	public String reviewComment(ReviewComment rc) {
+		System.out.println("===================="+rc);
+		service.ReviewCommentInsert(rc);
+		return "redirect:/review?currentPage=1"; 
 	}
 	
 	

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.dto.Page3;
 
 import com.dto.Review;
+import com.dto.ReviewComment;
 import com.dto.ReviewJoin;
 
 //put, get 입출력 
@@ -70,5 +71,8 @@ public class ReviewDAO {
         t.update("ReviewMapper.reviewUpdate", review);
 			}
 
+		public void reviewCommentInsert(ReviewComment rc) {
+			t.insert("ReviewMapper.ReviewCommentInsert", rc); 
+		}
 	
 }
