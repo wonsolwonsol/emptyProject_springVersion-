@@ -61,7 +61,7 @@ values ( review_number.NEXTVAL
 ,sysdate
 ,0
 )
-<!-- end ee -->
+<!-- end eeee -->
 </insert>
 <delete id="reviewDelete" parameterType="int">
 delete from review 
