@@ -4,7 +4,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Upload {
 	private String theText;
-	private CommonsMultipartFile theFile;
+	private CommonsMultipartFile theFile [];
 	
 	public String getTheText() {
 		return theText;
@@ -12,10 +12,10 @@ public class Upload {
 	public void setTheText(String theText) {
 		this.theText = theText;
 	}
-	public CommonsMultipartFile getTheFile() {
+	public CommonsMultipartFile[] getTheFile() {
 		return theFile;
 	}
-	public void setTheFile(CommonsMultipartFile theFile) {
+	public void setTheFile(CommonsMultipartFile[] theFile) {
 		this.theFile = theFile;
 	}
 	@Override
@@ -26,7 +26,7 @@ public class Upload {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Upload(String theText, CommonsMultipartFile theFile) {
+	public Upload(String theText, CommonsMultipartFile[] theFile) {
 		super();
 		this.theText = theText;
 		this.theFile = theFile;

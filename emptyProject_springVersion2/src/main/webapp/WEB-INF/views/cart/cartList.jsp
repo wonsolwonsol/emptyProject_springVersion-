@@ -24,28 +24,28 @@
 			console.log(amount*price);
 			console.log(totalSum);
 			var it = $(this);
-			if(txt=true){
-
-			$.ajax({ 
-				type:"get",
-				url:"loginCheck/goodsCartDel?num="+num,
-				dataType:"text", 
-				success:function(data,status,xhr){
-					 if(data=='success'){
-						 //tr 삭제하고
-						it.parents().filter("tr").remove();
-						// 합산금액 업데이트
-						totalSum=totalSum-(price*amount);
-						//반영
-						var txt = "￦"+numeral( totalSum ).format('0,0');
-					     $("#totalSum").text(txt);  
-					 }
-				}, 
-				error:function(xhr,status,error){
-					console.log(error); 
-				}
-			})
-			}			
+			if(txt==true){	
+				console.log("?")
+				$.ajax({ 
+					type:"get",
+					url:"loginCheck/goodsCartDel?num="+num,
+					dataType:"text", 
+					success:function(data,status,xhr){
+						 if(data=='success'){
+							 //tr 삭제하고
+							it.parents().filter("tr").remove();
+							// 합산금액 업데이트
+							totalSum=totalSum-(price*amount);
+							//반영
+							var txt = "￦"+numeral( totalSum ).format('0,0');
+						     $("#totalSum").text(txt);  
+						 }
+					}, 
+					error:function(xhr,status,error){
+						console.log(error); 
+					}
+				})
+			}
 		})//del;
 		
 		//수정버튼

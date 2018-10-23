@@ -73,7 +73,8 @@
 		<!-- <button class="btn yellow">구매</button> -->
 		<button class="btn yellow" id="cart">장바구니</button> 
 	</div>
-	<p class="alignC"><img src="images/divider_1.jpg"></p>
+	<!-- <p class="alignC"><img src="images/divider_1.jpg"></p> -->
+	<hr>
 	<div class="alignC">
 		<p><img src="images/items/${goodsRetrieve.goods_Image2}.jpg"></p>
 		<p><img src="images/wash_info.jpg"></p>

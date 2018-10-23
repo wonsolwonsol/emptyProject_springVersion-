@@ -42,7 +42,7 @@ public class QuestionController {
 			return "redirect:/question?currentPage=1"; 
 		}
 		@RequestMapping(value="/question") 
-		public String question(HttpSession session, Model mod, @RequestParam int currentPage) {
+		public String question(HttpSession session, Model mod, @RequestParam(required=false, defaultValue="1") int currentPage) {
 			//Logger.info("paging :     "+p); //플러그인 필요, 로그
 			if(currentPage == 0){
 				currentPage = 1;}

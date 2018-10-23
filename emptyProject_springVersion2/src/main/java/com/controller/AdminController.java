@@ -63,7 +63,7 @@ public class AdminController {
 	*/
 	
 	@RequestMapping(value="/adminCheck/adminGoods", method=RequestMethod.GET)
-	public String adminGoods(@RequestParam(required=false) Integer currentPage, HttpSession session) {
+	public String adminGoods(@RequestParam(required=false, defaultValue="1") Integer currentPage, HttpSession session) {
 		if(currentPage == null || currentPage == 0 ){
 			currentPage = 1;
 		}
@@ -77,30 +77,40 @@ public class AdminController {
 		System.out.println(goods);
 		System.out.println(file);
 
-		CommonsMultipartFile theFile = file.getTheFile();
-		long size = theFile.getSize();
-		String fileName = theFile.getName();
-		String oriFileName = theFile.getOriginalFilename();
-		String type = theFile.getContentType();
+		CommonsMultipartFile[] theFile = file.getTheFile();
 		
-		System.out.println("size "+size);
-		System.out.println("fileName "+fileName);
-		System.out.println("oriFileName "+oriFileName);
-		System.out.println("type "+type);
-		File f = null;
+		//theFile의 두개의 파일을 인덱스 0번은 썸네일 폴더에 1번은 아이템에
+		for (CommonsMultipartFile f : theFile) {
+			long size = f.getSize();
+			String fileName = f.getName();
+			String oriFileName = f.getOriginalFilename();
+			String type = f.getContentType();
+			
+			System.out.println("size "+size);
+			System.out.println("fileName "+fileName);
+			System.out.println("oriFileName "+oriFileName);
+			System.out.println("type "+type);
+			File loc = null;
+			
+			if(f == theFile[0]) {
+			loc = new File("C:\\Users\\acorn\\git\\emptyProject_springVersion\\emptyProject_springVersion2\\src\\main\\webapp\\WEB-INF\\views\\images\\items\\thum", oriFileName);
+			try {
+				f.transferTo(loc);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}else if(f == theFile[1]) {
+				loc = new File("C:\\Users\\acorn\\git\\emptyProject_springVersion\\emptyProject_springVersion2\\src\\main\\webapp\\WEB-INF\\views\\images\\items", oriFileName);
+				try {
+					f.transferTo(loc);
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		
-		
-		f = new File("c:\\upload", oriFileName);
-		
-		try {
-			theFile.transferTo(f);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		}		
 		
 		service.adminGoodsAdd(goods);
 		return "redirect:./adminGoods";
@@ -112,31 +122,40 @@ public class AdminController {
 		System.out.println(goods);
 		System.out.println(file);
 
-		CommonsMultipartFile theFile = file.getTheFile();
-		long size = theFile.getSize();
-		String fileName = theFile.getName();
-		String oriFileName = theFile.getOriginalFilename();
-		String type = theFile.getContentType();
+		CommonsMultipartFile[] theFile = file.getTheFile();
 		
-		System.out.println("size "+size);
-		System.out.println("fileName "+fileName);
-		System.out.println("oriFileName "+oriFileName);
-		System.out.println("type "+type);
-		File f = null;
+		//theFile의 두개의 파일을 인덱스 0번은 썸네일 폴더에 1번은 아이템에
+		for (CommonsMultipartFile f : theFile) {
+			long size = f.getSize();
+			String fileName = f.getName();
+			String oriFileName = f.getOriginalFilename();
+			String type = f.getContentType();
+			
+			System.out.println("size "+size);
+			System.out.println("fileName "+fileName);
+			System.out.println("oriFileName "+oriFileName);
+			System.out.println("type "+type);
+			File loc = null;
+			
+			if(f == theFile[0]) {
+			loc = new File("C:\\Users\\acorn\\git\\emptyProject_springVersion\\emptyProject_springVersion2\\src\\main\\webapp\\WEB-INF\\views\\images\\items\\thum", oriFileName);
+			try {
+				f.transferTo(loc);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}else if(f == theFile[1]) {
+				loc = new File("C:\\Users\\acorn\\git\\emptyProject_springVersion\\emptyProject_springVersion2\\src\\main\\webapp\\WEB-INF\\views\\images\\items", oriFileName);
+				try {
+					f.transferTo(loc);
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		
-		
-		f = new File("c:\\upload", oriFileName);
-		
-		try {
-			theFile.transferTo(f);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
 		
 		service.adminGoodsUpdate(goods);		
 		return "redirect:./adminGoods";
@@ -152,10 +171,12 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminCheck/adminGoodsDelete", method=RequestMethod.GET)
-	public @ResponseBody String delete(@RequestParam String goods_Code) {
+	public @ResponseBody String delete(@RequestParam String goods_Code, HttpSession session) {
 		System.out.println(goods_Code);
+		Page list = goodsService.goodsAllPage(1);		
+		session.setAttribute("page",list);
 		service.adminGoodsDelete(goods_Code);
-
+		
 		return "success";
 	}
 	@RequestMapping(value="/adminCheck/adminGoodsDeleteAll", method=RequestMethod.GET)

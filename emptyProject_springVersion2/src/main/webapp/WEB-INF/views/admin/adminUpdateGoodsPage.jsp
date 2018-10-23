@@ -42,6 +42,7 @@
 	        reader.onload = function(e) {
 	            var img_html = "<p><img src=\"" + e.target.result + "\" /></p>";	           
 	            $(".imgs_wrap").prepend(img_html);
+	            $("#imgText").remove();
 	        }
 	        	
 	        	var goods_Image = "<input type='hidden' name='goods_Image"+(i+1)+"' value='"+f.name+"'>";
@@ -83,7 +84,10 @@
 				<td>
 				<div class="imgs_wrap goods_Image">
 				<input type="file" id="input_imgs" multiple name="theFile" />
+				<span id="imgText">${goods.goods_Image1}<br>
+				${goods.goods_Image2}</span>
 				</div>
+				
 				</td>				
 			</tr>
 			<tr>
