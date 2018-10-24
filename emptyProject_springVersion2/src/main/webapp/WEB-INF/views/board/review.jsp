@@ -103,10 +103,10 @@ $("p").html(paging);
 <c:choose>
 	<c:when test="${!empty member }">
 		<c:choose>
-			<c:when test="${member.userid == 'admin }">
+			<c:when test="${member.userid == 'admin' }">
 			<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
 			</c:when>
-			<c:when test="${member.userid != 'admin }">
+			<c:when test="${member.userid != 'admin' }">
 			<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
 			</c:when>
 		</c:choose>
