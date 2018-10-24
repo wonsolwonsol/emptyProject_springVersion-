@@ -82,8 +82,8 @@
 		<hr>
 	</div>
 	<div align="center">
-	<button class="btn gray"><a href="question"> 질문하기 </a></button>
-	<button class="btn yellow"><a href="review"> 리뷰보기 </a></button>
+	<button class="btn gray"><a href="question?currentPage=1"> 질문하기 </a></button>
+	<button class="btn yellow"><a href="review?currentPage=1"> 리뷰보기 </a></button>
 	
 	
 <!-- 		<button id="shareInfo" name="shareInfo">카톡으로 공유하기</button>구글링중 

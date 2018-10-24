@@ -35,10 +35,10 @@ select review.review_number as review_review_number
 ,review.readcnt as review_readcnt
 , review.content as review_content 
 ,review.image_name as review_image_name
+,review.goods_code as review_goods_code
 ,review_comment.author as review_comment_author 
 , review_comment.content as review_comment_content 
 ,review_comment.r_comment_number as review_comment_number
-
 from review, review_comment 
 where review.review_number = review_comment.review_number(+)
 and review.review_number = #{review_number} 
