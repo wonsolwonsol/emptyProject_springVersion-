@@ -67,8 +67,8 @@ public class MemberController {
 	public String memberUpdate(Member member, HttpSession session, RedirectAttributes red) {
 		Member mem = (Member) session.getAttribute("member");
 		member.setUsername(mem.getUsername());
-		service.memberUpdate(member);
-		System.out.println("       ????????            "+member);
+		int n = service.memberUpdate(member);
+		System.out.println("       ????????            "+n);
 		red.addFlashAttribute("mesg", "수정했습니다.");
 		return "redirect:../";
 	}

@@ -25,7 +25,7 @@ update review set readcnt = NVL(readcnt, 0) + 1
 where review_number = #{review_number}
 </update>
 <select id="totalCount" resultType="int">
-select count(*) from question
+select count(*) from review
 </select>
 <select id="reviewRetrieveJoin" resultType="ReviewJoin" parameterType="string">
 select review.review_number as review_review_number 
