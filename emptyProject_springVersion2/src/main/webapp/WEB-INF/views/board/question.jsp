@@ -62,9 +62,24 @@ $("#questionAdmin").on("click", function(){
 <p align="center">page</p>
 <pre></pre>
 <br> 
-<button class="btn yellow" style="width:10%" ><a href="questionWrite">질문하기</a></button>
+<c:choose>
+	<c:when test="${!empty member }">
+		<c:choose>
+			<c:when test="${member.userid  != 'admin'}">
+			<button class="btn gray"><a href="questionWrite">질문하기</a></button>
+			</c:when>
+			<c:when test="${member.userid  == 'admin'}">
+			<button class="btn gray"><a href="questionWrite">질문하기</a></button>
+			<button id="questionAdmin" class="btn yellow"><a href="">관리하기</a></button>
+			</c:when>
+		</c:choose>
+	</c:when>
+	<c:when test="${empty member }">
+	<br> 
+	</c:when>
+</c:choose>
 
- 	<button class="btn yellow" style="width:10%" id="questionAdmin">관리자</button>
+
  	<!-- <button class="btn gray"><a href="questionAdmin"></a>질문관리 </button> -->
  	
 </body>
