@@ -12,6 +12,7 @@
 <script type="text/javascript">
 	$(function(){	
 		var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		var regex_han = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힝]/;
 		var userid = $("#userid");
 		var passwd1 = $("#passwd1");
 		var passwd2 = $("#passwd2");
@@ -31,9 +32,11 @@
 				
 			if (!(userid.val() >= '0' && userid.val() <= '9') && !(userid.val() >= 'a' && userid.val() <= 'z')&& !(userid.val() >= 'A' && userid.val() <= 'Z')) {
 				$("#result").text("아이디는 대소문자, 숫자만 입력가능합니다.")
+			}else if (document.f.userid.value.indexOf(regex_han) >= 0) {
+				$("#result").text("아이디에 한글을 사용할 수 없습니다.")
 			}else if (document.f.userid.value.indexOf(" ") >= 0) {
 				$("#result").text("아이디에 공백을 사용할 수 없습니다.")
-			}else if (document.f.userid.value.length<6 || document.f.userid.value.length>12) {
+			}else if (document.f.userid.value.length<6 || document.f.userid.value.length>=12) {
 				$("#result").text("아이디를 6~12자까지 입력해주세요.")			
 			}else{
 			$.ajax({
@@ -73,7 +76,7 @@
 			        }	
 			        
 			        if (passwd.length<6 || document.f.passwd1.value.length>12) {			        	
-			        	$("#result2").text("비밀번호를 4~10자까지 입력해주세요.")
+			        	$("#result2").text("비밀번호를 6~10자까지 입력해주세요.")
 			        }
 				});
 
