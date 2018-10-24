@@ -20,7 +20,7 @@ values
 	) 
 </insert>
 <select id="noticeAll" resultType="Notice" parameterType="hashmap">
-select seq
+select notice_number as seq 
 	,title
 	,content
 	,reg_dts
