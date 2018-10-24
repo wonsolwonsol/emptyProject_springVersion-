@@ -100,7 +100,21 @@ $("p").html(paging);
 <p align="center">page</p>
 <pre></pre>
 <br> 
-<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
+<c:choose>
+	<c:when test="${!empty member }">
+		<c:choose>
+			<c:when test="${member.userid == 'admin' }">
+			<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
+			</c:when>
+			<c:when test="${member.userid != 'admin' }">
+			<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
+			</c:when>
+		</c:choose>
+	</c:when>
+	<c:when test="${empty member }">
+	리뷰작성은 로그인이 필요합니다.
+	</c:when>
+</c:choose>
 <%-- <c:if test="${!empty member }">
  	<c:if test="${member.userid eq 'admin' }">
  	<button class="btn gray"><a href=""></a>질문관리 </button>
