@@ -14,18 +14,7 @@ $(document).ready(function() {
   if($(this).val().length > 50) {
             $(this).val($(this).val().substring(0, 50));
         } }); //end content, 코멘트 글자 수 제한 
-        
-
-
-
-
-
-
-
-    
-    
     });
-
 </script>
 <h1>Review Retrieve</h1>
 <table class="tbl"> 
@@ -33,25 +22,36 @@ $(document).ready(function() {
 	<th>글번호</th>
 	<td>${reviewRetrieve[0].review_review_number}</td>
 	<th>삭제</th>
-<c:if test="${!empty member }">
-	<c:if test="${reviewRetrieve[0].review_author == member.userid }">
-	<td>
-	<a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/write.png"></a>&nbsp;&nbsp;&nbsp;
-	<a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/trash.png"></a>
-	</td>
-	</c:if>
-	<c:if test="${member.userid eq 'admin' }">
-	<td>
-	<a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/write.png"></a>&nbsp;&nbsp;&nbsp;
-	<a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/trash.png"></a>
-	</td>
-	</c:if>
-	<c:if test="${reviewRetrieve[0].review_author != member.userid }">
-	</c:if>	
-</c:if>
-<c:if test="${ empty member} ">
-</c:if>
-
+	<c:choose>
+		
+		<c:when test="${ empty member} ">
+		<td>로그인이 필요한 작업입니다.</td>
+		</c:when>
+		
+		<c:when test="${!empty member }">
+		 	<c:choose>
+				<c:when test="${reviewRetrieve[0].review_author == member.userid }">
+				<td>
+				<a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/write.png"></a>&nbsp;&nbsp;&nbsp;
+				<a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/trash.png"></a>
+				</td>
+				</c:when>
+				<c:when test="${member.userid eq 'admin' }">
+				<td>
+				<a href="reviewUpdate?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/write.png"></a>&nbsp;&nbsp;&nbsp;
+				<a href="reviewDelete?review_number=${reviewRetrieve[0].review_review_number}"><img src="images/icon/trash.png"></a>
+				</td>
+				</c:when>
+				<c:when test="${reviewRetrieve[0].review_author != member.userid }"><td>작성자가 아닙니다.</td>
+				</c:when>
+				<c:otherwise><td>로그인을 확인해주세요.</td></c:otherwise>
+			</c:choose>
+		</c:when>
+			<c:otherwise><td>로그인을 확인하세요.</td></c:otherwise>	
+	</c:choose>	
+		
+	
+	
 </tr>
 <tr>
 	<th>작성일</th>
@@ -122,8 +122,8 @@ $(document).ready(function() {
 	<c:when test="${ data.review_comment_author == member.userid }">
 		<td width="10%"><a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a></td>
 	</c:when>
-<c:otherwise>
-</c:otherwise>
+	<c:otherwise>
+	</c:otherwise>
 </c:choose>
 </tr>
 
