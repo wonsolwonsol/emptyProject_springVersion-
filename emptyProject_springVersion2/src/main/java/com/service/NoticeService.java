@@ -16,6 +16,10 @@ public class NoticeService {
 	
 	@Autowired
 	NoticeDAO dao; 
+	//자세히보기
+	public Notice noticeRetrieve(String seq) {
+		return dao.noticeRetrieve(seq); 
+	}
 	//모두(목록)보기 
 	public List<Notice> noticeAll(){
 		return dao.noticeAll(); 

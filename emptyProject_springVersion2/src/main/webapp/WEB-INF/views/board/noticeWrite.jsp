@@ -6,39 +6,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body><h1 align="center">질문하기</h1><br>
 
-<pre></pre>
-<br> 
+<body>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
 <script type="text/javascript">
+$(function(){
+    var now = new Date(); //현재 날짜 가져오기
+    var year = now.getFullYear(); //현재 년도 가져오기
+    var month = now.getMonth(); // 현재 월 가져오기
+    var day = now.getDate(); //현재 일 가져오기
+    var hour = now.getHours(); //현재 시간 가져오기
+    var minute = now.getMinutes(); //현재 분 가져오기
+    var today = new Date(year,month,day); //오늘 날짜 시간제외
+    var yesterday = new Date(year,month,day - 1); //어제 날짜 시간제외
+    var desterday = new Date(year,month,day - 2); //그저께 날짜 시간제외
+        var regdate = document.getElementById   ("regdate");
+    regdate.innerHTML = year+"/"+month+"/"+day+" "+hour+":"+minute;
+   });
+function doOpenCheck(chk){
+var obj = document.getElementsByName("term");
+for(var i=0; i<obj.length; i++){
+   if(obj[i] != chk){
+       obj[i].checked = false;
+   }
+}
+}
 </script>
-<form action="" method="post" enctype="multipart/form-data">
-<input type="hidden" name="userid" value="${login.username}" />
+<form action="noticeWrite" method="post" enctype="multipart/form-data">
 <table class="tbl">
-
 <tr>
-
-    <td>제목</td>
-    <td colspan="2"><input type="text" name="title" style="width: 80%;" /></td><pre></pre>
+	<th>제목</th>
+	<td><input type="text" name="title"></td>
+	<th>작성일</th>
+	<td id="regdate"></td>
+	<input type="hidden" name="reg_dts" value="sysdate"> 
 </tr>
 <tr>
-    <td align="center" colspan="2">
-        <textarea  name="content" rows="17" cols="100"></textarea><pre></pre>
-    </td>
-</tr>
-<tr>
-    <td>첨부 파일</td>
-    <td><input type="file" name="image_name" id="image_name" /></td><pre></pre>
+	<th>내용</th>
+	<td><input type="text" name="content" id="content"></td>
 </tr>
 </table>
-<div style="text-align: center; padding-bottom: 15px;">
-    <input type="submit" value="등록" />
-    <input type="reset" value="다시쓰기" /> 
-
-</div>
-</form><br> 
+<input type="submit" value="등록"> 
 <a href="">목록보기</a>
 
 </body>

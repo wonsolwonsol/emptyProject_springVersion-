@@ -30,6 +30,15 @@ public class NoticeController {
 		return "noticeWrite" ; 
 	}
 	
+	@RequestMapping("/noticeRetrieve")
+	public ModelAndView noticeRetrieve(@RequestParam String seq, ModelAndView m ) {
+		Notice notice = service.noticeRetrieve(seq); 
+		
+		m.addObject("noticeRetrieve", notice);
+		m.setViewName("noticeRetrieve");
+		return m; 
+		
+	}
 	
 	//questionBoard, NoticeBoard, ReviewBoard 
 	//관리자용 쓰기, 전체회원 읽기, 내용분리 

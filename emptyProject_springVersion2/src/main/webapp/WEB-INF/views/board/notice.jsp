@@ -43,7 +43,10 @@ $("p").html(paging);
 <c:forEach var="dto" items="${page.list2 }" varStatus="status">	
 <tr>
 	<td>${dto.seq}</td>
-	<td>${dto.title}</td>
+	<td>
+	<a class="a_black" href="noticeRetrieve?seq=${dto.seq}">
+	${dto.title}</a>
+	</td>
 	</tr>
 
 </c:forEach>
