@@ -91,7 +91,7 @@ $("p").html(paging);
 			<button class="btn yellow linkNone" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
 			</c:when>
 			<c:when test="${member.userid != 'admin' }">
-			<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
+			<button class="btn yellow" style="width:10%" ><a class="linkNone" href="reviewWrite">리뷰작성</a></button>
 			</c:when>
 		</c:choose>
 	</c:when>

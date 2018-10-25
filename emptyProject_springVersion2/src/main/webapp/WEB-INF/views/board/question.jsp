@@ -69,8 +69,8 @@ $("#questionAdmin").on("click", function(){
 			<button class="btn gray linkNone"><a href="questionWrite">질문하기</a></button>
 			</c:when>
 			<c:when test="${member.userid  == 'admin'}">
-			<button class="btn gray linkNone"><a href="questionWrite">질문하기</a></button>
-			<button id="questionAdmin" class="btn yellow aLink">관리하기</button>
+			<button class="btn darkgray"><a class="linkNone" href="questionWrite">질문하기</a></button>
+			<button id="questionAdmin" class="btn yellow linkNone">관리하기</button>
 			</c:when>
 		</c:choose>
 	</c:when>
