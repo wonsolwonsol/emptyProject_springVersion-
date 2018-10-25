@@ -65,4 +65,11 @@ public class NoticeController {
 	return "notice"; 
 	}
 	
+	@RequestMapping("/noticeWriteSubmit")
+	public String noticeWriteSubmit(Notice n) {
+		System.out.println("noticeWriteSubmit=======");
+		service.noticeWriteSubmit(n);
+		return "redirect:./notice?currentPage=1" ;
+	}
+	
 }

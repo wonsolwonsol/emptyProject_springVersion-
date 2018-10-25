@@ -33,5 +33,8 @@ public class NoticeService {
 		
 	}
 	
+	public void noticeWriteSubmit(Notice n) {
+		dao.noticeWriteSubmit(n);
+	}
 
 }
