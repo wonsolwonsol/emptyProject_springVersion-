@@ -78,7 +78,7 @@ public class AdminController {
 		System.out.println(file);
 
 		CommonsMultipartFile[] theFile = file.getTheFile();
-		if(theFile.length > 1) {
+		if(theFile.length >= 2) { //case 1 
 		//theFile의 두개의 파일을 인덱스 0번은 썸네일 폴더에 1번은 아이템에
 			for (CommonsMultipartFile f : theFile) {
 				long size = f.getSize();
@@ -100,12 +100,13 @@ public class AdminController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				}else if(f == theFile[1]) {
+				}else if(f == theFile[1]) { //case 2 
 					loc = new File("c:/upload"+"/items", oriFileName);
 					try {
 						f.transferTo(loc);
 					} catch (IllegalStateException | IOException e) {
 						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 				}
@@ -113,7 +114,15 @@ public class AdminController {
 			}
 			service.adminGoodsAdd(goods);
 		}else {
-			service.adminGoodsAddNoImg(goods);			
+			/*System.out.println("============case2");
+			System.out.println(goods);
+			goods.setGoods_Image2("IMG_7379.jpg");
+			goods.setGoods_Image1("IMG_7379.jpg");
+			System.out.println("수정후=================="+goods);*/
+			service.adminGoodsAdd(goods);
+			//service.adminGoodsAddNoImg(goods);		
+			
+			
 		}
 		
 		return "redirect:./adminGoods";
