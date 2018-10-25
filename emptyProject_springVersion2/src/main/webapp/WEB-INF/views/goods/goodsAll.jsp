@@ -202,14 +202,13 @@
 			
 						
 </table> --%>
+<h3>All</h3>
 <hr>
 <table width="100%" cellspacing="0" cellpadding="0">
 
 	<tr>
 		<td>
 			<table align="center" width="50px" cellspacing="0" cellpadding="0" border="0">
-
-
 				
 				<tr>
     <c:forEach var="dto" items="${page.list}" varStatus="status">	

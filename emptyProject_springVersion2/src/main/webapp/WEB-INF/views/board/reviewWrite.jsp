@@ -29,15 +29,16 @@ function doOpenCheck(chk){
     }
 }
 </script>
-<h1>Question Retrieve</h1>
+<h1>Review Write</h1>
 <form  name="myForm" method="post" action="reviewWriteSubmit" enctype="multipart/form-data">
 <table class="tbl">
+
 <tr>
        <th>공개여부</th>
        <td>
        <input type="checkbox" name="term" value="y" checked="checked" onclick="doOpenCheck(this);">공개&nbsp;
        <input type="checkbox" name="term" value="n" onclick="doOpenCheck(this);">비공개 <br>
-       선택하지 않는 경우 자동으로 공개처리 됩니다. 
+       <span class="small">선택하지 않는 경우 자동으로 공개처리 됩니다.</span> 
        </td>
 </tr>
 <tr>
@@ -65,9 +66,7 @@ function doOpenCheck(chk){
 </tr>
 <tr>
        <th width="0%">내용</th>
-       <td width="90%"><input type="text" id="content" name="content" width="90%"
-       cols="30" rows="5"
-       ></td>
+       <td width="90%"><textarea id="content" name="content" width="90%" rows="17" cols="120"></textarea></td>
 </tr>
 <tr>
        <th>첨부파일</th>

@@ -39,6 +39,11 @@ $(function(){
 <h1>questionWrite View</h1>
 <form name="myForm" method="post" action="questionWriteSumit"> 
 <table class="tbl"> 
+<colgroup>
+	<col style="width:30%">
+	<col style="width:*">
+
+</colgroup>
 <input type="hidden" id="question_number" name="question_number" value="0">
 <tr> 
 	<td>작성자</td>

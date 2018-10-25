@@ -29,8 +29,8 @@
 		<li><a href="review?currentPage=1">REVIEW</a></li>
 	</ul>
 	<br>
-	<ul id="side_sns">
+<!-- 	<ul id="side_sns">
 		<li><a href=""><img src="images/icon/twitter.png"></a></li>
 		<li><a href=""><img src="images/icon/instagram.png"></a></li>
-	</ul>
+	</ul> -->
 </div>

@@ -47,11 +47,11 @@ $("p").html(paging);
 <tbody>
   <c:forEach var="dto" items="${page.list }" varStatus="status">	 
 	<tr>
-	<td>${dto. review_number }</td>
+	<td style="text-align: center">${dto. review_number }</td>
 	<td class="td_default">
 	<c:choose>
 	<c:when test="${dto.term == 'n'}">
-		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
+		<a class="a_black aLink" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
 	</c:when>
 	<c:when test="${dto.term =='y'}">
 		<c:choose>
@@ -60,10 +60,10 @@ $("p").html(paging);
 			 <img src="images/icon/key_icon.png" width="12px" height="12px" >
 			</c:when>
 		<c:when test="${dto.author == member.userid }">
-		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
+		<a class="a_black aLink" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
 		</c:when>
 		<c:when test="${member.userid eq 'admin'}">
-		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
+		<a class="a_black aLink" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
 		</c:when> 
 		<c:otherwise>로그인을 확인하세요.</c:otherwise>
 		</c:choose>
@@ -81,14 +81,14 @@ $("p").html(paging);
 <input type="hidden" value="${page.totalCount}" id="totalCount">
 <input type="hidden" value="${page.currentPage}" id="curpage">
 <pre></pre>
-<p align="center">page</p>
+<p align="center" class="page">page</p>
 <pre></pre>
 <br> 
 <c:choose>
 	<c:when test="${!empty member }">
 		<c:choose>
 			<c:when test="${member.userid == 'admin' }">
-			<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
+			<button class="btn yellow linkNone" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>
 			</c:when>
 			<c:when test="${member.userid != 'admin' }">
 			<button class="btn yellow" style="width:10%" ><a href="reviewWrite">리뷰작성</a></button>

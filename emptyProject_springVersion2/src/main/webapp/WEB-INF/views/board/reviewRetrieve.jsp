@@ -18,6 +18,7 @@ $(document).ready(function() {
 </script>
 <h1>Review Retrieve</h1>
 <table class="tbl"> 
+
 <tr> 
 	<th>글번호</th>
 	<td>${reviewRetrieve[0].review_review_number}</td>

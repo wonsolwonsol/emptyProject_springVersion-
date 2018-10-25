@@ -36,15 +36,15 @@ $("p").html(paging);
 <table class="tbl" border="1">
 <thead>
 	<tr>
-	<th>글번호</th>
+	<th style="width: 20%">글번호</th>
 	<th>제목</th>
 	</tr></thead>
 <tbody>
 <c:forEach var="dto" items="${page.list2 }" varStatus="status">	
 <tr>
-	<td>${dto.seq}</td>
+	<td style="text-align: center">${dto.seq}</td>
 	<td>
-	<a class="a_black" href="noticeRetrieve?seq=${dto.seq}">
+	<a class="a_black aLink" href="noticeRetrieve?seq=${dto.seq}">
 	${dto.title}</a>
 	</td>
 	</tr>
@@ -76,7 +76,7 @@ $("p").html(paging);
 <br> 
 <pre></pre>
 <c:if test="${member.userid == 'admin' }">
- <button class="btn gray small" align="center"><a href="noticeWrite">공지등록</a></button>
+ <button class="btn gray yellow linkNone" align="center"><a href="noticeWrite">공지등록</a></button>
  </c:if>
 
 </body>

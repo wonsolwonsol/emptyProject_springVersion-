@@ -46,9 +46,9 @@ $("#questionAdmin").on("click", function(){
 <tbody>
  <c:forEach var="dto" items="${page.list }" varStatus="status">	
 	<tr>
-	<td>${dto.question_number }</td>
+	<td style="text-align: center">${dto.question_number }</td>
 	<td class="td_default">
-	<a class="a_black" href="questionRetrieve?question_number=${dto.question_number}">${dto.title }</a></td>
+	<a class="a_black aLink" href="questionRetrieve?question_number=${dto.question_number}">${dto.title }</a></td>
 	<td align="center">${dto.author }</td>
 	<td>${dto.regdate }</td>
 	</tr>
@@ -59,18 +59,18 @@ $("#questionAdmin").on("click", function(){
 <input type="hidden" value="${page.totalCount}" id="totalCount">
 <input type="hidden" value="${page.currentPage}" id="curpage">
 <pre></pre>
-<p align="center">page</p>
+<p align="center" class="page">page</p>
 <pre></pre>
 <br> 
 <c:choose>
 	<c:when test="${!empty member }">
 		<c:choose>
 			<c:when test="${member.userid  != 'admin'}">
-			<button class="btn gray"><a href="questionWrite">질문하기</a></button>
+			<button class="btn gray linkNone"><a href="questionWrite">질문하기</a></button>
 			</c:when>
 			<c:when test="${member.userid  == 'admin'}">
-			<button class="btn gray"><a href="questionWrite">질문하기</a></button>
-			<button id="questionAdmin" class="btn yellow"><a href="">관리하기</a></button>
+			<button class="btn gray linkNone"><a href="questionWrite">질문하기</a></button>
+			<button id="questionAdmin" class="btn yellow aLink">관리하기</button>
 			</c:when>
 		</c:choose>
 	</c:when>
