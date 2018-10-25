@@ -41,6 +41,11 @@ public class AdminDAO {
 		template.update("GoodsMapper.adminGoodsUpdate", goods);		
 	}
 
+	public void adminGoodsUpdateNoImg(Goods goods) {
+		template.update("GoodsMapper.adminGoodsUpdateNoImg", goods);
+		
+	}
+	
 	public void adminGoodsDelete(String goods_Code) {
 		template.delete("GoodsMapper.adminGoodsDel", goods_Code);
 		
@@ -86,4 +91,6 @@ public class AdminDAO {
 	public void adminMemberDeleteAll(List<String> check) {
 		template.delete("MemberMapper.adminMemberDeleteAll",check);		
 	}
+
+
 }
