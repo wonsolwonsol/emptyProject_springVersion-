@@ -78,41 +78,44 @@ public class AdminController {
 		System.out.println(file);
 
 		CommonsMultipartFile[] theFile = file.getTheFile();
-		
+		if(theFile.length > 1) {
 		//theFile의 두개의 파일을 인덱스 0번은 썸네일 폴더에 1번은 아이템에
-		for (CommonsMultipartFile f : theFile) {
-			long size = f.getSize();
-			String fileName = f.getName();
-			String oriFileName = f.getOriginalFilename();
-			String type = f.getContentType();
-			
-			System.out.println("size "+size);
-			System.out.println("fileName "+fileName);
-			System.out.println("oriFileName "+oriFileName);
-			System.out.println("type "+type);
-			File loc = null;
-			
-			if(f == theFile[0]) {
-				loc = new File("c:/upload"+"/items/thum", oriFileName);
-			try {
-				f.transferTo(loc);
-			} catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			}else if(f == theFile[1]) {
-				loc = new File("c:/upload"+"/items", oriFileName);
+			for (CommonsMultipartFile f : theFile) {
+				long size = f.getSize();
+				String fileName = f.getName();
+				String oriFileName = f.getOriginalFilename();
+				String type = f.getContentType();
+				
+				System.out.println("size "+size);
+				System.out.println("fileName "+fileName);
+				System.out.println("oriFileName "+oriFileName);
+				System.out.println("type "+type);
+				File loc = null;
+				
+				if(f == theFile[0]) {
+					loc = new File("c:/upload"+"/items/thum", oriFileName);
 				try {
 					f.transferTo(loc);
 				} catch (IllegalStateException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				}else if(f == theFile[1]) {
+					loc = new File("c:/upload"+"/items", oriFileName);
+					try {
+						f.transferTo(loc);
+					} catch (IllegalStateException | IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			
 			}
+			service.adminGoodsAdd(goods);
+		}else {
+			service.adminGoodsAddNoImg(goods);			
+		}
 		
-		}		
-		
-		service.adminGoodsAdd(goods);
 		return "redirect:./adminGoods";
 	}
 	

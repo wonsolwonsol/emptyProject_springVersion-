@@ -285,6 +285,27 @@ select goods_Code
 	   		 sysdate   		
 	   		)   		
 	</insert>
+	<insert id="adminGoodsAddNoImg" parameterType="Goods">
+	insert into goods (
+			 goods_Code
+	   		,goods_Color
+	   		,goods_Name
+	   		,goods_Price
+	   		,goods_Brand
+	   		,goods_Content
+	   		,goods_Category
+	   		,goods_date)   		
+	values (
+	   		#{goods_Code},
+	   		#{goods_Color},
+	   		#{goods_Name},
+	   		#{goods_Price},
+	   		#{goods_Brand}, 
+	   		#{goods_Content},
+	   		#{goods_Category}, 
+	   		 sysdate   		
+	   		)   		
+	</insert>
 <!-- paging -->
 	<select id="totalCount" resultType="int">
 	 <!-- 전체 갯수를 세어주고 -->

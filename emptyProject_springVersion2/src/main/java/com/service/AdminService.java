@@ -56,4 +56,8 @@ public class AdminService {
 		dao.adminGoodsUpdateNoImg(goods);
 		
 	}
+
+	public void adminGoodsAddNoImg(Goods goods) {
+		dao.adminGoodsAddNoImg(goods);		
+	}
 }

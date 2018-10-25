@@ -36,6 +36,10 @@ public class AdminDAO {
 	public void adminGoodsAdd(Goods goods) {
 		template.insert("GoodsMapper.adminGoodsInsert",goods);		
 	}
+	
+	public void adminGoodsAddNoImg(Goods goods) {
+		template.insert("GoodsMapper.adminGoodsAddNoImg", goods);		
+	}
 
 	public void adminGoodsUpdate(Goods goods) {
 		template.update("GoodsMapper.adminGoodsUpdate", goods);		
@@ -91,6 +95,8 @@ public class AdminDAO {
 	public void adminMemberDeleteAll(List<String> check) {
 		template.delete("MemberMapper.adminMemberDeleteAll",check);		
 	}
+
+
 
 
 }
