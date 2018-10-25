@@ -24,7 +24,6 @@ for(var i = 1; i <= total; i++){
 		paging = paging+"<a href='/app/review?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;";  
 	}			
 }
-
 console.log(paging);
 $("p").html(paging);
 
@@ -48,23 +47,8 @@ $("p").html(paging);
 <tbody>
   <c:forEach var="dto" items="${page.list }" varStatus="status">	 
 	<tr>
-	<td>${dto. review_number }<%-- &nbsp;${dto.term } --%></td>
+	<td>${dto. review_number }</td>
 	<td class="td_default">
-	<%-- 	<c:if test="${dto.term == 'n'}">
-		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
-		</c:if>
-	<c:if test="${dto.term =='y'}">
-			<c:if test="${empty member}">
-			 작성자와 운영자만 볼 수 있는 글입니다.
-			 <img src="images/icon/key_icon.png" width="12px" height="12px" >
-			</c:if>
-		<c:if test="${dto.author == member.userid }">
-		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
-		</c:if>
-		<c:if test="${member.userid eq 'admin'}">
-		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
-		</c:if>
-	</c:if> --%>
 	<c:choose>
 	<c:when test="${dto.term == 'n'}">
 		<a class="a_black" href="reviewRetrieve?review_number=${dto.review_number}">${dto.title}</a>
@@ -115,11 +99,7 @@ $("p").html(paging);
 	리뷰작성은 로그인이 필요합니다.
 	</c:when>
 </c:choose>
-<%-- <c:if test="${!empty member }">
- 	<c:if test="${member.userid eq 'admin' }">
- 	<button class="btn gray"><a href=""></a>질문관리 </button>
- 	</c:if>
- 	</c:if> --%>
+
 </body>
 </html>
 

@@ -9,7 +9,7 @@ public class Notice {
 	private int seq;
 	private String title;
 	private String content;
-	private String dreg_dts;
+	private String reg_dts;
 	public int getSeq() {
 		return seq;
 	}
@@ -28,27 +28,28 @@ public class Notice {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getDreg_dts() {
-		return dreg_dts;
+	public String getReg_dts() {
+		return reg_dts;
 	}
-	public void setDreg_dts(String dreg_dts) {
-		this.dreg_dts = dreg_dts;
+	public void setReg_dts(String reg_dts) {
+		this.reg_dts = reg_dts;
 	}
 	@Override
 	public String toString() {
-		return "Notice [seq=" + seq + ", title=" + title + ", content=" + content + ", dreg_dts=" + dreg_dts + "]";
+		return "Notice [seq=" + seq + ", title=" + title + ", content=" + content + ", reg_dts=" + reg_dts + "]";
 	}
-	public Notice(int seq, String title, String content, String dreg_dts) {
+	public Notice(int seq, String title, String content, String reg_dts) {
 		super();
 		this.seq = seq;
 		this.title = title;
 		this.content = content;
-		this.dreg_dts = dreg_dts;
+		this.reg_dts = reg_dts;
 	}
 	public Notice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	
 }

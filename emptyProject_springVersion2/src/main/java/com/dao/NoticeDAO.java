@@ -15,6 +15,13 @@ public class NoticeDAO {
 	SqlSessionTemplate template ;
 	
 	
+	//자세히보기
+	public Notice noticeRetrieve(String seq) {
+		Notice n = 
+		template.selectOne("NoticeMapper.noticeRetrieve", seq);
+		return n; 
+	}
+	
 	//목록 (이전버전과 달리 목록읽기와 내용보기 분리할 것, 내용은 후자에서만 보일 것) 
 	public List<Notice> noticeAll() {
 		return template.selectList("NoticeMapper.noticeAll"); 

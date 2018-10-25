@@ -1,3 +1,46 @@
+--20181024
+--notice
+drop sequence seq;
+drop table notice; --notice 이미 없으면 드랍 안하셔도 됩니다. 
+
+commit;
+
+create table notice 
+( 
+ notice_number number(6) primary key 
+ , title varchar2(100) not null
+ ,content clob not null
+ ,reg_dts date default sysdate
+ ); 
+ 
+ create sequence notice_number 
+start with 1
+increment by 1 ;
+
+commit;
+insert into notice ( notice_number, title, content, reg_dts ) 
+values 
+( notice_number.NEXTVAL
+,'회원 가입 이벤트 안내드립니다. '
+, '이벤트 안내' 
+,sysdate);
+insert into notice ( notice_number, title, content, reg_dts ) 
+values 
+( notice_number.NEXTVAL
+,'가을맞이 이벤트 안내드립니다. '
+, '이벤트 안내' 
+,sysdate);
+insert into notice ( notice_number, title, content, reg_dts ) 
+values 
+( notice_number.NEXTVAL
+,'겨울용 퍼 가방 할인이벤트 안내드려요. '
+, '이벤트 안내' 
+,sysdate);
+commit;
+
+
+select * from notice;
+------------------------------------------
 -- 181023
 --오더단에 사용자 이름
 ALTER TABLE order_info ADD(username VARCHAR2(10) );
