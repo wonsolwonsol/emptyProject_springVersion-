@@ -57,7 +57,7 @@ $("p").html(paging);
 <input type="hidden" value="${page.currentPage}" id="curpage">
 <pre></pre>
 <p align="center">page</p>
-<a href="reviewRetrieve">임시테스트</a>
+
 <%-- <table class="tbl" border="1">
 <thead>
 	<tr>
@@ -75,7 +75,9 @@ $("p").html(paging);
 </table> --%>
 <br> 
 <pre></pre>
+<c:if test="${member.userid == 'admin' }">
  <button class="btn gray small" align="center"><a href="noticeWrite">공지등록</a></button>
+ </c:if>
 
 </body>
 </html>

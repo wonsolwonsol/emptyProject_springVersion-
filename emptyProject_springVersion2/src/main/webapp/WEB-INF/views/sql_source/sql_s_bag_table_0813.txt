@@ -1,3 +1,21 @@
+-- 20181025 
+alter table review
+add goods_code varchar(20);
+
+
+
+alter table review
+ADD CONSTRAINT
+code  
+foreign key(goods_code)
+references goods(goods_code);
+
+update review set
+goods_code = 's_1'
+where review_number > 23;
+
+
+
 --20181024
 --notice
 drop sequence seq;

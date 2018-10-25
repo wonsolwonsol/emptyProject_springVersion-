@@ -68,6 +68,12 @@ $(document).ready(function() {
 	<td>${reviewRetrieve[0].review_author}</td>
 
 </tr>
+<%-- <c:if test=${ !empty reviewRetrieve[0].review_goods_code }>
+<tr>
+	<th>제품</th>
+	<td><button><a href="goodsRetrieve?goods_Code=${reviewRetrieve[0].review_goods_code}">해당제품보기</a></button></td>
+</tr>
+</c:if>  --%>
 <tr>
 	<th >내용</th>
 	<td colspan="3">${reviewRetrieve[0].review_content}</td>
@@ -87,29 +93,15 @@ $(document).ready(function() {
 	<th width="10%">작성자</th>
 	<th>내용</th>
 	<c:if test="${!empty member}">
-		<th width="10%">제어</th>
+		<th width="5%">제어</th>
 	</c:if>
-	<c:if test="${empty member}"></c:if>
+	<c:if test="${empty member}"><th width="5%"></th></c:if>
 	
 </tr>
 <c:forEach items="${reviewRetrieve}" var="data"> 
 <tr>
 <td width="10%">${data.review_comment_author } </td>
 <td>${data.review_comment_content  }</td>
-<%-- <c:if test="${!empty member}">
-	<c:if test="${member.userid eq 'admin' }">
-		<td width="10%"> 
-		<a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a>
-		</td>
-	</c:if>
-	<c:if test="${ data.review_comment_author != member.userid  }">
-		<td width="10%"></td>
-	</c:if>
-	<c:if test="${ data.review_comment_author == member.userid }">
-		<td width="10%"><a href="reviewCommentDelete?r_comment_number=${data.review_comment_number }"><img src="images/icon/trash.png"></a></td>
-	</c:if>
-</c:if>
-<c:if test="${empty member}"></c:if> --%>
 <c:choose>
 <c:when test="${member.userid eq 'admin' }">
 		<td width="10%"> 
@@ -129,6 +121,7 @@ $(document).ready(function() {
 
 </c:forEach>
 </table>
+
 <br> 
 
 <hr>  
@@ -144,6 +137,8 @@ ${member.userid } 님
 <input type="submit" value="등록"> 
 </form>
 </c:if>
+<pre></pre>
+<button class="btn yellow" style="position: absolute; right: 5px;"><a href="goodsRetrieve?goods_Code=${reviewRetrieve[0].review_goods_code}">제품보기</a></button>
 </body>
 </html>
 
