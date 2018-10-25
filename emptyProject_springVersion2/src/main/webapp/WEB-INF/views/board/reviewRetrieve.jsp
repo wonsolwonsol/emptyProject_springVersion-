@@ -74,7 +74,7 @@ $(document).ready(function() {
 	<th>제품</th>
 	<td><button><a href="goodsRetrieve?goods_Code=${reviewRetrieve[0].review_goods_code}">해당제품보기</a></button></td>
 </tr>
-</c:if>  --%>
+</c:if>--  --%>
 <tr>
 	<th >내용</th>
 	<td colspan="3">${reviewRetrieve[0].review_content}</td>
