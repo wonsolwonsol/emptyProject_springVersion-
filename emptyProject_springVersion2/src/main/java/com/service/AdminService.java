@@ -51,4 +51,9 @@ public class AdminService {
 		dao.adminMemberDeleteAll(check);
 		
 	}
+
+	public void adminGoodsUpdateNoImg(Goods goods) {
+		dao.adminGoodsUpdateNoImg(goods);
+		
+	}
 }

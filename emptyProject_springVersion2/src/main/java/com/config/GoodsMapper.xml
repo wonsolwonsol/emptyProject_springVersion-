@@ -242,6 +242,18 @@ select goods_Code
 	where goods_code = #{goods_Code}
 	</update>
 	
+		<update id="adminGoodsUpdateNoImg" parameterType="Goods">
+	update goods
+	set    	goods_Color = #{goods_Color}
+	   		,goods_Name = #{goods_Name}
+	   		,goods_Price = #{goods_Price}
+	   		,goods_Brand = #{goods_Brand}
+	   		,goods_Content = #{goods_Content}
+	   		,goods_Category = #{goods_Category}
+	where goods_code = #{goods_Code}
+	</update>
+	
+	
 	<delete id="adminGoodsDelAll" parameterType="list">
 	delete from goods
 	where goods_code in
