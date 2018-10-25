@@ -45,6 +45,7 @@ $("p").html(paging);
 	<td style="text-align: center">${dto.seq}</td>
 	<td>
 	<a class="a_black aLink" href="noticeRetrieve?seq=${dto.seq}">
+
 	${dto.title}</a>
 	</td>
 	</tr>
@@ -76,7 +77,11 @@ $("p").html(paging);
 <br> 
 <pre></pre>
 <c:if test="${member.userid == 'admin' }">
+<<<<<<< HEAD
  <button class="btn gray yellow linkNone" align="center"><a href="noticeWrite">공지등록</a></button>
+=======
+ <button class="btn gray aLink"><a href="noticeWrite">공지등록</a></button>
+>>>>>>> branch 'master' of https://github.com/wonsolwonsol/emptyProject_springVersion-.git
  </c:if>
 
 </body>

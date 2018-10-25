@@ -36,17 +36,17 @@ public class QuestionBoardService {
 	//questionWriteSubmit
 	public void questionWriteSubmit(Question question) {
 		dao.questionWriteSubmit(question);
-		System.out.println("questionWriteSubmit Service >>>>>>>>"+question);
+		
 	}
 	
 	//questionUpdate
 	public void questionUpdate(Question question) {
-		System.out.println("QuestionService>>>update"+question);
+		
 		dao.questionUpdate(question); 
 		
 	}
 	public void questionAdminDelAll(List<String> check) {
-		System.out.println("Service >>> questionAdminDelAll >>"+check);
+		
 		dao.questionAdminDelAll(check);
 	}
 	

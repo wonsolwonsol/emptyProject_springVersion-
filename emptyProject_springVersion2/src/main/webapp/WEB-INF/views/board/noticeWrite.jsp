@@ -33,7 +33,7 @@ for(var i=0; i<obj.length; i++){
 }
 }
 </script>
-<form action="noticeWrite" method="post" enctype="multipart/form-data">
+<form action="noticeWriteSubmit" method="post">
 <table class="tbl">
 <tr>
 	<th>제목</th>
@@ -44,11 +44,13 @@ for(var i=0; i<obj.length; i++){
 </tr>
 <tr>
 	<th>내용</th>
-	<td><input type="text" name="content" id="content"></td>
+	<td colspan="3" width="90%"><input type="text" name="content" id="content" ></td>
+	<pre></pre><pre></pre>
+	<a class= "a_black aLink" href="notice?currentPage=1">목록보기</a><pre></pre>
 </tr>
 </table>
-<input type="submit" value="등록"> 
-<a href="">목록보기</a>
+<button class="btn gray"><input type="submit" value="등록"></button><pre></pre><pre></pre>
 
+<!-- git -->
 </body>
 </html>

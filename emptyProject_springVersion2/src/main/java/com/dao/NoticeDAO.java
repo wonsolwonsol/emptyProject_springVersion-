@@ -15,6 +15,11 @@ public class NoticeDAO {
 	SqlSessionTemplate template ;
 	
 	
+	
+	//글쓰기
+	public void noticeWriteSubmit(Notice n) {
+		template.insert("NoticeMapper.noticeWriteSubmit", n); 
+	}
 	//자세히보기
 	public Notice noticeRetrieve(String seq) {
 		Notice n = 

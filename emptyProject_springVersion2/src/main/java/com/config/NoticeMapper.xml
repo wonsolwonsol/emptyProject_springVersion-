@@ -13,8 +13,8 @@ from notice
 where notice_number=#{seq} 
 </select>
 
-<insert id="noticeWrite" parameterType="Notice">
-insert into noticeboard 
+<insert id="noticeWriteSubmit" parameterType="Notice">
+insert into notice
 ( notice_number 
 	,title
 	,content
