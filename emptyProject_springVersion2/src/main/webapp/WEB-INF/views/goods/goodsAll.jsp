@@ -220,7 +220,9 @@
 									<td align="center" class="hover-container">
 									
 										<a href="goodsRetrieve?goods_Code=${dto.goods_Code}" >
-											<img src="images/items/thum/${dto.goods_Image1}" border="0" align="center" width="200" class="hover-cart">
+											 <img src="/images/${dto.goods_Image1}" border="0" align="center" width="200" class="hover-cart"> 
+								
+											<%-- <img src="images/items/thum/${dto.goods_Image1}" border="0" align="center" width="200" class="hover-cart">  --%>
 										</a>
 										<div class="cover">
 											<button class="darkgray cover-btn" data-code="${dto.goods_Code}" >+</button>

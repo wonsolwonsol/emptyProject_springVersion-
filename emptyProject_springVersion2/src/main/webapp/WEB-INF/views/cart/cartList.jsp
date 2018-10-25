@@ -172,11 +172,11 @@
 				<td><input type="checkbox" name="check" class="check" value="${cart.num}" id="check"></td>
 				<td>${cart.num}</td>
 				<td>					
-					<p class="img"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink"><img src="images/items/thum/${cart.goods_Image}" /></a></p>
+					<p class="img"><a href="goodsRetrieve?goods_Code=${cart.goods_Code}" class="aLink"><img src="images/items/thum/${cart.goods_Image}" /></a></p>
 				</td>
 				<td>
-					<p class="bold"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_Brand}</a></p>
-					<p class="alignL"><a href="GoodsRetrieveServlet?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_Name}</a></p>
+					<p class="bold"><a href="goodsRetrieve?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_Brand}</a></p>
+					<p class="alignL"><a href="goodsRetrieve?goods_Code=${cart.goods_Code}" class="aLink">${cart.goods_Name}</a></p>
 				</td>
 				<td>
 					<fmt:formatNumber value="${cart.goods_Price}" type="currency" />

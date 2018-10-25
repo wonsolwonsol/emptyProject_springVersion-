@@ -11,6 +11,7 @@ notice_number as seq
 ,reg_dts 
 from notice 
 where notice_number=#{seq} 
+order by notice_number desc
 </select>
 
 <insert id="noticeWriteSubmit" parameterType="Notice">

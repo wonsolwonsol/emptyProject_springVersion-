@@ -139,7 +139,9 @@ ${member.userid } 님
 </form>
 </c:if>
 <pre></pre>
+<c:if test="${ !empty reviewRetrieve[0].review_goods_code }">
 <button class="btn yellow" style="position: absolute; right: 5px;"><a href="goodsRetrieve?goods_Code=${reviewRetrieve[0].review_goods_code}">제품보기</a></button>
+</c:if>
 </body>
 </html>
 
