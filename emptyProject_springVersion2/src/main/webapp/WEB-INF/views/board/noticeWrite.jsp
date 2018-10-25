@@ -51,6 +51,6 @@ for(var i=0; i<obj.length; i++){
 </table>
 <button class="btn gray"><input type="submit" value="등록"></button><pre></pre><pre></pre>
 
-
+<!-- git -->
 </body>
 </html>
